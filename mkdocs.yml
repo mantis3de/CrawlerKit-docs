@@ -114,6 +114,8 @@ nav:
           - Keyhole Door: systems/setup-keyhole.md
           - Button Door: systems/setup-door-button.md
           - Pressure Plate Door: systems/setup-pressure-plate.md
+          - Secret / Illusory Wall: systems/setup-secret-wall.md
+          - Trap Door: systems/setup-trapdoor.md
   - Architecture: architecture.md
   - API Reference: api.md
   - FAQ: faq.md
