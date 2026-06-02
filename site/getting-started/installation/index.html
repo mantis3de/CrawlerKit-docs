@@ -594,6 +594,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-the-input-system-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install the Input System package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-from-the-unity-asset-store" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1060,6 +1071,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-the-input-system-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install the Input System package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-from-the-unity-asset-store" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1198,6 +1220,19 @@
 <div class="admonition note">
 <p class="admonition-title">Package Manager dependencies</p>
 <p>CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.</p>
+</div>
+<h2 id="install-the-input-system-package">Install the Input System package<a class="headerlink" href="#install-the-input-system-package" title="Permanent link">&para;</a></h2>
+<p>CrawlerKit requires Unity's <strong>New Input System</strong> package. If it is not already installed:</p>
+<ol>
+<li>Open <strong>Window → Package Manager</strong>.</li>
+<li>Switch the source dropdown to <strong>Unity Registry</strong>.</li>
+<li>Search for <strong>Input System</strong>, select it and click <strong>Install</strong>.</li>
+<li>Unity will ask to enable the new backends — click <strong>Yes</strong>. The editor will restart.</li>
+</ol>
+<p>After the restart, open <strong>Edit → Project Settings → Player → Other Settings</strong> and find <strong>Active Input Handling</strong>. Set it to <strong>Both</strong> so that legacy <code>UnityEngine.Input</code> calls (used by some Unity UI components) continue to work alongside the new Input System.</p>
+<div class="admonition warning">
+<p class="admonition-title">Active Input Handling</p>
+<p>If you leave this set to <strong>Input System Package (New)</strong> only, certain Unity UI drag-and-drop interactions may stop working. <strong>Both</strong> is the recommended setting for CrawlerKit projects.</p>
 </div>
 <h2 id="install-from-the-unity-asset-store">Install from the Unity Asset Store<a class="headerlink" href="#install-from-the-unity-asset-store" title="Permanent link">&para;</a></h2>
 <ol>

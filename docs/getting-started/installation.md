@@ -20,6 +20,20 @@ This page walks you through installing CrawlerKit into a Unity project and verif
 !!! note "Package Manager dependencies"
     CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.
 
+## Install the Input System package
+
+CrawlerKit requires Unity's **New Input System** package. If it is not already installed:
+
+1. Open **Window → Package Manager**.
+2. Switch the source dropdown to **Unity Registry**.
+3. Search for **Input System**, select it and click **Install**.
+4. Unity will ask to enable the new backends — click **Yes**. The editor will restart.
+
+After the restart, open **Edit → Project Settings → Player → Other Settings** and find **Active Input Handling**. Set it to **Both** so that legacy `UnityEngine.Input` calls (used by some Unity UI components) continue to work alongside the new Input System.
+
+!!! warning "Active Input Handling"
+    If you leave this set to **Input System Package (New)** only, certain Unity UI drag-and-drop interactions may stop working. **Both** is the recommended setting for CrawlerKit projects.
+
 ## Install from the Unity Asset Store
 
 1. Open the **Package Manager** (`Window → Package Manager`).
