@@ -89,7 +89,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Mantis3de/CrawlerKit
+      link: https://github.com/Mantis3de/CrawlerKit-docs
       name: CrawlerKit on GitHub
     - icon: material/web
       link: https://mantis3de.carrd.co
