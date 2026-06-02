@@ -20,6 +20,15 @@ This page walks you through installing CrawlerKit into a Unity project and verif
 !!! note "Package Manager dependencies"
     CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.
 
+## Create a URP project
+
+CrawlerKit is built for the **Universal Render Pipeline**. Before importing the asset, make sure your Unity project uses URP:
+
+- When creating a new project in Unity Hub, choose the **3D (URP)** template.
+- If your project already exists but uses the Built-in pipeline, you will need to convert it — see Unity's official [URP migration guide](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html) before continuing.
+
+Once the project is open, create an empty scene (`File → New Scene → Basic (URP)`) and save it as your starting point. This ensures the camera and lighting are configured correctly for URP before you wire up CrawlerKit.
+
 ## Install the Input System package
 
 CrawlerKit requires Unity's **New Input System** package. If it is not already installed:
@@ -76,7 +85,7 @@ If the menu appears, the framework compiled successfully and you are ready to go
 
 ## Open the sample scene
 
-A `SampleScene` is included to show a working setup with a grid, party and UI wired together. Open it from `Assets/CrawlerKitFramework/SampleScene/` and press **Play** to confirm everything runs before you start building your own content.
+A sample scene is included to show a working setup with a grid, party and UI wired together. To run it, open `Assets/CrawlerKitFramework/Scenes/MainMenu` and press **Play** — this is the correct entry point for the project. Starting from any other scene may result in missing references or an incomplete setup.
 
 ## Next step
 

@@ -594,6 +594,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#create-a-urp-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a URP project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-the-input-system-package" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1071,6 +1082,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#create-a-urp-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a URP project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-the-input-system-package" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1221,6 +1243,13 @@
 <p class="admonition-title">Package Manager dependencies</p>
 <p>CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.</p>
 </div>
+<h2 id="create-a-urp-project">Create a URP project<a class="headerlink" href="#create-a-urp-project" title="Permanent link">&para;</a></h2>
+<p>CrawlerKit is built for the <strong>Universal Render Pipeline</strong>. Before importing the asset, make sure your Unity project uses URP:</p>
+<ul>
+<li>When creating a new project in Unity Hub, choose the <strong>3D (URP)</strong> template.</li>
+<li>If your project already exists but uses the Built-in pipeline, you will need to convert it — see Unity's official <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html">URP migration guide</a> before continuing.</li>
+</ul>
+<p>Once the project is open, create an empty scene (<code>File → New Scene → Basic (URP)</code>) and save it as your starting point. This ensures the camera and lighting are configured correctly for URP before you wire up CrawlerKit.</p>
 <h2 id="install-the-input-system-package">Install the Input System package<a class="headerlink" href="#install-the-input-system-package" title="Permanent link">&para;</a></h2>
 <p>CrawlerKit requires Unity's <strong>New Input System</strong> package. If it is not already installed:</p>
 <ol>
@@ -1302,7 +1331,7 @@
 </ul>
 <p>If the menu appears, the framework compiled successfully and you are ready to go.</p>
 <h2 id="open-the-sample-scene">Open the sample scene<a class="headerlink" href="#open-the-sample-scene" title="Permanent link">&para;</a></h2>
-<p>A <code>SampleScene</code> is included to show a working setup with a grid, party and UI wired together. Open it from <code>Assets/CrawlerKitFramework/SampleScene/</code> and press <strong>Play</strong> to confirm everything runs before you start building your own content.</p>
+<p>A sample scene is included to show a working setup with a grid, party and UI wired together. To run it, open <code>Assets/CrawlerKitFramework/Scenes/MainMenu</code> and press <strong>Play</strong> — this is the correct entry point for the project. Starting from any other scene may result in missing references or an incomplete setup.</p>
 <h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
 <p>Continue to the <a href="../quick-start/">5-minute Quick Start</a> to build your first playable room.</p>
 
