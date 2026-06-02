@@ -1,0 +1,1718 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A modular Unity framework for building grid-based dungeon crawlers — visual editors for parties, dungeons, items, spells and enemies.">
+      
+      
+        <meta name="author" content="Mantis3de">
+      
+      
+        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/editors/inventory-editor/">
+      
+      
+        <link rel="prev" href="../dungeon-generator/">
+      
+      
+        <link rel="next" href="../spell-editor/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Inventory Editor - CrawlerKit Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#crawlerkit-inventory-editor" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CrawlerKit Documentation" class="md-header__button md-logo" aria-label="CrawlerKit Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CrawlerKit Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inventory Editor
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Mantis3de/CrawlerKit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mantis3de/CrawlerKit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../character-generator/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Editors
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CrawlerKit Documentation" class="md-nav__button md-logo" aria-label="CrawlerKit Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CrawlerKit Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Mantis3de/CrawlerKit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mantis3de/CrawlerKit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start (5 Minutes)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editors
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Editors
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../character-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Character Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dungeon-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dungeon Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory Editor
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 1 — Items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tab 1 — Items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#item-list-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item List &amp; Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a New Item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visuals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visuals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-specific-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type-Specific Stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stat-bonuses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stat Bonuses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Restrictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-bottom-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving &amp; Bottom Buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab-2-equipment-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 2 — Equipment Sets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tab 2 — Equipment Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab-3-loot-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 3 — Loot Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tab 3 — Loot Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loot-table-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loot Table Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loot-table-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loot Table Entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-generate-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Generate Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loot-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loot Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spell-editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spell Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enemy-spawner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemy Spawner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 1 — Items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tab 1 — Items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#item-list-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item List &amp; Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a New Item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visuals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visuals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-specific-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type-Specific Stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stat-bonuses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stat Bonuses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Restrictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-bottom-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving &amp; Bottom Buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab-2-equipment-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 2 — Equipment Sets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tab 2 — Equipment Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab-3-loot-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 3 — Loot Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tab 3 — Loot Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loot-table-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loot Table Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loot-table-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loot Table Entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-generate-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Generate Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loot-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loot Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Mantis3de/CrawlerKit/edit/main/Docs/docs/editors/inventory-editor.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="crawlerkit-inventory-editor">CrawlerKIT — Inventory Editor<a class="headerlink" href="#crawlerkit-inventory-editor" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Inventory Editor is the tool you use to create every item in your game, bundle items into starter kits for your party, and design what drops as loot. You open it from Unity's top menu under <strong>CrawlerKit → Inventory Editor</strong>.</p>
+<p>The window is split into three tabs: <strong>Items</strong>, <strong>Equipment Sets</strong> and <strong>Loot Tables</strong>. Each tab handles a different layer of the inventory system — authoring individual items, dressing your party, and defining drops for enemies and chests.</p>
+<hr />
+<h2 id="tab-1-items">Tab 1 — Items<a class="headerlink" href="#tab-1-items" title="Permanent link">&para;</a></h2>
+<p>The Items tab is the core of the editor. It is split into two panels: a scrollable item list on the left and the full item editor on the right.</p>
+<h3 id="item-list-filters">Item List &amp; Filters<a class="headerlink" href="#item-list-filters" title="Permanent link">&para;</a></h3>
+<p>The left panel is your item library. A search field at the top filters the list in real time as you type. Below it, category buttons arranged across several rows let you filter by All, Weapons, Shields, Helmets, Armor, Legs, Boots, Cloaks, Amulets, Rings, Consumables, Scrolls, Keys, Quest items and Misc. Each button shows a count of how many items of that type exist, and the active filter is highlighted in blue.</p>
+<p>Every row shows the item's icon, its name and a short stat summary (damage for weapons, protection for armor, heal amount for consumables, and so on). A colour-coded power tier tag appears in the top-right corner of each row — Weak in green, Neutral in blue, Strong in orange — and a yellow label below it lists any class restrictions. Clicking a row loads the item into the editor on the right. The <strong>+ Create new item</strong> button sits at the bottom of the list.</p>
+<h3 id="creating-a-new-item">Creating a New Item<a class="headerlink" href="#creating-a-new-item" title="Permanent link">&para;</a></h3>
+<p>Clicking <strong>+ Create new item</strong> shows a blank item on the right. At this point the item exists only in memory — it has not been written to disk. This is deliberate: you fill in every field first and only click <strong>Save item</strong> when you are happy. Clicking <strong>Cancel</strong> discards it and nothing is created.</p>
+<h3 id="random-generator">Random Generator<a class="headerlink" href="#random-generator" title="Permanent link">&para;</a></h3>
+<p>A foldout at the very top of the item editor. Three tier buttons — <strong>Weak</strong>, <strong>Neutral</strong> and <strong>Strong</strong> — auto-fill the current item's stats based on its type and the chosen tier. A weak weapon gets low damage, slow speed and poor accuracy; a strong weapon gets high damage, a fast cooldown and one or two stat bonuses. Weak armor gives minimal protection and no penalties; strong armor gives high protection with meaningful evasion and magic penalties. Rings and amulets are always stat items, so even a weak one gets at least one bonus.</p>
+<p>A one-line description under the buttons explains what the chosen tier produces. Unsupported types (Keys, Quest items, Misc) show a warning and the buttons won't fire; supported types are Weapon, Shield, Helmet, Armor, Legs, Boots, Cloak, Ring and Amulet. The generator records its result with Undo, so Ctrl+Z restores the previous values.</p>
+<h3 id="basic-info">Basic Info<a class="headerlink" href="#basic-info" title="Permanent link">&para;</a></h3>
+<p>A 100×100 drag zone holds the item icon — drag any sprite from the Project window onto it, or drag a Texture2D and the editor resolves the sprite automatically; right-click to clear. Icon changes are buffered locally and only written when you click Save item, so switching items without saving discards the change. Dragging a sprite also pre-fills the item name from the filename, converting snake_case and kebab-case to Title Case (so <code>iron_sword_01.png</code> suggests "Iron Sword 01").</p>
+<p>To the right are <strong>Item name</strong> and <strong>Item type</strong> (a dropdown that updates the filter counts live), followed by a scrollable <strong>Description</strong> field for lore or tooltip text.</p>
+<h3 id="visuals">Visuals<a class="headerlink" href="#visuals" title="Permanent link">&para;</a></h3>
+<p>This section assigns extra sprites: <strong>Cursor sprite</strong> (shown while dragging the item in the UI), <strong>World sprite</strong> (used by the generated world prefab to show the item on the dungeon floor) and <strong>Hand sprite</strong> (shown in the character's hand when equipped). Three scale sliders — <strong>Cursor scale</strong>, <strong>World prefab scale</strong> and <strong>Chest scale</strong> — control how large the sprite appears in each context. Every slot works like the icon: drag to assign, right-click to clear, changes stay local until you save.</p>
+<h3 id="type-specific-stats">Type-Specific Stats<a class="headerlink" href="#type-specific-stats" title="Permanent link">&para;</a></h3>
+<p>This section changes with the item type:</p>
+<ul>
+<li><strong>Weapons</strong> — Damage, Attack speed (cooldown in seconds), Hit chance (0–1 slider; DEX adjusts it by ±2% per point at runtime), Protection and STR requirement (a soft threshold — below it the character swings at 70% damage rather than being blocked outright).</li>
+<li><strong>Shields</strong> — Protection and Evasion penalty (how much the shield restricts movement; a buckler is 0, a tower shield around 0.10).</li>
+<li><strong>Armor pieces</strong> (Helmet, Armor, Legs, Boots, Cloak, Ring, Amulet) — Protection, Evasion penalty and Magic penalty. These stack across all equipped armor, so high-DEX rogues avoid heavy armor and mages pay for wearing plate.</li>
+<li><strong>Consumables</strong> — Heal amount, Energy amount and Effect duration.</li>
+<li><strong>Scrolls</strong> — Energy amount and Effect duration.</li>
+<li><strong>Keys, Quest items and Misc</strong> — no special stats, just the common fields.</li>
+</ul>
+<h3 id="stat-bonuses">Stat Bonuses<a class="headerlink" href="#stat-bonuses" title="Permanent link">&para;</a></h3>
+<p>Add Grimrock-style modifiers that apply while the item is equipped. Click <strong>+ Add stat bonus</strong>, pick a stat from the dropdown of StatDefinition assets, and set the amount — shown as a coloured label (green positive, red negative). Stats already used appear as <code>(used)</code> so you don't assign the same one twice, and the red ✕ removes a row. If no StatDefinitions exist yet the section shows a warning and a path to create them, and a small <strong>↻ Refresh stats</strong> button picks up newly created stats without restarting the editor.</p>
+<h3 id="class-restrictions">Class Restrictions<a class="headerlink" href="#class-restrictions" title="Permanent link">&para;</a></h3>
+<p>Controls which classes can equip the item. Currently allowed classes appear as blue pill labels, each with an ✕ to remove. Click <strong>+ Add Class ▾</strong> to add one from the dropdown of ClassData assets; classes already in the list are disabled so you can't duplicate them. An empty list means anyone can equip the item — that is the default.</p>
+<h3 id="common-fields">Common Fields<a class="headerlink" href="#common-fields" title="Permanent link">&para;</a></h3>
+<p>At the bottom: <strong>Stacking &amp; weight</strong> (a Stackable toggle, a Max stack field that is disabled when not stackable, and Weight), <strong>Economy</strong> (a Sellable toggle and a Sell price field disabled when not sellable), and <strong>Rarity</strong> (an integer slider 0–2 mapping to the Weak/Neutral/Strong tier tag in the list).</p>
+<h3 id="saving-bottom-buttons">Saving &amp; Bottom Buttons<a class="headerlink" href="#saving-bottom-buttons" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cancel</strong> — discards unsaved changes; asks whether to discard an unsaved item or revert one already on disk.</li>
+<li><strong>Generate World Prefab</strong> (green) — creates a prefab with a WorldItem component, a flat SpriteRenderer using the world sprite, and a BoxCollider sized to match. It is saved next to the item asset and linked to the <code>worldPrefab</code> field. Disabled until the item is saved.</li>
+<li><strong>Generate Alcove Prefab</strong> (blue) — creates a WallAlcove prefab pre-configured with the item's ID, the world prefab as its visual, and a BoxCollider for interaction raycasts. Drop it into a wall, adjust the collider, wire the triggers and you have a working item puzzle. Disabled until a world prefab exists.</li>
+<li><strong>Save item ★</strong> (yellow when unsaved) — on first save a file dialog lets you choose where the <code>.asset</code> goes, and the item ID is derived from the filename; later saves just write changes. The inventory database syncs automatically after every save.</li>
+<li><strong>Delete</strong> (red) — permanently deletes the asset file; disabled for unsaved items.</li>
+</ul>
+<hr />
+<h2 id="tab-2-equipment-sets">Tab 2 — Equipment Sets<a class="headerlink" href="#tab-2-equipment-sets" title="Permanent link">&para;</a></h2>
+<p>An equipment set is a bundle of items you can pre-assign to a party member as their starting gear. The tab has three panels: a set list on the left, an item browser in the middle, and a set editor on the right.</p>
+<h3 id="set-list">Set List<a class="headerlink" href="#set-list" title="Permanent link">&para;</a></h3>
+<p>Shows all EquipmentSetData assets in the project. Click an entry to open it. The ⠿ handle on the left of each row lets you drag a set straight onto a party member portrait in the editor. The red X deletes the set, and <strong>+ Create New Set</strong> at the bottom opens a save dialog in the default EquipmentSets folder.</p>
+<h3 id="item-browser">Item Browser<a class="headerlink" href="#item-browser" title="Permanent link">&para;</a></h3>
+<p>The middle panel lists every item in the project with the same search and type filters as Tab 1. Drag an item from the browser onto a slot in the set editor to populate it; drop targets highlight blue on hover.</p>
+<h3 id="set-editor">Set Editor<a class="headerlink" href="#set-editor" title="Permanent link">&para;</a></h3>
+<p>Shows the set's <strong>Set name</strong> and <strong>Description</strong>, then two groups of slots. <strong>Body Slots</strong> are Head, Chest, Cloak, Legs, Feet, Amulet and Ring; <strong>Hands</strong> are Left Hand and Right Hand. Each slot is a 72×72 icon box showing the item icon and a truncated name when filled, or a placeholder letter when empty. Drag an item onto a slot to assign it, right-click to clear, left-click to ping the asset in the Project window.</p>
+<p>Below the slots, the <strong>Party</strong> section shows your four party members (FrontLeft, FrontRight, BackLeft, BackRight) with names and classes. Drag the selected set from the list onto a portrait to assign it. If the set contains items restricted to other classes the portrait turns red and a dialog asks whether to assign anyway; otherwise it turns blue. After assigning, the portrait shows the set name in orange, with a red ✕ to clear it. <strong>Save Set</strong> writes the set to disk and pushes the assignments to the Character Generator, refreshing it live if it is open.</p>
+<hr />
+<h2 id="tab-3-loot-tables">Tab 3 — Loot Tables<a class="headerlink" href="#tab-3-loot-tables" title="Permanent link">&para;</a></h2>
+<p>A loot table is a ScriptableObject defining what drops from an enemy, chest or any other source at runtime. The tab uses the same three-panel layout: table list, item browser and table editor.</p>
+<h3 id="loot-table-editor">Loot Table Editor<a class="headerlink" href="#loot-table-editor" title="Permanent link">&para;</a></h3>
+<p>The editor shows the table's <strong>Identity</strong> (name and description) and a <strong>Roll Settings</strong> section with three modes:</p>
+<ul>
+<li><strong>Pick One</strong> — one item per roll, chosen by weighted random. Weight 10 versus Weight 1 means roughly 10× the drop frequency. Best for doors, small pots and single guaranteed drops.</li>
+<li><strong>Pick N</strong> — like Pick One but draws several items; you set Min Rolls and Max Rolls, and the actual count is random in that range. Best for treasure chests.</li>
+<li><strong>Roll All</strong> — every entry rolls independently, with weight meaning a drop chance in percent (1–100). Multiple items, or none, can drop per roll. Best for enemy death loot and breakable barrels.</li>
+</ul>
+<p>The <strong>Drop Chance</strong> slider is a master gate: at 1.0 the table always fires, at 0.6 there's a 40% chance the whole table drops nothing. A warning label shows the empty-drop percentage when it's below 100%. A stats bar below the settings reports entry count, total weight and how many items are picked per roll.</p>
+<h3 id="loot-table-entries">Loot Table Entries<a class="headerlink" href="#loot-table-entries" title="Permanent link">&para;</a></h3>
+<p>Each entry is an item slot plus weight and a quantity range. The left side is a 64×64 icon drop target (drag from the browser, right-click to clear, left-click to ping). The right side shows the item name, a Weight field (Chance% in Roll All mode) and the resulting drop probability as a colour-coded percentage — green above 50%, yellow above 20%, red below. <strong>Min</strong> and <strong>Max</strong> quantity fields set how many of the item can drop per roll. <strong>+ Add Entry</strong> appends a new entry and the red Remove button deletes a row.</p>
+<h3 id="auto-generate-table">Auto-Generate Table<a class="headerlink" href="#auto-generate-table" title="Permanent link">&para;</a></h3>
+<p>A foldout below the entries with three context presets:</p>
+<ul>
+<li><strong>Enemy</strong> — Roll All mode, 30–60% drop chance, low equipment chance, higher consumables.</li>
+<li><strong>Chest</strong> — Pick One mode, 100% drop chance, a mix of equipment and consumables with tiered weights.</li>
+<li><strong>Boss</strong> — Pick N (2–4 rolls), 100% drop chance, guaranteed better loot and a higher equipment chance.</li>
+</ul>
+<p>Then choose the item tier (Weak, Neutral, Strong) and the number of entries (2–10), and click <strong>⚙ Generate Table</strong> to fill it with random matching items from your project. The operation is recorded with Undo.</p>
+<h3 id="loot-simulator">Loot Simulator<a class="headerlink" href="#loot-simulator" title="Permanent link">&para;</a></h3>
+<p>A foldout to test a table without running the game. <strong>▶ Simulate Roll</strong> rolls the table once using the exact runtime logic and lists the resulting items and quantities, or "Nothing dropped" if Drop Chance withheld everything. A log line below shows the raw roll details.</p>
+<hr />
+<h2 id="workflow-summary">Workflow Summary<a class="headerlink" href="#workflow-summary" title="Permanent link">&para;</a></h2>
+<p><strong>Creating an item:</strong> create a new item → optionally hit a Random Generator tier → drag in icon and visual sprites → fill in name, type, description, stats, bonuses and restrictions → Save item → Generate World Prefab → optionally Generate Alcove Prefab.</p>
+<p><strong>Setting up party gear:</strong> open Equipment Sets → Create New Set → drag items onto the body and hand slots → drag the set onto a party portrait → Save Set.</p>
+<p><strong>Creating a loot table:</strong> open Loot Tables → Create New Table → pick a roll mode and Drop Chance → use Auto-Generate Table or add entries manually → test with the Loot Simulator → save.</p>
+<p>The Inventory Editor takes you from a blank item asset to a fully configured loot economy without writing a single line of code.</p>
+<hr />
+<p><em>CrawlerKIT — Mantis3de</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../dungeon-generator/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dungeon Generator">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Dungeon Generator
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../spell-editor/" class="md-footer__link md-footer__link--next" aria-label="Next: Spell Editor">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Spell Editor
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Mantis3de — CrawlerKit
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/Mantis3de/CrawlerKit" target="_blank" rel="noopener" title="CrawlerKit on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
