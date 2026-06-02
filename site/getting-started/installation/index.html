@@ -1163,11 +1163,23 @@
 <tbody>
 <tr>
 <td>Unity</td>
-<td>2021.3 LTS or newer (2022 LTS verified)</td>
+<td>2021.3 LTS or newer (2022.3 LTS verified)</td>
 </tr>
 <tr>
 <td>Render pipeline</td>
-<td>Built-in, URP or HDRP (no pipeline-specific shaders required)</td>
+<td>Universal Render Pipeline (URP) (recommended)</td>
+</tr>
+<tr>
+<td>UI System</td>
+<td>Unity UI (UGUI)</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>TextMeshPro</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Input System (New Input System)</td>
 </tr>
 <tr>
 <td>Platform</td>
@@ -1182,6 +1194,10 @@
 <div class="admonition note">
 <p class="admonition-title">Assembly definitions</p>
 <p>CrawlerKit ships with assembly definitions (<code>Mantis3de.CrawlerKit.*</code>). If your own scripts need to call CrawlerKit at runtime, add a reference to the relevant assembly in your <code>.asmdef</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Package Manager dependencies</p>
+<p>CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.</p>
 </div>
 <h2 id="install-from-the-unity-asset-store">Install from the Unity Asset Store<a class="headerlink" href="#install-from-the-unity-asset-store" title="Permanent link">&para;</a></h2>
 <ol>

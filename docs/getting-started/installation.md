@@ -6,13 +6,19 @@ This page walks you through installing CrawlerKit into a Unity project and verif
 
 | Requirement | Recommended |
 | --- | --- |
-| Unity | 2021.3 LTS or newer (2022 LTS verified) |
-| Render pipeline | Built-in, URP or HDRP (no pipeline-specific shaders required) |
+| Unity | 2021.3 LTS or newer (2022.3 LTS verified) |
+| Render pipeline | Universal Render Pipeline (URP) (recommended) |
+| UI System | Unity UI (UGUI) |
+| Text | TextMeshPro |
+| Input | Input System (New Input System) |
 | Platform | Any Unity build target (desktop verified) |
 | Scripting backend | Mono or IL2CPP |
 
 !!! note "Assembly definitions"
     CrawlerKit ships with assembly definitions (`Mantis3de.CrawlerKit.*`). If your own scripts need to call CrawlerKit at runtime, add a reference to the relevant assembly in your `.asmdef`.
+
+!!! note "Package Manager dependencies"
+    CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.
 
 ## Install from the Unity Asset Store
 
