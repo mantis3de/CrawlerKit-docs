@@ -6,7 +6,7 @@ This page walks you through installing CrawlerKit into a Unity project and verif
 
 | Requirement | Recommended |
 | --- | --- |
-| Unity | 2021.3 LTS or newer (2022.3 LTS verified) |
+| Unity | 2022.3 LTS or newer (2022.3 LTS verified) |
 | Render pipeline | Universal Render Pipeline (URP) (recommended) |
 | UI System | Unity UI (UGUI) |
 | Text | TextMeshPro |
