@@ -3,9 +3,7 @@ site_description: A modular Unity framework for building grid-based dungeon craw
 site_author: Mantis3de
 site_url: https://mantis3de.github.io/CrawlerKit/
 
-repo_name: Mantis3de/CrawlerKit
-repo_url: https://github.com/Mantis3de/CrawlerKit
-edit_uri: edit/main/Docs/docs/
+edit_uri: ""
 
 copyright: Copyright &copy; Mantis3de — CrawlerKit
 
@@ -95,6 +93,9 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/Mantis3de/CrawlerKit
       name: CrawlerKit on GitHub
+    - icon: material/web
+      link: https://mantis3de.carrd.co
+      name: Mantis3de
   generator: false
 
 nav:
