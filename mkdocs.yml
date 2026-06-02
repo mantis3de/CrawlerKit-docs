@@ -1,0 +1,114 @@
+site_name: CrawlerKit Documentation
+site_description: A modular Unity framework for building grid-based dungeon crawlers — visual editors for parties, dungeons, items, spells and enemies.
+site_author: Mantis3de
+site_url: https://mantis3de.github.io/CrawlerKit/
+
+repo_name: Mantis3de/CrawlerKit
+repo_url: https://github.com/Mantis3de/CrawlerKit
+edit_uri: edit/main/Docs/docs/
+
+copyright: Copyright &copy; Mantis3de — CrawlerKit
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.action.edit
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Mantis3de/CrawlerKit
+      name: CrawlerKit on GitHub
+  generator: false
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quick Start (5 Minutes): getting-started/quick-start.md
+  - Editors:
+      - Character Generator: editors/character-generator.md
+      - Dungeon Generator: editors/dungeon-generator.md
+      - Inventory Editor: editors/inventory-editor.md
+      - Spell Editor: editors/spell-editor.md
+      - Enemy Spawner: editors/enemy-spawner.md
+  - Architecture: architecture.md
+  - API Reference: api.md
+  - FAQ: faq.md
+  - Changelog: changelog.md

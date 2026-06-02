@@ -1,0 +1,70 @@
+# NOTE
+# This workflow lives inside the Docs/ folder for convenience.
+# Move it to the REPOSITORY ROOT at `.github/workflows/deploy.yml`
+# for GitHub Actions to pick it up. It builds the MkDocs site from the
+# Docs/ subfolder and publishes it to GitHub Pages.
+
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Docs/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          key: mkdocs-material-${{ hashFiles('Docs/requirements.txt') }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+
+      - name: Install dependencies
+        run: pip install -r Docs/requirements.txt
+
+      - name: Build site
+        working-directory: Docs
+        run: mkdocs build --strict --site-dir ../_site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
