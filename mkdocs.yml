@@ -109,6 +109,7 @@ nav:
       - Enemy Spawner: editors/enemy-spawner.md
   - Systems:
       - Trigger System: systems/triggers.md
+      - Dungeon Map: systems/dungeon-map.md
       - Setup Guides:
           - Keyhole Door: systems/setup-keyhole.md
           - Button Door: systems/setup-door-button.md
