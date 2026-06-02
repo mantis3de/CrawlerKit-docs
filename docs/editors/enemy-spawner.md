@@ -79,6 +79,109 @@ The spawner integrates with the save system: an enemy that was killed and saved 
 
 ---
 
+## Behavior types
+
+Each enemy's behavior is set in its EnemyData asset. The behavior pill in the Enemies column is color-coded for quick identification.
+
+**Aggressive** — chases the party as soon as it detects them (within Detection Range tiles) and does not give up until one side is dead. The most common behavior for dungeon monsters.
+
+**Stationary** — stands on its spawn tile and never moves. Attacks when the party enters its attack range. Useful for turret-style guardians and immobile bosses.
+
+**Patrol** — walks a random route near its spawn point (within Patrol Radius tiles) when the party is not detected. Switches to Aggressive chase on detection.
+
+**PatrolRoute** — follows the waypoints assigned in the EnemySpawner's Patrol Route list, looping or ping-ponging between them. Switches to Aggressive chase on detection. Requires at least one waypoint Transform set in the spawner.
+
+**Coward** — fights normally until its HP drops below the Flee Threshold (default 30%). Once below that threshold it runs away from the party. Useful for archers and fragile casters that flee when cornered.
+
+**Ranged** — keeps its distance and attacks from range. Flees if the party steps into the adjacent cell. Attack Range on the EnemyData must be greater than 1 for the ranged attack to reach.
+
+**Passive** — wanders randomly and ignores the party unless attacked first. Once hit, switches to Aggressive for the rest of the encounter. Useful for neutral creatures or animals.
+
+---
+
+## EnemyData asset reference
+
+EnemyData is a ScriptableObject that defines a creature type. Create one via `Assets → Create → CrawlerKit → Enemy Data`. Every EnemySpawner in the scene references one.
+
+### Identity
+
+| Field | Description |
+|---|---|
+| **Enemy Name** | Display name shown in the spawner window and in UI. |
+| **Description** | Free-text lore or notes. Not shown at runtime. |
+
+### Stats
+
+| Field | Description |
+|---|---|
+| **Max HP** | Maximum health points. |
+| **Attack Damage** | Damage dealt per attack, modified by party defense via CombatFormulas. |
+| **Defense** | Reduces incoming damage. |
+| **Evasion** | Chance (0–0.6) to dodge an incoming attack. Interacts with attacker DEX. |
+
+### Behavior
+
+| Field | Description |
+|---|---|
+| **Behavior** | AI pattern — see Behavior types above. |
+| **Move Cooldown** | Seconds between movement steps. Lower = faster enemy. |
+| **Attack Cooldown** | Seconds between attacks. |
+| **Attack Connect Time** | Delay in seconds from the start of the attack animation to when damage lands. Match this to the visual hit moment in the animation clip. |
+| **Camera Shake Delay** | Seconds from the damage landing moment to the camera shake. Set to 0 for an immediate shake on hit. |
+| **Detection Range** | Tiles away at which the enemy can detect the party. |
+| **Attack Range** | 1 = melee (adjacent cell only). 2 or higher = ranged attack reaching that many tiles. |
+| **Can Move** | Uncheck to make the enemy stationary regardless of behavior. |
+| **Patrol Radius** | For Patrol behavior — how far from spawn the enemy roams. |
+| **Flee Threshold** | For Coward behavior — HP fraction (0–1) below which the enemy flees. |
+
+### Death
+
+| Field | Description |
+|---|---|
+| **Death Linger Duration** | Extra seconds before the corpse is destroyed after the death animation ends. 0 = destroyed immediately. |
+
+### Visual
+
+| Field | Description |
+|---|---|
+| **Speed Multiplier** | Scales the visual move speed. 1 = synced to the Walk clip. 2 = twice as fast visually. |
+| **Move Start Delay** | Seconds after the Walk animation starts before the enemy physically steps to the new cell. Tune if the enemy appears to walk in place before moving. |
+| **Health Bar Y Offset** | Height of the HP bar above the enemy pivot. Adjust to the model's height. |
+| **VFX Aim Y Offset** | Vertical offset from the enemy pivot where projectiles and spell VFX aim. 0 = feet, ~1 = human chest, ~1.8 = golem chest. |
+| **VFX Impact Forward Offset** | Pulls the impact point toward the caster so the effect lands on the model surface rather than inside it. |
+| **Health Bar Scale** | Size multiplier for the HP bar. |
+| **Health Bar Max Distance** | The HP bar becomes invisible when the camera is farther than this many units away. |
+
+### Animation
+
+These fields must match the parameter and state names in the enemy's Animator Controller exactly.
+
+| Field | Default | Description |
+|---|---|---|
+| **Is Walking Bool** | `IsWalking` | Bool parameter — true while moving. |
+| **Attack Trigger** | `Attack` | Trigger for the attack animation. |
+| **Hit Trigger** | `Hit` | Trigger for the damage/flinch animation. |
+| **Death Trigger** | `Death` | Trigger for the death animation. |
+| **Walk Clip Name** | `Walk` | Animator state name for the walk animation. |
+| **Attack Clip Name** | `Attack` | Animator state name for the attack animation. |
+| **Death Clip Name** | `Death` | Animator state name for the death animation. |
+
+### Audio
+
+| Field | Description |
+|---|---|
+| **Attack Sound** | Played when the enemy attacks. |
+| **Hurt Sound** | Played when the enemy takes damage. |
+| **Death Sound** | Played when the enemy dies. |
+
+### Loot
+
+| Field | Description |
+|---|---|
+| **Loot Table** | The LootTableData asset dropped on death. Assign here or via drag-and-drop in the Enemy Spawner window. |
+
+---
+
 ## Workflow Summary
 
 1. Open **CrawlerKit → Enemy Spawner**.
