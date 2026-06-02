@@ -1,0 +1,2308 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A modular Unity framework for building grid-based dungeon crawlers — visual editors for parties, dungeons, items, spells and enemies.">
+      
+      
+        <meta name="author" content="Mantis3de">
+      
+      
+        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/systems/triggers/">
+      
+      
+        <link rel="prev" href="../../editors/enemy-spawner/">
+      
+      
+        <link rel="next" href="../../architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Trigger System - CrawlerKit Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trigger-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CrawlerKit Documentation" class="md-header__button md-logo" aria-label="CrawlerKit Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CrawlerKit Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trigger System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Mantis3de/CrawlerKit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mantis3de/CrawlerKit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../editors/character-generator/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Editors
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Systems
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CrawlerKit Documentation" class="md-nav__button md-logo" aria-label="CrawlerKit Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CrawlerKit Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Mantis3de/CrawlerKit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mantis3de/CrawlerKit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start (5 Minutes)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editors
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Editors
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/character-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Character Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/dungeon-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dungeon Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/inventory-editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/spell-editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spell Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/enemy-spawner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemy Spawner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trigger System
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trigger System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggersource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerSource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggertarget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerTarget
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interaction-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interaction range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wall-button-wallbutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Button — WallButton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-lever-walllever" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Lever — WallLever
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-chain-wallchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Chain — WallChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-alcove-wallalcove" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Alcove — WallAlcove
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-keyhole-wallkeyhole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Keyhole — WallKeyhole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-multi-switch-wallmultiswitch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Multi-Switch — WallMultiSwitch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pressure-plate-pressureplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pressure Plate — PressurePlate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-doors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Doors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Doors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggeropendoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerOpenDoor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggeropendoortimed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerOpenDoorTimed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerdirectionaldoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerDirectionalDoor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Traps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Traps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projectiletrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProjectileTrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trapdoortrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrapDoorTrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trapprojectile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrapProjectile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-walls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Walls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Walls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggerillusorywall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerIllusoryWall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WallCore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggerchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerlogicgate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerLogicGate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggersequencegate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerSequenceGate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerrelay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerRelay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggershowmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerShowMessage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerplaysound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerPlaySound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-a-door-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring a door — step by step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-system-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save System integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggersource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerSource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggertarget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerTarget
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interaction-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interaction range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wall-button-wallbutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Button — WallButton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-lever-walllever" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Lever — WallLever
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-chain-wallchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Chain — WallChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-alcove-wallalcove" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Alcove — WallAlcove
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-keyhole-wallkeyhole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Keyhole — WallKeyhole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wall-multi-switch-wallmultiswitch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Multi-Switch — WallMultiSwitch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pressure-plate-pressureplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pressure Plate — PressurePlate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-doors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Doors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Doors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggeropendoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerOpenDoor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggeropendoortimed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerOpenDoorTimed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerdirectionaldoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerDirectionalDoor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Traps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Traps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projectiletrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProjectileTrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trapdoortrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrapDoorTrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trapprojectile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrapProjectile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-walls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Walls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Walls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggerillusorywall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerIllusoryWall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WallCore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targets-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targets — Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Targets — Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggerchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerlogicgate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerLogicGate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggersequencegate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerSequenceGate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerrelay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerRelay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggershowmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerShowMessage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerplaysound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerPlaySound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-a-door-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring a door — step by step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-system-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save System integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Mantis3de/CrawlerKit/edit/main/Docs/docs/systems/triggers.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="trigger-system">Trigger System<a class="headerlink" href="#trigger-system" title="Permanent link">&para;</a></h1>
+<p>The Trigger System is the backbone of interactive dungeon elements — doors, levers, pressure plates, traps and everything else the player or the environment can activate. It lives in the <code>CrawlerKitTriggers</code> module and follows a simple <strong>source → target</strong> pattern: a source fires when the player interacts with it (or steps on it), and each target reacts by opening a door, spawning a projectile, playing a sound, and so on.</p>
+<p>Sources and targets are connected by direct <code>TriggerTarget</code> references set in the Inspector — there are no string IDs or lookup tables involved in routing. String IDs (<code>sourceId</code>, <code>blockerId</code>, <code>targetId</code>) exist only so the Save System can persist state across sessions.</p>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="triggersource">TriggerSource<a class="headerlink" href="#triggersource" title="Permanent link">&para;</a></h3>
+<p><code>TriggerSource</code> is the base class for every interactive object. It holds the list of connected targets and exposes the <code>Interact()</code> entry point that <code>InteractionSystem</code> calls when the player clicks on it.</p>
+<p><strong>Inspector fields (all sources inherit these):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Source Id</strong></td>
+<td>Unique string identifier used by the Save System. Must be unique per scene. Leave empty if this source doesn't need to be saved (e.g. a one-shot button whose state doesn't matter on reload).</td>
+</tr>
+<tr>
+<td><strong>Interact From Adjacent Cell</strong></td>
+<td>When <strong>disabled</strong> (default), the player must be standing on the exact same grid cell as the trigger to interact with it. When <strong>enabled</strong>, the player can also interact from the cell directly in front of them — useful for buttons mounted on the far side of a wall that the player faces from their own cell. See <a href="#interaction-range">Interaction range</a> for the full rules.</td>
+</tr>
+<tr>
+<td><strong>Targets</strong></td>
+<td>Direct references to one or more <code>TriggerTarget</code> components this source will notify when activated or deactivated.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="triggertarget">TriggerTarget<a class="headerlink" href="#triggertarget" title="Permanent link">&para;</a></h3>
+<p><code>TriggerTarget</code> is the base class for every reactive object. It receives <code>OnTriggered</code> / <code>OnReleased</code> calls from its source and acts accordingly. Targets never know which source fired them — they simply respond to activate and deactivate events.</p>
+<h3 id="interaction-range">Interaction range<a class="headerlink" href="#interaction-range" title="Permanent link">&para;</a></h3>
+<p>The <code>InteractionSystem</code> (the component that handles mouse clicks and routes them to triggers) applies the following range rules for every <code>TriggerSource</code>:</p>
+<ol>
+<li><strong>Same cell</strong> — the player is always in range, regardless of the <strong>Interact From Adjacent Cell</strong> setting.</li>
+<li><strong>Adjacent cell (front)</strong> — the player can reach the trigger from the cell directly ahead of them only if <strong>Interact From Adjacent Cell</strong> is enabled on that source and there is no closed, non-passable door or blocker between the two cells.</li>
+<li><strong>Any other position</strong> — not in range; the click is ignored.</li>
+</ol>
+<p>This means two triggers placed on the same tile can have different reach rules independently of each other — toggle a lever on one and enable adjacent reach on a button next to it, or vice versa.</p>
+<div class="admonition tip">
+<p class="admonition-title">When to enable Interact From Adjacent Cell</p>
+<p>Enable it on buttons that are physically mounted on a wall between two cells, where the player naturally stands in one cell and reaches the button across the edge. Leave it disabled for levers, chains and other triggers that are physically within the player's cell (on the floor or on a nearby column), so the player must walk up to them before interacting.</p>
+</div>
+<hr />
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<h3 id="wall-button-wallbutton">Wall Button — <code>WallButton</code><a class="headerlink" href="#wall-button-wallbutton" title="Permanent link">&para;</a></h3>
+<p>A one-shot button that fires on press and stays down until the connected door closes. Once pressed it ignores further clicks until <code>NotifyDoorClosed()</code> is called on it (which <code>TriggerOpenDoor</code> and <code>TriggerOpenDoorTimed</code> do automatically when their door finishes closing).</p>
+<p>Internally it pulses — it activates its targets, waits a brief moment, then deactivates them — so targets receive both the <code>Triggered</code> and <code>Released</code> events in quick succession. Targets that only care about activation (most doors) simply ignore the release.</p>
+<table>
+<thead>
+<tr>
+<th>Inspector field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pulse Time</strong></td>
+<td>Seconds between <code>Activate</code> and <code>Deactivate</code> inside the pulse. Default 0.3 s. Increase slightly if the door's open animation takes a frame or two to read the trigger.</td>
+</tr>
+<tr>
+<td><strong>Button Animator</strong></td>
+<td>Animator on the button mesh.</td>
+</tr>
+<tr>
+<td><strong>Press Anim Trigger / Release Anim Trigger</strong></td>
+<td>Animator trigger names for the press-down and spring-back animations.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="wall-lever-walllever">Wall Lever — <code>WallLever</code><a class="headerlink" href="#wall-lever-walllever" title="Permanent link">&para;</a></h3>
+<p>A toggle lever: first interact activates, second interact deactivates, and so on. Unlike a button it doesn't spring back — it stays in whatever position it was last set to, which is also what the Save System restores.</p>
+<p>If a connected target refuses the incoming state change (for example, a door refuses to close because an enemy is standing in it) the lever stays in its current position and plays no animation. The player must wait until the doorway is clear and try again.</p>
+<table>
+<thead>
+<tr>
+<th>Inspector field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lever Animator</strong></td>
+<td>Animator on the lever mesh.</td>
+</tr>
+<tr>
+<td><strong>Activate / Deactivate Trigger</strong></td>
+<td>Animator trigger names.</td>
+</tr>
+<tr>
+<td><strong>Activated / Deactivated State Name</strong></td>
+<td>Animator state names used by the Save System to snap the lever to the correct visual on load.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="wall-chain-wallchain">Wall Chain — <code>WallChain</code><a class="headerlink" href="#wall-chain-wallchain" title="Permanent link">&para;</a></h3>
+<p>Functionally identical to <code>WallLever</code> (a toggle) but styled as a pull-chain. Use whichever fits the visual theme of the dungeon.</p>
+<h3 id="wall-alcove-wallalcove">Wall Alcove — <code>WallAlcove</code><a class="headerlink" href="#wall-alcove-wallalcove" title="Permanent link">&para;</a></h3>
+<p>A wall recess that holds an item. The player interacts with it by having an item on the cursor (to place) or by clicking when the alcove already holds an item (to retrieve). When an item is placed into an alcove that is connected to targets, those targets are activated; when the item is removed they are deactivated. Use this for item-based puzzles — place the correct amulet in the alcove to open a door.</p>
+<h3 id="wall-keyhole-wallkeyhole">Wall Keyhole — <code>WallKeyhole</code><a class="headerlink" href="#wall-keyhole-wallkeyhole" title="Permanent link">&para;</a></h3>
+<p>A keyhole that accepts a specific item from the cursor as a key. When the correct key is inserted the targets activate. The key is consumed in the process. Unlike other sources, the keyhole always requires the player to be on the <strong>same cell</strong> — the <strong>Interact From Adjacent Cell</strong> setting has no effect on keyholes.</p>
+<p>Configure which item acts as the key via <strong>DoorKeyholeSetup</strong>, a companion component that links the keyhole to a specific <code>ItemData</code> asset.</p>
+<h3 id="wall-multi-switch-wallmultiswitch">Wall Multi-Switch — <code>WallMultiSwitch</code><a class="headerlink" href="#wall-multi-switch-wallmultiswitch" title="Permanent link">&para;</a></h3>
+<p>A switch with multiple positions (rather than a simple on/off toggle). Each position can activate a different set of targets, making it useful for puzzles where the player must select one of several options — for example, rotating a dial to choose a spell element.</p>
+<h3 id="pressure-plate-pressureplate">Pressure Plate — <code>PressurePlate</code><a class="headerlink" href="#pressure-plate-pressureplate" title="Permanent link">&para;</a></h3>
+<p>A floor tile that activates when the player (or a world item) is on it and deactivates when the tile becomes empty. It polls its own cell automatically on every frame something could have changed — no explicit player interaction is needed.</p>
+<p>Pressure plates work with items: drop an item on the plate and it stays activated. This enables weight-based puzzles. A plate connected to a <code>TriggerOpenDoor</code> with <strong>Close On Release</strong> enabled will keep the door open for as long as something is on it, and let it close the moment the tile clears.</p>
+<hr />
+<h2 id="targets-doors">Targets — Doors<a class="headerlink" href="#targets-doors" title="Permanent link">&para;</a></h2>
+<h3 id="triggeropendoor">TriggerOpenDoor<a class="headerlink" href="#triggeropendoor" title="Permanent link">&para;</a></h3>
+<p>The standard interactive door. Opening and closing are driven by animator triggers, and the physical blocker state (which the grid uses to determine movement) is updated through <code>IGridSystem.TryOpenDoor</code> / <code>TryCloseDoor</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Inspector field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blocker Id</strong></td>
+<td>The <code>blockerId</code> from the <code>EdgeBlockerMarker</code> on this door. Must match exactly — the grid uses this to find the right blocker.</td>
+</tr>
+<tr>
+<td><strong>Close On Release</strong></td>
+<td>When enabled, the door closes as soon as the source releases (lever pulled back, pressure plate emptied). When disabled, the door stays open until something else closes it.</td>
+</tr>
+<tr>
+<td><strong>Skip Close Guard</strong></td>
+<td>Skip the occupancy check when closing. Enable this for toggle doors where the lever is on the same cell as the door, because the guard would wait forever (the player is always on that cell).</td>
+</tr>
+<tr>
+<td><strong>Button Release Delay</strong></td>
+<td>Seconds to wait after the close animation starts before telling the connected <code>WallButton</code> to spring back. Set this to roughly the length of your Close animation so the button returns to idle only after the door is fully shut.</td>
+</tr>
+<tr>
+<td><strong>Door Animator</strong></td>
+<td>Animator on the door mesh.</td>
+</tr>
+<tr>
+<td><strong>Open / Close Anim Trigger</strong></td>
+<td>Trigger names for the open and close animations.</td>
+</tr>
+<tr>
+<td><strong>Opened / Closed State Name</strong></td>
+<td>Animator state names used by the Save System to snap the door to its saved visual on load.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Close guard behaviour.</strong> When <strong>Close On Release</strong> is enabled and the player releases the source, the door does not close immediately. Instead it waits until both grid cells the door connects are clear of the player and of any living enemy, then closes. This prevents the door from visually clipping through a party member or an enemy that walked into the doorway while it was open. The check runs every 0.1 seconds.</p>
+<div class="admonition note">
+<p class="admonition-title">Enemy blocking</p>
+<p>An enemy standing in the doorway prevents the door from closing, exactly as the player does. This is intentional — the enemy walked in because the player opened the door, so the door waits for them to leave. Once the enemy clears the cell the door closes normally.</p>
+<p>In addition, if the source is a lever or button with <strong>Close On Release</strong> enabled, clicking it while an enemy is standing in the doorway is refused entirely — the lever does not move and no animation plays. The doorway must be clear before the player can initiate a close.</p>
+</div>
+<h3 id="triggeropendoortimed">TriggerOpenDoorTimed<a class="headerlink" href="#triggeropendoortimed" title="Permanent link">&para;</a></h3>
+<p>A door that opens on trigger and closes automatically after a fixed delay. Useful for portcullises, countdown traps and any door that should not stay open indefinitely.</p>
+<table>
+<thead>
+<tr>
+<th>Inspector field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blocker Id</strong></td>
+<td>Same as <code>TriggerOpenDoor</code>.</td>
+</tr>
+<tr>
+<td><strong>Close Delay</strong></td>
+<td>Seconds the door stays open before beginning to close. Default 3 s.</td>
+</tr>
+<tr>
+<td><strong>Door Animator</strong></td>
+<td>Animator on the door mesh.</td>
+</tr>
+<tr>
+<td><strong>Open / Close Anim Trigger</strong></td>
+<td>Trigger names.</td>
+</tr>
+</tbody>
+</table>
+<p>After <code>closeDelay</code> seconds the door applies the same close guard as <code>TriggerOpenDoor</code> — it waits until the player and any enemy have left the doorway before actually closing.</p>
+<h3 id="triggerdirectionaldoor">TriggerDirectionalDoor<a class="headerlink" href="#triggerdirectionaldoor" title="Permanent link">&para;</a></h3>
+<p>A door that only opens when the player approaches from one specific direction. Useful for one-way passages, secret exits and anti-backtrack mechanisms.</p>
+<hr />
+<h2 id="targets-traps">Targets — Traps<a class="headerlink" href="#targets-traps" title="Permanent link">&para;</a></h2>
+<h3 id="projectiletrap">ProjectileTrap<a class="headerlink" href="#projectiletrap" title="Permanent link">&para;</a></h3>
+<p>Fires a projectile (an arrow, a dart, a magical bolt) at the party when activated. The projectile travels in a straight line and deals damage to the party on hit.</p>
+<table>
+<thead>
+<tr>
+<th>Inspector field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trap Id</strong></td>
+<td>Unique identifier for Save System persistence.</td>
+</tr>
+<tr>
+<td><strong>Projectile Prefab</strong></td>
+<td>The projectile to spawn. Must have a <code>TrapProjectile</code> component.</td>
+</tr>
+<tr>
+<td><strong>Fire Direction</strong></td>
+<td>Which direction the projectile travels: North, South, East or West.</td>
+</tr>
+<tr>
+<td><strong>Damage</strong></td>
+<td>Damage dealt to the party on hit.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trapdoortrap">TrapDoorTrap<a class="headerlink" href="#trapdoortrap" title="Permanent link">&para;</a></h3>
+<p>A floor tile that opens beneath the party's feet, dropping them to a lower level or dealing fall damage. Place the <code>TrapDoorTrap</code> component on the same grid cell as a Trap Door floor tile (set in the Dungeon Generator).</p>
+<h3 id="trapprojectile">TrapProjectile<a class="headerlink" href="#trapprojectile" title="Permanent link">&para;</a></h3>
+<p>The companion component to <code>ProjectileTrap</code>. Attach it to the projectile prefab. It handles movement, collision detection and applying damage when the projectile reaches the party's cell.</p>
+<hr />
+<h2 id="targets-walls">Targets — Walls<a class="headerlink" href="#targets-walls" title="Permanent link">&para;</a></h2>
+<h3 id="triggerillusorywall">TriggerIllusoryWall<a class="headerlink" href="#triggerillusorywall" title="Permanent link">&para;</a></h3>
+<p>A wall that appears solid but can be walked through when revealed. Connected to a <code>WallCore</code> component. When activated the wall is flagged as passable; when deactivated it becomes solid again.</p>
+<p>The wall system supports several reveal behaviours that control <em>when</em> the wall reveals itself, all implemented as components alongside <code>WallCore</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Behaviour</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ProximityRevealBehaviour</strong></td>
+<td>Reveals when the party steps within a set number of cells.</td>
+</tr>
+<tr>
+<td><strong>DelayedProximityBehaviour</strong></td>
+<td>Same as proximity, but with a configurable delay before reveal.</td>
+</tr>
+<tr>
+<td><strong>TimedRevealBehaviour</strong></td>
+<td>Reveals after a fixed time from scene load.</td>
+</tr>
+<tr>
+<td><strong>AmbushRevealBehaviour</strong></td>
+<td>Reveals when a connected enemy spawner activates (the enemy "bursts through" the wall).</td>
+</tr>
+<tr>
+<td><strong>CounterRevealBehaviour</strong></td>
+<td>Reveals after the party has passed the tile a set number of times.</td>
+</tr>
+<tr>
+<td><strong>ProjectileRevealBehaviour</strong></td>
+<td>Reveals when hit by a projectile.</td>
+</tr>
+<tr>
+<td><strong>PhaseWallBehaviour</strong></td>
+<td>Allows the party to walk through without revealing the wall visually — they simply pass through.</td>
+</tr>
+<tr>
+<td><strong>OneWayPassageBehaviour</strong></td>
+<td>Passable from one direction only.</td>
+</tr>
+<tr>
+<td><strong>BiomeWallModifier</strong></td>
+<td>Changes the wall's visual appearance to match a different biome theme without affecting behaviour.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="wallcore">WallCore<a class="headerlink" href="#wallcore" title="Permanent link">&para;</a></h3>
+<p>The central component that manages a wall's reveal state and routes it through the behaviour pipeline. Every wall behaviour component on the same GameObject communicates through <code>WallCore</code>. You rarely need to interact with it directly — configure the individual behaviours instead.</p>
+<hr />
+<h2 id="targets-events">Targets — Events<a class="headerlink" href="#targets-events" title="Permanent link">&para;</a></h2>
+<h3 id="triggerchain">TriggerChain<a class="headerlink" href="#triggerchain" title="Permanent link">&para;</a></h3>
+<p>Forwards activation and deactivation to a list of other <code>TriggerTarget</code> components. Use it to fan out one source to many targets without wiring every target directly to the source.</p>
+<h3 id="triggerlogicgate">TriggerLogicGate<a class="headerlink" href="#triggerlogicgate" title="Permanent link">&para;</a></h3>
+<p>A logic gate (AND, OR, NOT, XOR) with multiple <code>TriggerSource</code> inputs. The gate activates its targets only when the logical condition across all inputs is satisfied. Useful for puzzles where multiple levers must all be in the correct position before a door opens.</p>
+<h3 id="triggersequencegate">TriggerSequenceGate<a class="headerlink" href="#triggersequencegate" title="Permanent link">&para;</a></h3>
+<p>A sequence gate that requires its connected sources to be activated in a specific order. Wrong order resets the sequence. Use it for combination lock puzzles.</p>
+<h3 id="triggerrelay">TriggerRelay<a class="headerlink" href="#triggerrelay" title="Permanent link">&para;</a></h3>
+<p>Listens to <code>OnActivated</code> / <code>OnDeactivated</code> events from a source and re-emits them to targets. Similar to <code>TriggerChain</code> but driven by C# events rather than direct calls, which can be useful when sources and targets are in different parts of the scene hierarchy.</p>
+<h3 id="triggershowmessage">TriggerShowMessage<a class="headerlink" href="#triggershowmessage" title="Permanent link">&para;</a></h3>
+<p>Displays a text message on screen when activated. Use for signs, lore pickups or tutorial hints wired to a pressure plate or trigger zone.</p>
+<h3 id="triggerplaysound">TriggerPlaySound<a class="headerlink" href="#triggerplaysound" title="Permanent link">&para;</a></h3>
+<p>Plays an audio clip when activated. Optionally plays a different clip on deactivation.</p>
+<hr />
+<h2 id="wiring-a-door-step-by-step">Wiring a door — step by step<a class="headerlink" href="#wiring-a-door-step-by-step" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Place your door prefab in the scene. It should have an <code>EdgeBlockerMarker</code> component with a filled-in <strong>Blocker Id</strong> field. If the field is empty, run <strong>Generate Unique IDs (all doors)</strong> from the Dungeon Generator.</li>
+<li>Add a <code>TriggerOpenDoor</code> component to the door GameObject. Set <strong>Blocker Id</strong> to the same value as the <code>EdgeBlockerMarker</code>.</li>
+<li>Configure the animator fields to point to your door's <code>Animator</code> and the correct trigger/state names.</li>
+<li>Place your lever (or button, or pressure plate) in the scene. Add the appropriate source component.</li>
+<li>Drag the door's <code>TriggerOpenDoor</code> component into the source's <strong>Targets</strong> list.</li>
+<li>Fill in the source's <strong>Source Id</strong> field with a unique string.</li>
+<li>Press Play and test.</li>
+</ol>
+<p>If the door should close automatically after a delay, use <code>TriggerOpenDoorTimed</code> instead and skip the <strong>Close On Release</strong> option — the timed door handles its own close timer.</p>
+<hr />
+<h2 id="save-system-integration">Save System integration<a class="headerlink" href="#save-system-integration" title="Permanent link">&para;</a></h2>
+<p>Every <code>TriggerSource</code> that has a non-empty <strong>Source Id</strong> registers itself with the Save System. On save, each source writes its <code>IsActivated</code> boolean. On load, each source restores that boolean and calls <code>RestoreState</code> on all its targets, which snap their visual state (animator, blocker open/closed) to match without firing any events.</p>
+<p>Door targets also read the actual <code>EdgeBlocker.isOpen</code> state from the grid JSON on restore, so the physical passability is always authoritative — the visual snaps to match it, rather than the other way around.</p>
+<hr />
+<p><em>CrawlerKIT — Mantis3de</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../editors/enemy-spawner/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Enemy Spawner">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Enemy Spawner
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../architecture/" class="md-footer__link md-footer__link--next" aria-label="Next: Architecture">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Architecture
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Mantis3de — CrawlerKit
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/Mantis3de/CrawlerKit" target="_blank" rel="noopener" title="CrawlerKit on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

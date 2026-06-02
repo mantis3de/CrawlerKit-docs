@@ -108,6 +108,8 @@ nav:
       - Inventory Editor: editors/inventory-editor.md
       - Spell Editor: editors/spell-editor.md
       - Enemy Spawner: editors/enemy-spawner.md
+  - Systems:
+      - Trigger System: systems/triggers.md
   - Architecture: architecture.md
   - API Reference: api.md
   - FAQ: faq.md
