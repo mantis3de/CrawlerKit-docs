@@ -68,9 +68,13 @@ A collapsible **ℹ Effect Type Reference** foldout below the list explains ever
 
 At the bottom of the section, **＋ Create Effect** expands a form for Name, Type, Base DMG, Duration, and Tick Interval (for DoT and HoT). Clicking **✔ Create Effect** saves the asset and assigns it to the current spell immediately.
 
-### VFX
+### VFX & Audio
 
-Three prefab slots — **Cast VFX**, **Projectile** and **Impact VFX**. Each is either an object field with a red ✕ (to clear and delete) when a prefab is assigned, or a cyan **⚡ Create** button when empty. Create generates a ready-made particle system prefab in the `VFX/` folder next to the SpellDatabase — Cast and Impact use a cone-shaped burst, Projectile uses a sphere, and the colour matches the assigned effect's type badge. You can also drag any existing prefab into the object field. The VFX section is only active once an effect is assigned; without one it shows "Assign an effect first."
+**VFX** — Three prefab slots: **Cast VFX**, **Projectile** and **Impact VFX**. Each is either an object field with a red ✕ (to clear and delete) when a prefab is assigned, or a cyan **⚡ Create** button when empty. Create generates a ready-made particle system prefab in the `VFX/` folder next to the SpellDatabase — Cast and Impact use a cone-shaped burst, Projectile uses a sphere, and the colour matches the assigned effect's type badge. You can also drag any existing prefab into the object field.
+
+**Audio** — Two AudioClip slots below the VFX fields: **Cast Sound** and **Impact Sound**. Drag any audio asset from your project into the slot. When a clip is assigned, a volume slider (0–1) appears inline so you can tune loudness per-spell without leaving the editor. A red ✕ clears the clip. Cast Sound plays at the caster's position when the spell fires; Impact Sound plays at the target's position when the spell lands (or instantly for non-projectile spells). Volume is respected at runtime through `AudioSource.PlayClipAtPoint`.
+
+The whole section is only active once an effect is assigned; without one it shows "Assign an effect first."
 
 ### Validation
 
@@ -94,7 +98,7 @@ Auto-wire specifically: it looks for a **MagicBootstrap** component in the scene
 4. In Spell Info, fill in name, level, energy cost and cooldown.
 5. In Recipe Editor, click cells to toggle runes ON; the conflict checker warns if a pattern is already taken.
 6. In Effect, create or assign an effect and set its type and parameters.
-7. In VFX, click **⚡ Create** on each slot or drag in your own particle prefabs.
+7. In VFX & Audio, click **⚡ Create** on each VFX slot or drag in your own particle prefabs. Drag audio clips into **Cast Sound** and **Impact Sound** and tune volume with the inline slider.
 8. Click **💾 Save & Sync** — the spell is saved and the scene wired automatically.
 
 The Spell Editor takes you from zero to a fully functional magic system — runes, recipes, effects, VFX and runtime wiring — without writing a single line of code.
