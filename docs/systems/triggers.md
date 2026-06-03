@@ -19,6 +19,8 @@ Sources and targets are connected by direct `TriggerTarget` references set in th
 | **Source Id** | Unique string identifier used by the Save System. Must be unique per scene. Leave empty if this source doesn't need to be saved (e.g. a one-shot button whose state doesn't matter on reload). |
 | **Interact From Adjacent Cell** | When **disabled** (default), the player must be standing on the exact same grid cell as the trigger to interact with it. When **enabled**, the player can also interact from the cell directly in front of them — useful for buttons mounted on the far side of a wall that the player faces from their own cell. See [Interaction range](#interaction-range) for the full rules. |
 | **Targets** | Direct references to one or more `TriggerTarget` components this source will notify when activated or deactivated. |
+| **Interact Sound** | Audio clip played at the trigger's world position when the player successfully interacts with it (button press, lever pull, key insert, etc.). Leave empty for no sound. |
+| **Interact Volume** | Volume of the interact sound (0–1). |
 
 ### TriggerTarget
 
@@ -103,6 +105,9 @@ The standard interactive door. Opening and closing are driven by animator trigge
 | **Close On Release** | When enabled, the door closes as soon as the source releases (lever pulled back, pressure plate emptied). When disabled, the door stays open until something else closes it. |
 | **Skip Close Guard** | Skip the occupancy check when closing. Enable this for toggle doors where the lever is on the same cell as the door, because the guard would wait forever (the player is always on that cell). |
 | **Button Release Delay** | Seconds to wait after the close animation starts before telling the connected `WallButton` to spring back. Set this to roughly the length of your Close animation so the button returns to idle only after the door is fully shut. |
+| **Open Sound** | Audio clip played at the door's world position when it opens. 3D spatial — audible from a distance. |
+| **Close Sound** | Audio clip played when the door closes. |
+| **Door Sound Volume** | Volume for both open and close sounds (0–1). |
 | **Door Animator** | Animator on the door mesh. |
 | **Open / Close Anim Trigger** | Trigger names for the open and close animations. |
 | **Opened / Closed State Name** | Animator state names used by the Save System to snap the door to its saved visual on load. |

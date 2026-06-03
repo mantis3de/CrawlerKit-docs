@@ -13,6 +13,8 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 - **Corridor spell targeting** — hostile spells now scan the entire corridor in the party's facing direction and target the first living enemy found, not just the enemy in the adjacent cell. The scan respects closed doors and walls — spells cannot pass through them.
 - **Casting into empty corridors** — hostile spells can be cast even when no enemy is present. The projectile flies straight forward and the impact VFX plays at the wall or closed door at the end of the corridor, matching the feel of classic dungeon crawlers.
 
+- **Trigger audio** — `TriggerSource` base class now has `Interact Sound` and `Interact Volume` fields. All interactive sources (WallButton, WallLever, WallKeyhole and any custom source) play this sound automatically on successful interaction. `TriggerOpenDoor` has separate `Open Sound`, `Close Sound` and `Door Sound Volume` fields that play at the door's world-space position (3D spatial audio).
+
 ### Changed
 - `EnemyData` — removed `healthBarYOffset`, `healthBarZOffset`, and `vfxAimYOffset`. Position the HP bar and VFX aim point using the new prefab child components instead.
 - Spell Editor section renamed from **4. VFX** to **4. VFX & Audio**.

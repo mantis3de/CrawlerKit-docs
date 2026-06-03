@@ -179,6 +179,9 @@ These fields must match the parameter and state names in the enemy's Animator Co
 | **Attack Sound** | Played when the enemy attacks. |
 | **Hurt Sound** | Played when the enemy takes damage. |
 | **Death Sound** | Played when the enemy dies. |
+| **Spatial Audio** | When enabled, sounds fade with distance (3D spatial audio). When disabled, sounds always play at full volume regardless of how far the enemy is. |
+| **Audio Min Distance** | Distance in world units at which the sound plays at full volume. Only applies when Spatial Audio is enabled. Default 15 (3 cells at cell size 5). |
+| **Audio Max Distance** | Distance in world units at which the sound becomes inaudible. Only applies when Spatial Audio is enabled. Default 40 (8 cells). |
 
 ### Loot
 
