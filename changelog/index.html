@@ -1489,7 +1489,12 @@
 <li><strong>HealthBarAnchor component</strong> — place this on an empty child GameObject in the enemy prefab to control the HP bar position visually in the Scene view. The red bar gizmo shows exactly where the bar will float. Replaces the <code>healthBarYOffset</code> and <code>healthBarZOffset</code> fields that were previously on EnemyData.</li>
 <li><strong>VFXAimPoint component</strong> — place this on an empty child GameObject in the enemy prefab at chest height. Spell projectiles and impact VFX aim at this transform's world position. The cyan sphere and crosshair gizmo make placement easy in the Scene view. Replaces the <code>vfxAimYOffset</code> field that was previously on EnemyData.</li>
 <li><strong>Corridor spell targeting</strong> — hostile spells now scan the entire corridor in the party's facing direction and target the first living enemy found, not just the enemy in the adjacent cell. The scan respects closed doors and walls — spells cannot pass through them.</li>
-<li><strong>Casting into empty corridors</strong> — hostile spells can be cast even when no enemy is present. The projectile flies straight forward and the impact VFX plays at the wall or closed door at the end of the corridor, matching the feel of classic dungeon crawlers.</li>
+<li>
+<p><strong>Casting into empty corridors</strong> — hostile spells can be cast even when no enemy is present. The projectile flies straight forward and the impact VFX plays at the wall or closed door at the end of the corridor, matching the feel of classic dungeon crawlers.</p>
+</li>
+<li>
+<p><strong>Trigger audio</strong> — <code>TriggerSource</code> base class now has <code>Interact Sound</code> and <code>Interact Volume</code> fields. All interactive sources (WallButton, WallLever, WallKeyhole and any custom source) play this sound automatically on successful interaction. <code>TriggerOpenDoor</code> has separate <code>Open Sound</code>, <code>Close Sound</code> and <code>Door Sound Volume</code> fields that play at the door's world-space position (3D spatial audio).</p>
+</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>

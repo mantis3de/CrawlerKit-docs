@@ -2158,6 +2158,14 @@
 <td><strong>Targets</strong></td>
 <td>Direct references to one or more <code>TriggerTarget</code> components this source will notify when activated or deactivated.</td>
 </tr>
+<tr>
+<td><strong>Interact Sound</strong></td>
+<td>Audio clip played at the trigger's world position when the player successfully interacts with it (button press, lever pull, key insert, etc.). Leave empty for no sound.</td>
+</tr>
+<tr>
+<td><strong>Interact Volume</strong></td>
+<td>Volume of the interact sound (0–1).</td>
+</tr>
 </tbody>
 </table>
 <h3 id="triggertarget">TriggerTarget<a class="headerlink" href="#triggertarget" title="Permanent link">&para;</a></h3>
@@ -2265,6 +2273,18 @@
 <tr>
 <td><strong>Button Release Delay</strong></td>
 <td>Seconds to wait after the close animation starts before telling the connected <code>WallButton</code> to spring back. Set this to roughly the length of your Close animation so the button returns to idle only after the door is fully shut.</td>
+</tr>
+<tr>
+<td><strong>Open Sound</strong></td>
+<td>Audio clip played at the door's world position when it opens. 3D spatial — audible from a distance.</td>
+</tr>
+<tr>
+<td><strong>Close Sound</strong></td>
+<td>Audio clip played when the door closes.</td>
+</tr>
+<tr>
+<td><strong>Door Sound Volume</strong></td>
+<td>Volume for both open and close sounds (0–1).</td>
 </tr>
 <tr>
 <td><strong>Door Animator</strong></td>
