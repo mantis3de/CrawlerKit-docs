@@ -1,6 +1,6 @@
 # Music System
 
-The Music System (`CrawlerKitMusic` module) handles background music across all scenes. A single **MusicManager** lives in the Main Menu scene and persists through every scene transition via `DontDestroyOnLoad`. It crossfades between states using dual AudioSources (A/B swap) and automatically switches to Combat music when enemies are alive.
+The Music System (`CrawlerKitMusic` module) handles background music across all scenes. A single **MusicManager** lives in the Main Menu scene and persists through every scene transition via `DontDestroyOnLoad`. It crossfades between states using dual AudioSources (A/B swap) and automatically switches to Combat music when enemies enter the party's range.
 
 ---
 
@@ -10,10 +10,10 @@ The Music System (`CrawlerKitMusic` module) handles background music across all 
 |---|---|
 | `None` | Silence — no track playing |
 | `Menu` | Main menu scene |
-| `Exploration` | Dungeon levels, no enemies alive |
-| `Combat` | Enemies are present in the scene |
+| `Exploration` | Dungeon levels, no enemies nearby |
+| `Combat` | At least one enemy is within **Combat Radius** cells of the party |
 
-Combat detection is **automatic** — the manager listens to `IEnemyManager` events and switches states without any extra code. When the last enemy dies it waits a configurable number of seconds before returning to `Exploration`, so the music doesn't cut in and out during a fight.
+Combat detection is **proximity-based** — the manager polls every second and checks whether any alive enemy is within a configurable number of grid cells. Enemies in other rooms don't trigger combat music. When no enemies remain nearby, the system waits a configurable delay before returning to `Exploration`.
 
 ---
 
@@ -53,9 +53,11 @@ Assign your MusicStateData assets:
 | Field | Description |
 |---|---|
 | **Master Volume** | Global volume multiplier (0–1). All state volumes are multiplied by this. |
-| **Auto Combat Detection** | When enabled, automatically switches to `Combat` when enemies spawn and back to `Exploration` when they all die. |
-| **Combat Exit Delay** | Seconds to wait after the last enemy dies before switching back to Exploration. Prevents rapid switching at the end of a fight. |
-| **Debug Log** | Logs every state change to the Console. Useful during development. |
+| **Auto Combat Detection** | When enabled, automatically switches to `Combat` when an enemy enters range and back to `Exploration` when the area is clear. |
+| **Combat Radius** | Distance in grid cells within which an enemy triggers combat music. Enemies further away are ignored. Default: 6. |
+| **Detection Interval** | How often (in seconds) the manager checks for nearby enemies. Default: 1s. |
+| **Combat Exit Delay** | Seconds to wait after no nearby enemies remain before switching back to Exploration. Prevents music cutting in and out. |
+| **Debug Log** | Logs every state change and detection tick to the Console. Useful during development. |
 
 !!! warning "One MusicManager per project"
     Only place the **Music Manager** in the **Main Menu** scene. If the menu scene is loaded again (e.g. "Return to menu"), the duplicate is destroyed automatically. Do **not** add it to every dungeon scene.
@@ -73,7 +75,7 @@ Add a **Scene Music Setup** component (`CrawlerKit → Scene Music Setup`) to an
 
 | Scene type | State |
 |---|---|
-| Main Menu | *(handled by MusicManager directly — no SceneMusicSetup needed)* |
+| Main Menu | *(MusicManager auto-starts menu music on its own — no SceneMusicSetup needed)* |
 | Dungeon level | `Exploration` |
 | Boss arena | `Combat` |
 | Cinematic / cutscene | `None` |

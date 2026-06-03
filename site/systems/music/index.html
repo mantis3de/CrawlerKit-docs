@@ -1543,7 +1543,7 @@
 
 
 <h1 id="music-system">Music System<a class="headerlink" href="#music-system" title="Permanent link">&para;</a></h1>
-<p>The Music System (<code>CrawlerKitMusic</code> module) handles background music across all scenes. A single <strong>MusicManager</strong> lives in the Main Menu scene and persists through every scene transition via <code>DontDestroyOnLoad</code>. It crossfades between states using dual AudioSources (A/B swap) and automatically switches to Combat music when enemies are alive.</p>
+<p>The Music System (<code>CrawlerKitMusic</code> module) handles background music across all scenes. A single <strong>MusicManager</strong> lives in the Main Menu scene and persists through every scene transition via <code>DontDestroyOnLoad</code>. It crossfades between states using dual AudioSources (A/B swap) and automatically switches to Combat music when enemies enter the party's range.</p>
 <hr />
 <h2 id="music-states">Music states<a class="headerlink" href="#music-states" title="Permanent link">&para;</a></h2>
 <table>
@@ -1564,15 +1564,15 @@
 </tr>
 <tr>
 <td><code>Exploration</code></td>
-<td>Dungeon levels, no enemies alive</td>
+<td>Dungeon levels, no enemies nearby</td>
 </tr>
 <tr>
 <td><code>Combat</code></td>
-<td>Enemies are present in the scene</td>
+<td>At least one enemy is within <strong>Combat Radius</strong> cells of the party</td>
 </tr>
 </tbody>
 </table>
-<p>Combat detection is <strong>automatic</strong> — the manager listens to <code>IEnemyManager</code> events and switches states without any extra code. When the last enemy dies it waits a configurable number of seconds before returning to <code>Exploration</code>, so the music doesn't cut in and out during a fight.</p>
+<p>Combat detection is <strong>proximity-based</strong> — the manager polls every second and checks whether any alive enemy is within a configurable number of grid cells. Enemies in other rooms don't trigger combat music. When no enemies remain nearby, the system waits a configurable delay before returning to <code>Exploration</code>.</p>
 <hr />
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-musicstatedata-assets">1. Create MusicStateData assets<a class="headerlink" href="#1-create-musicstatedata-assets" title="Permanent link">&para;</a></h3>
@@ -1653,15 +1653,23 @@
 </tr>
 <tr>
 <td><strong>Auto Combat Detection</strong></td>
-<td>When enabled, automatically switches to <code>Combat</code> when enemies spawn and back to <code>Exploration</code> when they all die.</td>
+<td>When enabled, automatically switches to <code>Combat</code> when an enemy enters range and back to <code>Exploration</code> when the area is clear.</td>
+</tr>
+<tr>
+<td><strong>Combat Radius</strong></td>
+<td>Distance in grid cells within which an enemy triggers combat music. Enemies further away are ignored. Default: 6.</td>
+</tr>
+<tr>
+<td><strong>Detection Interval</strong></td>
+<td>How often (in seconds) the manager checks for nearby enemies. Default: 1s.</td>
 </tr>
 <tr>
 <td><strong>Combat Exit Delay</strong></td>
-<td>Seconds to wait after the last enemy dies before switching back to Exploration. Prevents rapid switching at the end of a fight.</td>
+<td>Seconds to wait after no nearby enemies remain before switching back to Exploration. Prevents music cutting in and out.</td>
 </tr>
 <tr>
 <td><strong>Debug Log</strong></td>
-<td>Logs every state change to the Console. Useful during development.</td>
+<td>Logs every state change and detection tick to the Console. Useful during development.</td>
 </tr>
 </tbody>
 </table>
@@ -1700,7 +1708,7 @@
 <tbody>
 <tr>
 <td>Main Menu</td>
-<td><em>(handled by MusicManager directly — no SceneMusicSetup needed)</em></td>
+<td><em>(MusicManager auto-starts menu music on its own — no SceneMusicSetup needed)</em></td>
 </tr>
 <tr>
 <td>Dungeon level</td>

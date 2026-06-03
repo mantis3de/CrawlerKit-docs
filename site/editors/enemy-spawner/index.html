@@ -1994,7 +1994,7 @@
 </tr>
 <tr>
 <td><strong>VFX Aim Y Offset</strong></td>
-<td>Vertical offset from the enemy pivot where projectiles and spell VFX aim. 0 = feet, ~1 = human chest, ~1.8 = golem chest.</td>
+<td>Vertical offset from the enemy pivot in world space where projectiles and spell VFX aim. <strong>This value scales with your model's scale.</strong> Use the formula: <code>reference_value × model_scale</code>. Example: human chest reference = 1.0, model scale = 3 → set <strong>3.0</strong>. Reference values (scale = 1): 0 = feet, ~0.3 = rat chest, ~1.0 = human chest, ~1.8 = golem chest.</td>
 </tr>
 <tr>
 <td><strong>VFX Impact Forward Offset</strong></td>
