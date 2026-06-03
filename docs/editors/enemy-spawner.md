@@ -147,6 +147,7 @@ EnemyData is a ScriptableObject that defines a creature type. Create one via `As
 | **Speed Multiplier** | Scales the visual move speed. 1 = synced to the Walk clip. 2 = twice as fast visually. |
 | **Move Start Delay** | Seconds after the Walk animation starts before the enemy physically steps to the new cell. Tune if the enemy appears to walk in place before moving. |
 | **Health Bar Y Offset** | Height of the HP bar above the enemy pivot. Adjust to the model's height. |
+| **Health Bar Z Offset** | Forward/back offset of the HP bar relative to the enemy's facing direction. Positive = in front of the enemy, negative = behind. Useful when the model pivot is not centered on the mesh. Default 0. |
 | **VFX Aim Y Offset** | Vertical offset from the enemy pivot in world space where projectiles and spell VFX aim. **This value scales with your model's scale.** Use the formula: `reference_value × model_scale`. Example: human chest reference = 1.0, model scale = 3 → set **3.0**. Reference values (scale = 1): 0 = feet, ~0.3 = rat chest, ~1.0 = human chest, ~1.8 = golem chest. |
 | **VFX Impact Forward Offset** | Pulls the impact point toward the caster so the effect lands on the model surface rather than inside it. |
 | **Health Bar Scale** | Size multiplier for the HP bar. |
