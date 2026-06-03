@@ -992,6 +992,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#health-bar-and-vfx-aim-prefab-child-gameobjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Bar and VFX aim — prefab child GameObjects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#animation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1728,6 +1739,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#health-bar-and-vfx-aim-prefab-child-gameobjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Bar and VFX aim — prefab child GameObjects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#animation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1989,18 +2011,6 @@
 <td>Seconds after the Walk animation starts before the enemy physically steps to the new cell. Tune if the enemy appears to walk in place before moving.</td>
 </tr>
 <tr>
-<td><strong>Health Bar Y Offset</strong></td>
-<td>Height of the HP bar above the enemy pivot. Adjust to the model's height.</td>
-</tr>
-<tr>
-<td><strong>Health Bar Z Offset</strong></td>
-<td>Forward/back offset of the HP bar relative to the enemy's facing direction. Positive = in front of the enemy, negative = behind. Useful when the model pivot is not centered on the mesh. Default 0.</td>
-</tr>
-<tr>
-<td><strong>VFX Aim Y Offset</strong></td>
-<td>Vertical offset from the enemy pivot in world space where projectiles and spell VFX aim. <strong>This value scales with your model's scale.</strong> Use the formula: <code>reference_value × model_scale</code>. Example: human chest reference = 1.0, model scale = 3 → set <strong>3.0</strong>. Reference values (scale = 1): 0 = feet, ~0.3 = rat chest, ~1.0 = human chest, ~1.8 = golem chest.</td>
-</tr>
-<tr>
 <td><strong>VFX Impact Forward Offset</strong></td>
 <td>Pulls the impact point toward the caster so the effect lands on the model surface rather than inside it.</td>
 </tr>
@@ -2014,6 +2024,10 @@
 </tr>
 </tbody>
 </table>
+<h3 id="health-bar-and-vfx-aim-prefab-child-gameobjects">Health Bar and VFX aim — prefab child GameObjects<a class="headerlink" href="#health-bar-and-vfx-aim-prefab-child-gameobjects" title="Permanent link">&para;</a></h3>
+<p>The HP bar position and the spell VFX aim point are no longer set as numeric offsets on EnemyData. Instead, you place empty child GameObjects directly in the enemy prefab and position them visually in the Scene view.</p>
+<p><strong>HealthBarAnchor</strong> — add an empty child to the enemy prefab and attach the <code>HealthBarAnchor</code> component. The HP bar will appear at exactly this transform's world position. In the Scene view, the component draws a red bar-shaped gizmo so you can see where the bar will float. Drag the object up to the top of the model's head. No <code>HealthBarAnchor</code> = no HP bar shown at runtime.</p>
+<p><strong>VFXAimPoint</strong> — add an empty child and attach the <code>VFXAimPoint</code> component. Spell projectiles and impact VFX aim at this transform's world position. The gizmo shows a cyan sphere and crosshair. Place it at chest height on the model. If no <code>VFXAimPoint</code> is present, the spell falls back to 1 unit above the model pivot.</p>
 <h3 id="animation">Animation<a class="headerlink" href="#animation" title="Permanent link">&para;</a></h3>
 <p>These fields must match the parameter and state names in the enemy's Animator Controller exactly.</p>
 <table>

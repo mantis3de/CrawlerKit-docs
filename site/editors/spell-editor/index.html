@@ -936,6 +936,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spell-targeting-at-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spell Targeting at Runtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1634,6 +1645,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spell-targeting-at-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spell Targeting at Runtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1711,6 +1733,11 @@
 <h2 id="save-sync">Save &amp; Sync<a class="headerlink" href="#save-sync" title="Permanent link">&para;</a></h2>
 <p>At the bottom of the right column, the <strong>💾 Save &amp; Sync</strong> button does several things at once. It writes the current spell and the SpellDatabase to disk, rebuilds the recipe index so the conflict checker stays accurate, and auto-wires the entire magic system to your scene.</p>
 <p>Auto-wire specifically: it looks for a <strong>MagicBootstrap</strong> component in the scene and, if there isn't one, creates a <code>[MagicSystem]</code> GameObject with the component and links the SpellDatabase to it. It finds all <strong>RunePanelUI</strong> components — in the active scene and in prefabs — and assigns each RuneSlotButton the correct rune in order (Slot 0 = rune 1, Slot 1 = rune 2, and so on), including both ON and OFF sprites. It links RunePanelUI to any sibling <strong>HandSlotUI</strong> components, and if a RunePanelUI has fewer than nine slot buttons it instantiates <code>RuneSlot_Template</code> prefabs to fill the gaps. A dialog then confirms what was wired: how many bootstrap components, panel-to-hand links, runes assigned and prefabs updated.</p>
+<hr />
+<h2 id="spell-targeting-at-runtime">Spell Targeting at Runtime<a class="headerlink" href="#spell-targeting-at-runtime" title="Permanent link">&para;</a></h2>
+<p>Hostile spells (Damage, DoT, Debuff) scan the corridor the party is currently facing and hit the first living enemy they find, regardless of how many cells away that enemy stands. The scan stops at closed doors and walls — a spell cannot travel through a locked door to hit an enemy on the other side.</p>
+<p>If no enemy is in the corridor, the spell still fires. The projectile flies straight forward and the impact VFX plays against the wall or closed door at the end of the corridor. This matches the behaviour of classic dungeon crawlers like Legend of Grimrock — you never need an enemy present to cast.</p>
+<p>Friendly spells (Heal, HoT, Buff) always target the caster or the whole party and are not affected by the corridor scan.</p>
 <hr />
 <h2 id="workflow-summary">Workflow Summary<a class="headerlink" href="#workflow-summary" title="Permanent link">&para;</a></h2>
 <ol>

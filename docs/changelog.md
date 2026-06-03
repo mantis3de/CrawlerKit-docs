@@ -7,6 +7,16 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 ### Added
 - This MkDocs Material documentation site, with search and GitHub Pages deployment.
 - Dedicated documentation pages for all five editors, plus Architecture and API reference.
+- **Spell audio** — `SpellEffectDefinition` now has `castSound`, `impactSound`, `castVolume` and `impactVolume` fields. Sounds play at the correct world-space position via `AudioSource.PlayClipAtPoint`. Both slots are exposed directly in the Spell Editor under the new **VFX & Audio** section so no Inspector digging is needed.
+- **HealthBarAnchor component** — place this on an empty child GameObject in the enemy prefab to control the HP bar position visually in the Scene view. The red bar gizmo shows exactly where the bar will float. Replaces the `healthBarYOffset` and `healthBarZOffset` fields that were previously on EnemyData.
+- **VFXAimPoint component** — place this on an empty child GameObject in the enemy prefab at chest height. Spell projectiles and impact VFX aim at this transform's world position. The cyan sphere and crosshair gizmo make placement easy in the Scene view. Replaces the `vfxAimYOffset` field that was previously on EnemyData.
+- **Corridor spell targeting** — hostile spells now scan the entire corridor in the party's facing direction and target the first living enemy found, not just the enemy in the adjacent cell. The scan respects closed doors and walls — spells cannot pass through them.
+- **Casting into empty corridors** — hostile spells can be cast even when no enemy is present. The projectile flies straight forward and the impact VFX plays at the wall or closed door at the end of the corridor, matching the feel of classic dungeon crawlers.
+
+### Changed
+- `EnemyData` — removed `healthBarYOffset`, `healthBarZOffset`, and `vfxAimYOffset`. Position the HP bar and VFX aim point using the new prefab child components instead.
+- Spell Editor section renamed from **4. VFX** to **4. VFX & Audio**.
+- `RunePanelUI` error message when no enemy is in range changed from "No enemy in front!" to "No enemy in range!" to reflect the broader corridor scan.
 
 ---
 

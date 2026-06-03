@@ -90,6 +90,16 @@ Auto-wire specifically: it looks for a **MagicBootstrap** component in the scene
 
 ---
 
+## Spell Targeting at Runtime
+
+Hostile spells (Damage, DoT, Debuff) scan the corridor the party is currently facing and hit the first living enemy they find, regardless of how many cells away that enemy stands. The scan stops at closed doors and walls — a spell cannot travel through a locked door to hit an enemy on the other side.
+
+If no enemy is in the corridor, the spell still fires. The projectile flies straight forward and the impact VFX plays against the wall or closed door at the end of the corridor. This matches the behaviour of classic dungeon crawlers like Legend of Grimrock — you never need an enemy present to cast.
+
+Friendly spells (Heal, HoT, Buff) always target the caster or the whole party and are not affected by the corridor scan.
+
+---
+
 ## Workflow Summary
 
 1. Open **CrawlerKit → Spell Editor** and create a SpellDatabase if you don't have one.
