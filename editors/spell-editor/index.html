@@ -898,10 +898,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vfx" class="md-nav__link">
+  <a href="#vfx-audio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        VFX
+        VFX &amp; Audio
       
     </span>
   </a>
@@ -1596,10 +1596,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vfx" class="md-nav__link">
+  <a href="#vfx-audio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        VFX
+        VFX &amp; Audio
       
     </span>
   </a>
@@ -1701,8 +1701,10 @@
 <li><strong>DEBF</strong> — Debuff; a negative status effect on an enemy; Duration sets the length and Damage / Heal encodes the penalty (for example −20 defence).</li>
 </ul>
 <p>At the bottom of the section, <strong>＋ Create Effect</strong> expands a form for Name, Type, Base DMG, Duration, and Tick Interval (for DoT and HoT). Clicking <strong>✔ Create Effect</strong> saves the asset and assigns it to the current spell immediately.</p>
-<h3 id="vfx">VFX<a class="headerlink" href="#vfx" title="Permanent link">&para;</a></h3>
-<p>Three prefab slots — <strong>Cast VFX</strong>, <strong>Projectile</strong> and <strong>Impact VFX</strong>. Each is either an object field with a red ✕ (to clear and delete) when a prefab is assigned, or a cyan <strong>⚡ Create</strong> button when empty. Create generates a ready-made particle system prefab in the <code>VFX/</code> folder next to the SpellDatabase — Cast and Impact use a cone-shaped burst, Projectile uses a sphere, and the colour matches the assigned effect's type badge. You can also drag any existing prefab into the object field. The VFX section is only active once an effect is assigned; without one it shows "Assign an effect first."</p>
+<h3 id="vfx-audio">VFX &amp; Audio<a class="headerlink" href="#vfx-audio" title="Permanent link">&para;</a></h3>
+<p><strong>VFX</strong> — Three prefab slots: <strong>Cast VFX</strong>, <strong>Projectile</strong> and <strong>Impact VFX</strong>. Each is either an object field with a red ✕ (to clear and delete) when a prefab is assigned, or a cyan <strong>⚡ Create</strong> button when empty. Create generates a ready-made particle system prefab in the <code>VFX/</code> folder next to the SpellDatabase — Cast and Impact use a cone-shaped burst, Projectile uses a sphere, and the colour matches the assigned effect's type badge. You can also drag any existing prefab into the object field.</p>
+<p><strong>Audio</strong> — Two AudioClip slots below the VFX fields: <strong>Cast Sound</strong> and <strong>Impact Sound</strong>. Drag any audio asset from your project into the slot. When a clip is assigned, a volume slider (0–1) appears inline so you can tune loudness per-spell without leaving the editor. A red ✕ clears the clip. Cast Sound plays at the caster's position when the spell fires; Impact Sound plays at the target's position when the spell lands (or instantly for non-projectile spells). Volume is respected at runtime through <code>AudioSource.PlayClipAtPoint</code>.</p>
+<p>The whole section is only active once an effect is assigned; without one it shows "Assign an effect first."</p>
 <h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
 <p>A checklist below the VFX section shows three items: <strong>Recipe is valid</strong> (at least one rune in the recipe), <strong>Effect assigned</strong>, and <strong>VFX assigned</strong> (at least one of the three slots filled). VFX is a warning rather than an error — the spell works without it, it just won't look like anything. If a recipe conflict exists at save time an additional orange <strong>Recipe conflict!</strong> message appears.</p>
 <hr />
@@ -1718,7 +1720,7 @@
 <li>In Spell Info, fill in name, level, energy cost and cooldown.</li>
 <li>In Recipe Editor, click cells to toggle runes ON; the conflict checker warns if a pattern is already taken.</li>
 <li>In Effect, create or assign an effect and set its type and parameters.</li>
-<li>In VFX, click <strong>⚡ Create</strong> on each slot or drag in your own particle prefabs.</li>
+<li>In VFX &amp; Audio, click <strong>⚡ Create</strong> on each VFX slot or drag in your own particle prefabs. Drag audio clips into <strong>Cast Sound</strong> and <strong>Impact Sound</strong> and tune volume with the inline slider.</li>
 <li>Click <strong>💾 Save &amp; Sync</strong> — the spell is saved and the scene wired automatically.</li>
 </ol>
 <p>The Spell Editor takes you from zero to a fully functional magic system — runes, recipes, effects, VFX and runtime wiring — without writing a single line of code.</p>
