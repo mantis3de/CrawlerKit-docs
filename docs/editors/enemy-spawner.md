@@ -191,6 +191,30 @@ These fields must match the parameter and state names in the enemy's Animator Co
 
 ---
 
+## Party audio — footsteps and hit sounds
+
+The `PartyVisuals` component (on your camera or party root GameObject) handles all movement and feedback animations. It now also drives two categories of party-side audio.
+
+**Footsteps** — assign one or more AudioClips to the **Footstep Sounds** array. Each time the party moves one cell a random clip from the array is chosen and played. Using several variants prevents the sound becoming repetitive. **Footstep Volume** controls the level (0–1).
+
+**Party Hit Sound** — the clip assigned to **Party Hit Sound** plays whenever an enemy's attack successfully lands on any party member. Use it to communicate that the party took damage without relying solely on the HP bar. **Party Hit Volume** controls the level.
+
+Both sounds play through a 2D persistent AudioSource on the PartyVisuals GameObject (no distance falloff — they are player-feedback sounds, not world events).
+
+---
+
+## Weapon and hand-slot audio
+
+The `HandSlotUI` component has two extra audio fields in the **Audio** section.
+
+**Default Swing Sound** plays when the player attacks with a weapon that has no `Attack Sound` set in its `ItemData`. It acts as a fallback so every melee attack makes some sound even before per-weapon audio is configured.
+
+**Miss Sound** plays when the attack misses entirely (the animation still fires but no damage lands). **Hand Sound Volume** controls the level of both.
+
+Per-weapon sounds are set on the `ItemData` asset — see the Inventory Editor docs for the full Audio section reference.
+
+---
+
 ## Workflow Summary
 
 1. Open **CrawlerKit → Enemy Spawner**.

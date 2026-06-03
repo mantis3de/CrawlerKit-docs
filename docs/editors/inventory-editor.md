@@ -53,6 +53,19 @@ This section changes with the item type:
 
 Add Grimrock-style modifiers that apply while the item is equipped. Click **+ Add stat bonus**, pick a stat from the dropdown of StatDefinition assets, and set the amount — shown as a coloured label (green positive, red negative). Stats already used appear as `(used)` so you don't assign the same one twice, and the red ✕ removes a row. If no StatDefinitions exist yet the section shows a warning and a path to create them, and a small **↻ Refresh stats** button picks up newly created stats without restarting the editor.
 
+### Audio
+
+Four optional AudioClip slots control when sounds are played for this item, plus a single **Item Sound Volume** slider (0–1) that applies to all of them.
+
+| Field | When it plays |
+|---|---|
+| **Attack Sound** | When the player attacks with this weapon. If left empty, the hand slot's fallback swing sound is used instead. |
+| **Equip Sound** | When the item is dragged from the cursor into a hand slot. |
+| **Pickup Sound** | When the item is picked up from the dungeon floor. |
+| **Drop Sound** | When the item is unequipped from a hand slot back onto the cursor. |
+
+All sounds play at the camera position (2D, no distance falloff) — they are player-action sounds, not world-space effects.
+
 ### Class Restrictions
 
 Controls which classes can equip the item. Currently allowed classes appear as blue pill labels, each with an ✕ to remove. Click **+ Add Class ▾** to add one from the dropdown of ClassData assets; classes already in the list are disabled so you can't duplicate them. An empty list means anyone can equip the item — that is the default.

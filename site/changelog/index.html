@@ -1493,8 +1493,11 @@
 <p><strong>Casting into empty corridors</strong> — hostile spells can be cast even when no enemy is present. The projectile flies straight forward and the impact VFX plays at the wall or closed door at the end of the corridor, matching the feel of classic dungeon crawlers.</p>
 </li>
 <li>
-<p><strong>Trigger audio</strong> — <code>TriggerSource</code> base class now has <code>Interact Sound</code> and <code>Interact Volume</code> fields. All interactive sources (WallButton, WallLever, WallKeyhole and any custom source) play this sound automatically on successful interaction. <code>TriggerOpenDoor</code> has separate <code>Open Sound</code>, <code>Close Sound</code> and <code>Door Sound Volume</code> fields that play at the door's world-space position (3D spatial audio).</p>
+<p><strong>Weapon and item audio</strong> — <code>ItemData</code> has a new Audio section with <code>Attack Sound</code> (weapon swing), <code>Equip Sound</code>, <code>Pickup Sound</code>, <code>Drop Sound</code> and a shared <code>Item Sound Volume</code> slider. <code>HandSlotUI</code> adds <code>Default Swing Sound</code> (fallback when a weapon has no attack sound) and <code>Miss Sound</code>. All item sounds play at the camera position (2D).</p>
 </li>
+<li><strong>Footstep and party-hit audio</strong> — <code>PartyVisuals</code> now has a <code>Footstep Sounds</code> array (randomly chosen on every step) and a <code>Party Hit Sound</code> played whenever an enemy's attack lands. Both play through a 2D AudioSource on the PartyVisuals GameObject.</li>
+<li><strong>Pickup audio</strong> — <code>WorldItem.TryPickUp()</code> plays the item's <code>Pickup Sound</code> at the item's world position when the party successfully picks it up.</li>
+<li><strong>Trigger audio</strong> — <code>TriggerSource</code> base class now has <code>Interact Sound</code> and <code>Interact Volume</code> fields. All interactive sources (WallButton, WallLever, WallKeyhole and any custom source) play this sound automatically on successful interaction. <code>TriggerOpenDoor</code> has separate <code>Open Sound</code>, <code>Close Sound</code> and <code>Door Sound Volume</code> fields that play at the door's world-space position (3D spatial audio).</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>

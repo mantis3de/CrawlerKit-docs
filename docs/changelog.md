@@ -13,6 +13,9 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 - **Corridor spell targeting** — hostile spells now scan the entire corridor in the party's facing direction and target the first living enemy found, not just the enemy in the adjacent cell. The scan respects closed doors and walls — spells cannot pass through them.
 - **Casting into empty corridors** — hostile spells can be cast even when no enemy is present. The projectile flies straight forward and the impact VFX plays at the wall or closed door at the end of the corridor, matching the feel of classic dungeon crawlers.
 
+- **Weapon and item audio** — `ItemData` has a new Audio section with `Attack Sound` (weapon swing), `Equip Sound`, `Pickup Sound`, `Drop Sound` and a shared `Item Sound Volume` slider. `HandSlotUI` adds `Default Swing Sound` (fallback when a weapon has no attack sound) and `Miss Sound`. All item sounds play at the camera position (2D).
+- **Footstep and party-hit audio** — `PartyVisuals` now has a `Footstep Sounds` array (randomly chosen on every step) and a `Party Hit Sound` played whenever an enemy's attack lands. Both play through a 2D AudioSource on the PartyVisuals GameObject.
+- **Pickup audio** — `WorldItem.TryPickUp()` plays the item's `Pickup Sound` at the item's world position when the party successfully picks it up.
 - **Trigger audio** — `TriggerSource` base class now has `Interact Sound` and `Interact Volume` fields. All interactive sources (WallButton, WallLever, WallKeyhole and any custom source) play this sound automatically on successful interaction. `TriggerOpenDoor` has separate `Open Sound`, `Close Sound` and `Door Sound Volume` fields that play at the door's world-space position (3D spatial audio).
 
 ### Changed

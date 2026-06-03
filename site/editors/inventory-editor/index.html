@@ -864,6 +864,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#audio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#class-restrictions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1695,6 +1706,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#audio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#class-restrictions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1903,6 +1925,35 @@
 </ul>
 <h3 id="stat-bonuses">Stat Bonuses<a class="headerlink" href="#stat-bonuses" title="Permanent link">&para;</a></h3>
 <p>Add Grimrock-style modifiers that apply while the item is equipped. Click <strong>+ Add stat bonus</strong>, pick a stat from the dropdown of StatDefinition assets, and set the amount — shown as a coloured label (green positive, red negative). Stats already used appear as <code>(used)</code> so you don't assign the same one twice, and the red ✕ removes a row. If no StatDefinitions exist yet the section shows a warning and a path to create them, and a small <strong>↻ Refresh stats</strong> button picks up newly created stats without restarting the editor.</p>
+<h3 id="audio">Audio<a class="headerlink" href="#audio" title="Permanent link">&para;</a></h3>
+<p>Four optional AudioClip slots control when sounds are played for this item, plus a single <strong>Item Sound Volume</strong> slider (0–1) that applies to all of them.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>When it plays</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attack Sound</strong></td>
+<td>When the player attacks with this weapon. If left empty, the hand slot's fallback swing sound is used instead.</td>
+</tr>
+<tr>
+<td><strong>Equip Sound</strong></td>
+<td>When the item is dragged from the cursor into a hand slot.</td>
+</tr>
+<tr>
+<td><strong>Pickup Sound</strong></td>
+<td>When the item is picked up from the dungeon floor.</td>
+</tr>
+<tr>
+<td><strong>Drop Sound</strong></td>
+<td>When the item is unequipped from a hand slot back onto the cursor.</td>
+</tr>
+</tbody>
+</table>
+<p>All sounds play at the camera position (2D, no distance falloff) — they are player-action sounds, not world-space effects.</p>
 <h3 id="class-restrictions">Class Restrictions<a class="headerlink" href="#class-restrictions" title="Permanent link">&para;</a></h3>
 <p>Controls which classes can equip the item. Currently allowed classes appear as blue pill labels, each with an ✕ to remove. Click <strong>+ Add Class ▾</strong> to add one from the dropdown of ClassData assets; classes already in the list are disabled so you can't duplicate them. An empty list means anyone can equip the item — that is the default.</p>
 <h3 id="common-fields">Common Fields<a class="headerlink" href="#common-fields" title="Permanent link">&para;</a></h3>
