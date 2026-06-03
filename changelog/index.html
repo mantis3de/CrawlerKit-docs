@@ -1316,6 +1316,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1406,6 +1417,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1463,6 +1485,17 @@
 <ul>
 <li>This MkDocs Material documentation site, with search and GitHub Pages deployment.</li>
 <li>Dedicated documentation pages for all five editors, plus Architecture and API reference.</li>
+<li><strong>Spell audio</strong> — <code>SpellEffectDefinition</code> now has <code>castSound</code>, <code>impactSound</code>, <code>castVolume</code> and <code>impactVolume</code> fields. Sounds play at the correct world-space position via <code>AudioSource.PlayClipAtPoint</code>. Both slots are exposed directly in the Spell Editor under the new <strong>VFX &amp; Audio</strong> section so no Inspector digging is needed.</li>
+<li><strong>HealthBarAnchor component</strong> — place this on an empty child GameObject in the enemy prefab to control the HP bar position visually in the Scene view. The red bar gizmo shows exactly where the bar will float. Replaces the <code>healthBarYOffset</code> and <code>healthBarZOffset</code> fields that were previously on EnemyData.</li>
+<li><strong>VFXAimPoint component</strong> — place this on an empty child GameObject in the enemy prefab at chest height. Spell projectiles and impact VFX aim at this transform's world position. The cyan sphere and crosshair gizmo make placement easy in the Scene view. Replaces the <code>vfxAimYOffset</code> field that was previously on EnemyData.</li>
+<li><strong>Corridor spell targeting</strong> — hostile spells now scan the entire corridor in the party's facing direction and target the first living enemy found, not just the enemy in the adjacent cell. The scan respects closed doors and walls — spells cannot pass through them.</li>
+<li><strong>Casting into empty corridors</strong> — hostile spells can be cast even when no enemy is present. The projectile flies straight forward and the impact VFX plays at the wall or closed door at the end of the corridor, matching the feel of classic dungeon crawlers.</li>
+</ul>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>EnemyData</code> — removed <code>healthBarYOffset</code>, <code>healthBarZOffset</code>, and <code>vfxAimYOffset</code>. Position the HP bar and VFX aim point using the new prefab child components instead.</li>
+<li>Spell Editor section renamed from <strong>4. VFX</strong> to <strong>4. VFX &amp; Audio</strong>.</li>
+<li><code>RunePanelUI</code> error message when no enemy is in range changed from "No enemy in front!" to "No enemy in range!" to reflect the broader corridor scan.</li>
 </ul>
 <hr />
 <h2 id="100">[1.0.0]<a class="headerlink" href="#100" title="Permanent link">&para;</a></h2>
