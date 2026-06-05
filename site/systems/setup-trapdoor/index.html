@@ -1304,6 +1304,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#how-the-timing-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the timing works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-mark-the-cell-in-the-dungeon-generator" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1487,6 +1498,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#variant-c-timed-plate-cross-before-it-opens-then-it-re-arms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant C — Timed plate (cross before it opens, then it re-arms)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#variant-b-lever-controlled-hatch-toggle-opens-and-closes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1522,6 +1544,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1723,6 +1756,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#how-the-timing-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the timing works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-mark-the-cell-in-the-dungeon-generator" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1906,6 +1950,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#variant-c-timed-plate-cross-before-it-opens-then-it-re-arms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant C — Timed plate (cross before it opens, then it re-arms)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#variant-b-lever-controlled-hatch-toggle-opens-and-closes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1941,6 +1996,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1998,6 +2064,31 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="how-the-timing-works">How the timing works<a class="headerlink" href="#how-the-timing-works" title="Permanent link">&para;</a></h2>
+<p>A <code>TrapDoorTrap</code> cell is always in one of two states, and that state decides what happens when the party steps on it:</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Closed
+    Closed --&gt; Opening: party enters (auto) / lever pull
+    Opening --&gt; Open: after Trigger Delay
+    Open --&gt; Closed: after Close Delay (if not Permanent)
+    note right of Opening
+        Grace window.
+        Leave the cell before
+        Trigger Delay elapses
+        and you take no damage.
+    end note
+    note right of Open
+        Hole exposed.
+        Anyone who steps in now
+        falls instantly — no grace.
+    end note</code></pre>
+<p><strong>Closed → Opening (the grace window).</strong> When the party steps onto a <em>closed</em> plate, the trap waits <strong>Trigger Delay</strong> seconds before the hole actually opens. If the party walks off the cell during that window, the hatch opens onto empty air and nobody is hurt. This is the "run across before it drops" plate. Set <strong>Trigger Delay = 0</strong> instead and there is no window — the party falls the instant they step on, i.e. a classic hidden pit.</p>
+<p><strong>Open → instant fall.</strong> Once the hole is open, the grace window is gone. Anyone stepping onto an open hole falls immediately, in both auto and lever modes.</p>
+<div class="admonition info">
+<p class="admonition-title">The hole only kills if you're standing on it when it opens</p>
+<p>Damage is applied at the moment the hatch opens (and on every later entry while it stays open) — <em>only if the party is actually on the cell at that instant</em>. This is why the cell no longer kills you the moment you enter; the <code>TrapDoorTrap</code> component owns the timing, not the grid.</p>
+</div>
 <hr />
 <h2 id="step-1-mark-the-cell-in-the-dungeon-generator">Step 1 — Mark the cell in the Dungeon Generator<a class="headerlink" href="#step-1-mark-the-cell-in-the-dungeon-generator" title="Permanent link">&para;</a></h2>
 <p>In the <strong>Spawn Tools</strong> panel, click the orange <strong>Trap Door</strong> button. This places a floor cell with <code>cellType = TrapDoor</code> at the origin — move it to the correct position. Alternatively, select an existing floor flag and change its <strong>Cell Type</strong> to <code>TrapDoor</code> in the Inspector.</p>
@@ -2060,12 +2151,12 @@
 <tr>
 <td><strong>Permanent</strong></td>
 <td>✅</td>
-<td>The pit stays open after firing. Disable if the trap should close and reset after a delay.</td>
+<td>The pit stays open forever after firing. Disable if the trap should close and reset after a delay.</td>
 </tr>
 <tr>
 <td><strong>Close Delay</strong></td>
 <td>2 s</td>
-<td>Seconds the trap waits open before closing. Only used when <strong>Permanent</strong> is disabled.</td>
+<td>Seconds the trap waits open before closing. <strong>Ignored while Permanent is on.</strong></td>
 </tr>
 <tr>
 <td><strong>Trigger Once</strong></td>
@@ -2074,6 +2165,40 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">These three fields depend on each other — a common gotcha</p>
+<p>They are easy to mis-set because one silently overrides another:</p>
+<ul>
+<li><strong>Close Delay does nothing while Permanent is on.</strong> A permanent pit never closes, no matter what Close Delay says. To make the hatch close again, turn <strong>Permanent off</strong>.</li>
+<li><strong>A closed trap won't re-open while Trigger Once is on.</strong> After it closes it stays "used up" and ignores the next entry. For a trap that re-arms every time, turn <strong>Trigger Once off</strong>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>You want…</th>
+<th>Permanent</th>
+<th>Trigger Once</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-shot pit, stays open</td>
+<td>✅ on</td>
+<td>✅ on</td>
+</tr>
+<tr>
+<td>Closes once, then dead</td>
+<td>❌ off</td>
+<td>✅ on</td>
+</tr>
+<tr>
+<td>Closes and re-arms every time</td>
+<td>❌ off</td>
+<td>❌ off</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h3 id="section-fall-damage">Section: Fall Damage<a class="headerlink" href="#section-fall-damage" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2215,7 +2340,7 @@
 </tr>
 <tr>
 <td>Trigger Delay</td>
-<td>0.3–0.8 s</td>
+<td><code>0</code> <em>(no escape — keep it low; any delay becomes a grace window the party can cross)</em></td>
 </tr>
 <tr>
 <td>Damage Preset</td>
@@ -2244,6 +2369,64 @@
 </tbody>
 </table>
 <p>No lever needed. Setup complete.</p>
+<div class="admonition tip">
+<p class="admonition-title">Hidden pit vs. timed plate</p>
+<p>Keep <strong>Trigger Delay</strong> small (or <code>0</code>) for a <em>hidden pit</em> the party can't escape. Raise it (e.g. <code>1 s</code>) and turn off Permanent/Trigger Once to get the <em>timed plate</em> in Variant C — a hole the party can sprint across before it drops.</p>
+</div>
+<hr />
+<h2 id="variant-c-timed-plate-cross-before-it-opens-then-it-re-arms">Variant C — Timed plate (cross before it opens, then it re-arms)<a class="headerlink" href="#variant-c-timed-plate-cross-before-it-opens-then-it-re-arms" title="Permanent link">&para;</a></h2>
+<p>A plate over a hole. Step on it and a timer starts; cross to the next cell before the timer ends and you make it. Too slow and the hatch drops under you. After it has been open for a while it closes again, ready for the next attempt.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto Trigger On Enter</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Trigger Delay</td>
+<td><code>1 s</code> <em>(your window to cross)</em></td>
+</tr>
+<tr>
+<td>Permanent</td>
+<td>❌ <em>(so it can close)</em></td>
+</tr>
+<tr>
+<td>Close Delay</td>
+<td><code>2 s</code> <em>(how long the hole stays open)</em></td>
+</tr>
+<tr>
+<td>Trigger Once</td>
+<td>❌ <em>(so it re-arms for the next run)</em></td>
+</tr>
+<tr>
+<td>Damage Preset</td>
+<td>InstantKill <em>(or Heavy/Light for a survivable fall)</em></td>
+</tr>
+<tr>
+<td>Trap Animator</td>
+<td>Animator from TrapMesh</td>
+</tr>
+<tr>
+<td>Open Trigger</td>
+<td><code>Open</code></td>
+</tr>
+<tr>
+<td>Close Trigger</td>
+<td><code>Close</code></td>
+</tr>
+</tbody>
+</table>
+<p>Full cycle: step on → <strong>1 s</strong> grace to walk off → hatch opens (you fall if still on it) → stays open <strong>2 s</strong> (anyone stepping in falls instantly) → closes and re-arms.</p>
+<div class="admonition note">
+<p class="admonition-title">Needs the Closing animation</p>
+<p>Because Permanent is off, the Animator must include <code>Idle_Open → Closing → Idle_Closed</code> and the <code>Close</code> trigger (see Step 4). Without it the trap closes in code but the hatch stays visually open.</p>
+</div>
 <hr />
 <h2 id="variant-b-lever-controlled-hatch-toggle-opens-and-closes">Variant B — Lever-controlled hatch (toggle: opens and closes)<a class="headerlink" href="#variant-b-lever-controlled-hatch-toggle-opens-and-closes" title="Permanent link">&para;</a></h2>
 <p>First lever pull opens the hatch. Second pull closes it again.</p>
@@ -2302,6 +2485,28 @@ Second pull → lever deactivates → <code>OnReleased</code> → hatch closes (
 <p class="admonition-title">Animator needs the Closing state</p>
 <p>For lever-close to show animation the Animator must have <code>Idle_Open → Closing → Idle_Closed</code> and the <code>Close</code> trigger. Without it the hatch closes in code but you won't see the animation.</p>
 </div>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<details class="failure">
+<summary>It kills me the instant I step on, even with a Trigger Delay set</summary>
+<p>The grace window only exists when the <code>TrapDoorTrap</code> component owns the cell. The component claims its cell on <code>Start()</code> so the grid stops instant-killing on enter — make sure the <code>TrapDoorTrap</code> (and its required <code>TrapMarker</code>) are actually on the cell and active. A <code>TrapDoor</code> cell with <strong>no</strong> <code>TrapDoorTrap</code> is a plain pit and always kills on enter by design.</p>
+</details>
+<details class="failure">
+<summary>I set a Close Delay but it never closes</summary>
+<p><strong>Permanent</strong> is on. Close Delay is ignored while Permanent is on. Turn Permanent <strong>off</strong>.</p>
+</details>
+<details class="failure">
+<summary>It closes, but stepping on it again does nothing</summary>
+<p><strong>Trigger Once</strong> is on, so after closing it stays used-up and ignores the next entry. Turn Trigger Once <strong>off</strong> to re-arm it every time.</p>
+</details>
+<details class="failure">
+<summary>Stepping onto the already-open hole doesn't make me fall</summary>
+<p>Update to the current <code>TrapDoorTrap</code> — an open hole now applies the fall on entry in both auto and lever modes. If it still doesn't, confirm the trap actually reached the Open state (check that the open animation/<code>OnFallTriggered</code> fired).</p>
+</details>
+<details class="failure">
+<summary>It closes in code but the hatch stays open on screen</summary>
+<p>Animator issue, not logic. You need the <code>Idle_Open → Closing → Idle_Closed</code> states and the <code>Close</code> trigger (Step 4). The state resets internally regardless; only the visual is missing.</p>
+</details>
 <hr />
 <h2 id="summary-what-goes-where">Summary — what goes where<a class="headerlink" href="#summary-what-goes-where" title="Permanent link">&para;</a></h2>
 <table>
