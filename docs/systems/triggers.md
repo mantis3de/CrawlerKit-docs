@@ -19,8 +19,12 @@ Sources and targets are connected by direct `TriggerTarget` references set in th
 | **Source Id** | Unique string identifier used by the Save System. Must be unique per scene. Leave empty if this source doesn't need to be saved (e.g. a one-shot button whose state doesn't matter on reload). |
 | **Interact From Adjacent Cell** | When **disabled** (default), the player must be standing on the exact same grid cell as the trigger to interact with it. When **enabled**, the player can also interact from the cell directly in front of them — useful for buttons mounted on the far side of a wall that the player faces from their own cell. See [Interaction range](#interaction-range) for the full rules. |
 | **Targets** | Direct references to one or more `TriggerTarget` components this source will notify when activated or deactivated. |
-| **Interact Sound** | Audio clip played at the trigger's world position when the player successfully interacts with it (button press, lever pull, key insert, etc.). Leave empty for no sound. |
+| **Interact Sound** | Audio clip played when the player successfully interacts with this trigger (button press, lever pull, key insert, etc.). Leave empty for no sound. |
 | **Interact Volume** | Volume of the interact sound (0–1). |
+| **Interact Sound 2D** | When enabled, the sound plays as a flat 2D clip with no spatial falloff — equally audible regardless of distance or position. Useful for UI-like triggers (wall buttons, chains) where 3D positioning would make the sound feel too quiet when standing close to a wall. When disabled (default), the sound plays at the trigger's world position as a 3D positional clip. |
+
+!!! note "Sound-before-activate ordering"
+    All built-in sources (WallButton, WallLever, WallChain, WallKeyhole, WallAlcove, WallMultiSwitch, PressurePlate) play the interact sound first, then wait for the clip to finish before notifying targets. This prevents the door's open sound from immediately drowning out the trigger sound. If **Interact Sound** is empty the activation fires on the same frame as usual.
 
 ### TriggerTarget
 
@@ -153,7 +157,34 @@ Fires a projectile (an arrow, a dart, a magical bolt) at the party when activate
 
 ### TrapDoorTrap
 
-A floor tile that opens beneath the party's feet, dropping them to a lower level or dealing fall damage. Place the `TrapDoorTrap` component on the same grid cell as a Trap Door floor tile (set in the Dungeon Generator).
+`TrapDoorTrap` covers two distinct scenarios that share the same component: an **open pit** the party can see and walk into, and a **hidden trapdoor** that opens beneath their feet. The difference is entirely in the Dungeon Generator cell type and whether an animator is attached.
+
+**Open pit (visible, instantly deadly)** — the most common case. The party can see a hole in the floor; walking into it kills everyone.
+
+1. In the Dungeon Generator, mark the cell as **TrapDoor** (orange). Do not use **Pit** — that type is impassable like a wall and the party can never enter it.
+2. Place your pit mesh at that cell (a floor tile with a hole, a dark void, etc.).
+3. Add a `TrapMarker` and a `TrapDoorTrap` component to the prefab root.
+4. In `TrapDoorTrap`: set **Damage Preset** to `InstantKill`, leave **Trigger Delay** at 0, enable **Auto Trigger On Enter**, enable **Permanent**, leave **Trap Animator** empty.
+5. No `TriggerSource` is needed — the trap fires the moment the party steps onto the cell.
+
+| Inspector field | Description |
+|---|---|
+| **Auto Trigger On Enter** | Must be enabled. The trap fires automatically when the party enters the cell. |
+| **Trigger Delay** | Seconds between entering the cell and applying damage. 0 = instant death on step. |
+| **Damage Preset** | `InstantKill` kills every party member immediately (game over). `Heavy` deals 50, `Light` deals 20, `Custom` uses the value in **Fall Damage**. |
+| **Permanent** | Keep enabled for an open pit — the hole stays open. Disable only for a trapdoor that closes again. |
+| **Trigger Once** | Keep enabled. The pit does not need to fire multiple times. |
+| **Trap Animator** | Leave empty for an open pit. Only needed for an animated trapdoor that visually opens. |
+| **On Fall Triggered** | Unity event fired just before damage is applied. Wire a sound or camera shake here. |
+
+**Hidden trapdoor (animated, opens under the party)** — the classic dungeon surprise. The floor looks normal; when the party steps on it a hatch opens and they fall.
+
+Setup is identical to the open pit but with an `Animator` assigned to **Trap Animator** that has an `Open` trigger (and optionally a `Close` trigger). Set **Trigger Delay** to 0.2–0.4 s so the hatch animation has time to play before damage lands. Set **Permanent** to false if the hatch should close again afterward.
+
+!!! note "Pit vs TrapDoor cell type"
+    **Pit** (`GridFlagExtended → Cell Type → Pit`) marks an impassable cell — the party and enemies are blocked from entering it, exactly like a wall. Use it for decorative chasms the player looks into but cannot cross.
+
+    **TrapDoor** is a normal walkable floor cell that the party *can* enter. The `TrapDoorTrap` component reacts when they do. Use TrapDoor for any hole the party should be able to fall into.
 
 ### TrapProjectile
 

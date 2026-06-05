@@ -2160,14 +2160,22 @@
 </tr>
 <tr>
 <td><strong>Interact Sound</strong></td>
-<td>Audio clip played at the trigger's world position when the player successfully interacts with it (button press, lever pull, key insert, etc.). Leave empty for no sound.</td>
+<td>Audio clip played when the player successfully interacts with this trigger (button press, lever pull, key insert, etc.). Leave empty for no sound.</td>
 </tr>
 <tr>
 <td><strong>Interact Volume</strong></td>
 <td>Volume of the interact sound (0–1).</td>
 </tr>
+<tr>
+<td><strong>Interact Sound 2D</strong></td>
+<td>When enabled, the sound plays as a flat 2D clip with no spatial falloff — equally audible regardless of distance or position. Useful for UI-like triggers (wall buttons, chains) where 3D positioning would make the sound feel too quiet when standing close to a wall. When disabled (default), the sound plays at the trigger's world position as a 3D positional clip.</td>
+</tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Sound-before-activate ordering</p>
+<p>All built-in sources (WallButton, WallLever, WallChain, WallKeyhole, WallAlcove, WallMultiSwitch, PressurePlate) play the interact sound first, then wait for the clip to finish before notifying targets. This prevents the door's open sound from immediately drowning out the trigger sound. If <strong>Interact Sound</strong> is empty the activation fires on the same frame as usual.</p>
+</div>
 <h3 id="triggertarget">TriggerTarget<a class="headerlink" href="#triggertarget" title="Permanent link">&para;</a></h3>
 <p><code>TriggerTarget</code> is the base class for every reactive object. It receives <code>OnTriggered</code> / <code>OnReleased</code> calls from its source and acts accordingly. Targets never know which source fired them — they simply respond to activate and deactivate events.</p>
 <h3 id="interaction-range">Interaction range<a class="headerlink" href="#interaction-range" title="Permanent link">&para;</a></h3>
@@ -2368,7 +2376,60 @@
 </tbody>
 </table>
 <h3 id="trapdoortrap">TrapDoorTrap<a class="headerlink" href="#trapdoortrap" title="Permanent link">&para;</a></h3>
-<p>A floor tile that opens beneath the party's feet, dropping them to a lower level or dealing fall damage. Place the <code>TrapDoorTrap</code> component on the same grid cell as a Trap Door floor tile (set in the Dungeon Generator).</p>
+<p><code>TrapDoorTrap</code> covers two distinct scenarios that share the same component: an <strong>open pit</strong> the party can see and walk into, and a <strong>hidden trapdoor</strong> that opens beneath their feet. The difference is entirely in the Dungeon Generator cell type and whether an animator is attached.</p>
+<p><strong>Open pit (visible, instantly deadly)</strong> — the most common case. The party can see a hole in the floor; walking into it kills everyone.</p>
+<ol>
+<li>In the Dungeon Generator, mark the cell as <strong>TrapDoor</strong> (orange). Do not use <strong>Pit</strong> — that type is impassable like a wall and the party can never enter it.</li>
+<li>Place your pit mesh at that cell (a floor tile with a hole, a dark void, etc.).</li>
+<li>Add a <code>TrapMarker</code> and a <code>TrapDoorTrap</code> component to the prefab root.</li>
+<li>In <code>TrapDoorTrap</code>: set <strong>Damage Preset</strong> to <code>InstantKill</code>, leave <strong>Trigger Delay</strong> at 0, enable <strong>Auto Trigger On Enter</strong>, enable <strong>Permanent</strong>, leave <strong>Trap Animator</strong> empty.</li>
+<li>No <code>TriggerSource</code> is needed — the trap fires the moment the party steps onto the cell.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Inspector field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Auto Trigger On Enter</strong></td>
+<td>Must be enabled. The trap fires automatically when the party enters the cell.</td>
+</tr>
+<tr>
+<td><strong>Trigger Delay</strong></td>
+<td>Seconds between entering the cell and applying damage. 0 = instant death on step.</td>
+</tr>
+<tr>
+<td><strong>Damage Preset</strong></td>
+<td><code>InstantKill</code> kills every party member immediately (game over). <code>Heavy</code> deals 50, <code>Light</code> deals 20, <code>Custom</code> uses the value in <strong>Fall Damage</strong>.</td>
+</tr>
+<tr>
+<td><strong>Permanent</strong></td>
+<td>Keep enabled for an open pit — the hole stays open. Disable only for a trapdoor that closes again.</td>
+</tr>
+<tr>
+<td><strong>Trigger Once</strong></td>
+<td>Keep enabled. The pit does not need to fire multiple times.</td>
+</tr>
+<tr>
+<td><strong>Trap Animator</strong></td>
+<td>Leave empty for an open pit. Only needed for an animated trapdoor that visually opens.</td>
+</tr>
+<tr>
+<td><strong>On Fall Triggered</strong></td>
+<td>Unity event fired just before damage is applied. Wire a sound or camera shake here.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hidden trapdoor (animated, opens under the party)</strong> — the classic dungeon surprise. The floor looks normal; when the party steps on it a hatch opens and they fall.</p>
+<p>Setup is identical to the open pit but with an <code>Animator</code> assigned to <strong>Trap Animator</strong> that has an <code>Open</code> trigger (and optionally a <code>Close</code> trigger). Set <strong>Trigger Delay</strong> to 0.2–0.4 s so the hatch animation has time to play before damage lands. Set <strong>Permanent</strong> to false if the hatch should close again afterward.</p>
+<div class="admonition note">
+<p class="admonition-title">Pit vs TrapDoor cell type</p>
+<p><strong>Pit</strong> (<code>GridFlagExtended → Cell Type → Pit</code>) marks an impassable cell — the party and enemies are blocked from entering it, exactly like a wall. Use it for decorative chasms the player looks into but cannot cross.</p>
+<p><strong>TrapDoor</strong> is a normal walkable floor cell that the party <em>can</em> enter. The <code>TrapDoorTrap</code> component reacts when they do. Use TrapDoor for any hole the party should be able to fall into.</p>
+</div>
 <h3 id="trapprojectile">TrapProjectile<a class="headerlink" href="#trapprojectile" title="Permanent link">&para;</a></h3>
 <p>The companion component to <code>ProjectileTrap</code>. Attach it to the projectile prefab. It handles movement, collision detection and applying damage when the projectile reaches the party's cell.</p>
 <hr />
