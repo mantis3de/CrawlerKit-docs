@@ -19,13 +19,13 @@ The simplest possible trap. No `TrapDoorTrap` component needed — the geometry 
 2. Place the pit mesh (hole, walls on all sides, walls going down).
 3. Add no components — done.
 
-The party can enter the cell and falls immediately. Death is instant, no animation, no sound.
+The party walks in and falls immediately. No animation, no sound.
 
 ---
 
 ## Type 2 — Timed Trapdoor
 
-**What happens:** The player steps onto what looks like a normal floor tile. After a moment the hatch opens beneath them and they fall.
+**What happens:** The player steps onto what looks like a normal floor tile. After a moment the hatch opens beneath them and they fall. The hatch can also be closed again by a lever.
 
 The classic hidden trap — the player has no idea it's a trap until it's too late.
 
@@ -36,28 +36,105 @@ TrapDoor              ← root: TrapMarker + TrapDoorTrap
 └── TrapMesh          ← closed hatch mesh (looks like a floor tile) + Animator
 ```
 
-### Animator — states and transitions
+### Animator — states
 
-Create an Animator Controller on `TrapMesh` with these states:
+Open the Animator window (**Window → Animation → Animator**). Create four states:
 
 ```
-Idle_Closed    ← default state (right-click → Set as Layer Default State)
-Opening        ← hatch swings open
-Idle_Open      ← pit visible
+Idle_Closed    ← default state — hatch looks like a normal floor tile
+Opening        ← hatch swings open animation
+Idle_Open      ← hatch is open, pit is visible
+Closing        ← hatch swings shut animation
 ```
 
-In the **Parameters** tab, add one trigger:
+Set **Idle_Closed** as the default: right-click it → **Set as Layer Default State**. It will turn orange.
+
+### Animator — parameters
+
+In the **Parameters** tab (top-left of the Animator window), click the **+** button and add two Triggers:
 
 | Name | Type |
 |---|---|
 | `Open` | Trigger |
+| `Close` | Trigger |
 
-Transitions:
+### Animator — transitions
 
-| From | To | Condition | Has Exit Time |
-|---|---|---|---|
-| `Idle_Closed` | `Opening` | trigger `Open` | ❌ |
-| `Opening` | `Idle_Open` | *(none — fires when clip ends)* | ✅ |
+To create a transition: **right-click** the source state → **Make Transition** → click the destination state. A white arrow appears. Click the arrow to select it and configure it in the Inspector.
+
+---
+
+**Transition 1: `Idle_Closed` → `Opening`**
+
+This fires when the trap opens (player steps on it or lever pulls it).
+
+In the Inspector for this transition:
+
+| Setting | Value |
+|---|---|
+| Has Exit Time | ❌ off |
+| Transition Duration | 0 |
+| Transition Offset | 0 |
+
+In the **Conditions** list, click **+** and set:
+
+| Parameter | Value |
+|---|---|
+| `Open` | *(just select the trigger — no value needed)* |
+
+---
+
+**Transition 2: `Opening` → `Idle_Open`**
+
+This fires automatically when the opening animation finishes playing.
+
+In the Inspector for this transition:
+
+| Setting | Value |
+|---|---|
+| Has Exit Time | ✅ on |
+| Exit Time | 1.0 *(full clip plays before transitioning)* |
+| Transition Duration | 0 |
+
+Leave the **Conditions** list empty.
+
+---
+
+**Transition 3: `Idle_Open` → `Closing`**
+
+This fires when a lever closes the hatch.
+
+In the Inspector for this transition:
+
+| Setting | Value |
+|---|---|
+| Has Exit Time | ❌ off |
+| Transition Duration | 0 |
+| Transition Offset | 0 |
+
+In the **Conditions** list, click **+** and set:
+
+| Parameter | Value |
+|---|---|
+| `Close` | *(just select the trigger)* |
+
+---
+
+**Transition 4: `Closing` → `Idle_Closed`**
+
+This fires automatically when the closing animation finishes playing.
+
+In the Inspector for this transition:
+
+| Setting | Value |
+|---|---|
+| Has Exit Time | ✅ on |
+| Exit Time | 1.0 |
+| Transition Duration | 0 |
+
+Leave the **Conditions** list empty.
+
+---
 
 ### Inspector — TrapDoorTrap
 
@@ -68,11 +145,11 @@ Transitions:
 | **Damage Preset** | InstantKill |
 | **Permanent** | ✅ |
 | **Trigger Once** | ✅ |
-| **Trap Animator** | Animator from TrapMesh |
+| **Trap Animator** | drag the `Animator` component from `TrapMesh` here |
 | **Open Trigger** | `Open` |
-| **Close Trigger** | *(leave empty — hatch never closes)* |
+| **Close Trigger** | `Close` |
 
-No lever needed. No external connections.
+No lever needed for the auto-trigger to fire. The `Close` trigger is used only when a lever closes the hatch externally — see [Type 3](#type-3-lever-controlled-trapdoor) for lever wiring.
 
 !!! tip
     The longer the **Trigger Delay**, the more sadistic the trap — the player hears the hatch creak and knows what's coming but can't step back in time.
@@ -82,8 +159,6 @@ No lever needed. No external connections.
 ## Type 3 — Lever-Controlled Trapdoor
 
 **What happens:** The player is standing on a hatch. Someone (or the player themselves) pulls a lever — the hatch opens and they fall. Pulling the lever a second time closes the hatch again.
-
-The classic trust trap — pull the lever and watch what happens.
 
 ### Prefab hierarchy
 
@@ -95,32 +170,9 @@ TrapDoor              ← root: TrapMarker + TrapDoorTrap
 WallLever             ← WallLever (TriggerSource)
 ```
 
-### Animator — states and transitions
+### Animator
 
-Create an Animator Controller on `TrapMesh` with these states:
-
-```
-Idle_Closed    ← default state
-Opening        ← hatch swings open
-Idle_Open      ← pit visible
-Closing        ← hatch swings shut
-```
-
-In the **Parameters** tab, add two triggers:
-
-| Name | Type |
-|---|---|
-| `Open` | Trigger |
-| `Close` | Trigger |
-
-Transitions:
-
-| From | To | Condition | Has Exit Time |
-|---|---|---|---|
-| `Idle_Closed` | `Opening` | trigger `Open` | ❌ |
-| `Opening` | `Idle_Open` | *(none — fires when clip ends)* | ✅ |
-| `Idle_Open` | `Closing` | trigger `Close` | ❌ |
-| `Closing` | `Idle_Closed` | *(none — fires when clip ends)* | ✅ |
+Identical to Type 2 — all four states (`Idle_Closed`, `Opening`, `Idle_Open`, `Closing`), both triggers (`Open`, `Close`), all four transitions with the same settings.
 
 ### Inspector — TrapDoorTrap
 
@@ -139,10 +191,10 @@ Transitions:
 
 1. Select the GameObject with `WallLever`.
 2. In the Inspector, find the **Targets** list.
-3. Click **+** and drag the GameObject with `TrapDoorTrap` into the slot.
+3. Click **+** and drag the GameObject that has `TrapDoorTrap` into the slot.
 
-First pull → lever activates → `OnTriggered` → hatch opens (`Open` fired).  
-Second pull → lever deactivates → `OnReleased` → hatch closes (`Close` fired).
+First pull → lever activates → `OnTriggered` → `Open` trigger fires → hatch opens.  
+Second pull → lever deactivates → `OnReleased` → `Close` trigger fires → hatch closes.
 
 !!! tip
     Place the lever in the same room as the hatch — the player has to decide whether to stand on the hatch and pull, or investigate first.
@@ -151,13 +203,13 @@ Second pull → lever deactivates → `OnReleased` → hatch closes (`Close` fir
 
 ## Type 4 — Lever Puzzle (Cycling Hatches)
 
-**What happens:** Several hatches block the path. A single lever toggles their state — each pull opens and closes a different combination. The player must find the combination where all hatches on the path are closed and they can cross safely.
+**What happens:** Several hatches block the path. A single lever toggles their state — each pull opens and closes a different combination. The player must find the combination where all hatches on the path are closed and cross safely.
 
 ### Setup
 
-Use one `WallLever` (toggle). Connect multiple `TrapDoorTrap` components as **Targets** on the lever.
+Use one `WallLever` (toggle). In the lever's **Targets** list, add all `TrapDoorTrap` components.
 
-Give each hatch a different **Trigger Delay** so they don't all open at once — they open in sequence, creating a shifting window of safe tiles:
+Give each hatch a different **Trigger Delay** so they open in sequence, not all at once:
 
 | Hatch | Auto Trigger | Require Party | Trigger Delay | Permanent | Trigger Once |
 |---|---|---|---|---|---|
@@ -168,11 +220,11 @@ Give each hatch a different **Trigger Delay** so they don't all open at once —
 Lever activates → hatches open one by one. Lever deactivates → they close. The player toggles the lever and watches the rhythm to find the safe crossing window.
 
 !!! note
-    **Permanent = false** and **Trigger Once = false** on every hatch — otherwise they lock open on first trigger and won't reset.
+    **Permanent = false** and **Trigger Once = false** on every hatch — without this they lock open on the first trigger and won't reset.
 
 ### Animator
 
-Each hatch needs the full state set from Type 3 (`Idle_Closed`, `Opening`, `Idle_Open`, `Closing`) and both triggers (`Open`, `Close`).
+Each hatch: all four states + both triggers + all four transitions — identical to Type 2.
 
 ---
 
@@ -184,7 +236,7 @@ Each hatch needs the full state set from Type 3 (`Idle_Closed`, `Opening`, `Idle
 
 1. Create an empty GameObject and add a `TriggerLogicGate` component (type: **AND**).
 2. Connect all three `WallLever` components as inputs to `TriggerLogicGate`.
-3. Connect the `TriggerLogicGate` output to the `TrapDoorTrap`.
+3. Connect the `TriggerLogicGate` output to `TrapDoorTrap`.
 
 The hatch opens when all levers are active simultaneously. Every other combination is safe.
 
@@ -203,7 +255,7 @@ Invert the logic with a **NOT** or **NOR** gate — the hatch starts open and cl
 
 ## Type 6 — Pressure Plate Trap
 
-**What happens:** The player stands on a pressure plate — a hatch somewhere else opens. When the player steps off the plate, the hatch closes. The classic "hold the plate to cross" setup — but the plate opens the hatch under a second player.
+**What happens:** The player stands on a pressure plate — a hatch somewhere else opens. When the player steps off, the hatch closes. The classic "hold the plate to cross" — but the plate opens the hatch under a different player.
 
 ### Setup
 
@@ -221,7 +273,7 @@ Wire `PressurePlate` → **Targets** → `TrapDoorTrap`.
 
 ### Animator
 
-Full state set from Type 3 + both triggers `Open` and `Close`.
+All four states + both triggers + all four transitions — identical to Type 2.
 
 Player steps on plate → hatch opens. Next time anyone walks over the hatch → they fall.
 
@@ -231,18 +283,7 @@ Player steps on plate → hatch opens. Next time anyone walks over the hatch →
 
 **What happens:** The hatch opens under the player, they fall and die. A few seconds later the hatch closes and resets — ready for the next victim.
 
-Useful in corridors the player must travel through multiple times (backtracking, respawn points).
-
-### Prefab hierarchy
-
-```
-TrapDoor              ← root: TrapMarker + TrapDoorTrap
-└── TrapMesh          ← Animator with full state set (Idle_Closed / Opening / Idle_Open / Closing)
-```
-
-### Animator
-
-Identical to Type 3 — all four states and both triggers (`Open`, `Close`).
+Useful in corridors the player must travel through multiple times.
 
 ### Inspector — TrapDoorTrap
 
@@ -258,7 +299,11 @@ Identical to Type 3 — all four states and both triggers (`Open`, `Close`).
 | **Open Trigger** | `Open` |
 | **Close Trigger** | `Close` |
 
-Sequence: party steps in → after 0.3 s hatch opens → party falls → after 3 s hatch closes → reset.
+### Animator
+
+All four states + both triggers + all four transitions — identical to Type 2.
+
+Sequence: party steps in → after 0.3 s hatch opens → party falls → after 3 s `Close` trigger fires → hatch closes → reset.
 
 ---
 
@@ -266,7 +311,7 @@ Sequence: party steps in → after 0.3 s hatch opens → party falls → after 3
 
 **What happens:** The player enters a corridor, triggers a pressure plate, and an arrow fires from the wall.
 
-The classic dart/arrow corridor — no hatch involved, just `ProjectileTrap` + `PressurePlate`.
+No hatch involved — just `ProjectileTrap` + `PressurePlate`.
 
 ### Setup
 
@@ -287,9 +332,7 @@ Place multiple `ProjectileTrap` components on both sides of the corridor with op
 
 ## Type 9 — Pit + Crossbow Combo
 
-**What happens:** The player steps onto a hatch cell. The hatch opens beneath them. At the same moment an arrow fires from the wall. Even if the hatch is lever-controlled and the player avoids standing on it, they still take the arrow.
-
-`TrapDoorTrap` and `ProjectileTrap` triggered from the same source.
+**What happens:** The player steps onto a hatch cell. The hatch opens. At the same moment an arrow fires from the wall. Even if the player avoids the hatch, they still take the arrow.
 
 ### Variant A — shared lever
 
@@ -297,7 +340,7 @@ One `WallLever` → **Targets**: both `TrapDoorTrap` and `ProjectileTrap` at the
 
 ### Variant B — arrow fires on fall
 
-Skip the lever. Use **On Fall Triggered** on `TrapDoorTrap` to call `ProjectileTrap.Trigger()` via UnityEvent. The arrow fires only after the hatch opens.
+Use **On Fall Triggered** on `TrapDoorTrap` to call `ProjectileTrap.Trigger()` via UnityEvent. The arrow fires only after the hatch opens.
 
 ### Inspector — TrapDoorTrap
 
@@ -341,7 +384,7 @@ Combines Type 4 (cycling hatches), Type 7 (repeating), and Type 8 (crossbow corr
 
 ### Animator — each hatch
 
-Full state set from Type 3 (`Idle_Closed`, `Opening`, `Idle_Open`, `Closing`) + both triggers (`Open`, `Close`).
+All four states + both triggers + all four transitions — identical to Type 2.
 
 !!! tip
     Add **On Fall Triggered** → `TriggerPlaySound` on each hatch — the sound of the party falling, heard from the far end of the corridor, builds tension for the next attempt.
