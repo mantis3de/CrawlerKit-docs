@@ -1607,29 +1607,29 @@
 
 
 <h1 id="trap-types-classic-dungeon-traps">Trap Types — Classic Dungeon Traps<a class="headerlink" href="#trap-types-classic-dungeon-traps" title="Permanent link">&para;</a></h1>
-<p>Ten przewodnik pokazuje 10 gotowych do użycia konfiguracji pułapek zbudowanych z <code>TrapDoorTrap</code> i <code>ProjectileTrap</code>. Każdy typ opisuje co gracz widzi, co się dzieje, i jak to ustawić w Inspektorze.</p>
+<p>Ten guide covers 10 ready-to-use trap configurations built from <code>TrapDoorTrap</code> and <code>ProjectileTrap</code>. Each type describes what the player sees, what happens, and how to set it up in the Inspector.</p>
 <hr />
 <h2 id="type-1-open-pit">Type 1 — Open Pit<a class="headerlink" href="#type-1-open-pit" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Gracz widzi dziurę w podłodze. Wchodzi i natychmiast ginie.</p>
-<p>Najprostszy możliwy typ. Brak komponentu <code>TrapDoorTrap</code> — sama geometria i cell type robią robotę.</p>
+<p><strong>What happens:</strong> The player sees a hole in the floor. They walk in and die instantly.</p>
+<p>The simplest possible trap. No <code>TrapDoorTrap</code> component needed — the geometry and cell type do all the work.</p>
 <p><strong>Setup:</strong></p>
 <ol>
-<li>W Dungeon Generatorze oznacz komórkę jako <strong>TrapDoor</strong>.</li>
-<li>Umieść pit mesh (dziura, ściany dookoła, ściany w dół).</li>
-<li>Nie dodawaj żadnego komponentu — koniec.</li>
+<li>In the Dungeon Generator, mark the cell as <strong>TrapDoor</strong>.</li>
+<li>Place the pit mesh (hole, walls on all sides, walls going down).</li>
+<li>Add no components — done.</li>
 </ol>
-<p>Gracz może wejść w komórkę. Śmierć natychmiastowa, brak animacji, brak dźwięku (chyba że podepniesz coś pod <strong>On Fall Triggered</strong>).</p>
+<p>The party can enter the cell. Death is instant, no animation, no sound (unless you wire something into <strong>On Fall Triggered</strong>).</p>
 <hr />
 <h2 id="type-2-timed-trapdoor">Type 2 — Timed Trapdoor<a class="headerlink" href="#type-2-timed-trapdoor" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Gracz wchodzi na normalnie wyglądającą podłogę. Po chwili klapa otwiera się pod jego stopami i wpada.</p>
-<p>Klasyczna pułapka ukryta — gracz nie wie, że podłoga jest pułapką, dopóki nie jest za późno.</p>
+<p><strong>What happens:</strong> The player steps onto what looks like a normal floor tile. After a moment the hatch opens beneath them and they fall.</p>
+<p>The classic hidden trap — the player has no idea it's a trap until it's too late.</p>
 <p><strong>Setup:</strong></p>
-<p>Mesh: zamknięta klapa (wygląda jak normalny floor tile). Animator: stany <code>Idle_Closed</code> → <code>Opening</code> → <code>Idle_Open</code>.</p>
+<p>Mesh: closed hatch (looks like a normal floor tile). Animator: states <code>Idle_Closed</code> → <code>Opening</code> → <code>Idle_Open</code>.</p>
 <table>
 <thead>
 <tr>
-<th>Pole</th>
-<th>Wartość</th>
+<th>Field</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
@@ -1639,7 +1639,7 @@
 </tr>
 <tr>
 <td><strong>Trigger Delay</strong></td>
-<td>0.8–1.5 s <em>(daj graczowi chwilę zanim klapa pójdzie)</em></td>
+<td>0.8–1.5 s <em>(give the player just enough time to panic before the hatch goes)</em></td>
 </tr>
 <tr>
 <td><strong>Damage Preset</strong></td>
@@ -1655,7 +1655,7 @@
 </tr>
 <tr>
 <td><strong>Trap Animator</strong></td>
-<td>Animator z <code>TrapMesh</code></td>
+<td>Animator from <code>TrapMesh</code></td>
 </tr>
 <tr>
 <td><strong>Open Trigger</strong></td>
@@ -1665,18 +1665,18 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Im dłuższy <strong>Trigger Delay</strong>, tym bardziej okrutna pułapka — gracz ma czas zacząć panikować, ale nie zdąży wyjść.</p>
+<p>The longer the <strong>Trigger Delay</strong>, the crueller the trap — the player has time to realise what's happening but not enough time to back out.</p>
 </div>
 <hr />
 <h2 id="type-3-lever-controlled-trapdoor">Type 3 — Lever-Controlled Trapdoor<a class="headerlink" href="#type-3-lever-controlled-trapdoor" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Gracz stoi na klapie. Ktoś (albo gracz sam) przekłada dźwignię w innym miejscu — klapa otwiera się i gracz wpada.</p>
-<p>Klasyczna pułapka na zaufanie — zaufaj dźwigni i wpadnij.</p>
+<p><strong>What happens:</strong> The player is standing on a hatch. Someone (or the player themselves) pulls a lever elsewhere — the hatch opens and they fall.</p>
+<p>The classic trust trap — pull the lever and drop.</p>
 <p><strong>Setup:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Pole</th>
-<th>Wartość</th>
+<th>Field</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
@@ -1702,25 +1702,25 @@
 </tr>
 <tr>
 <td><strong>Trap Animator</strong></td>
-<td>Animator z <code>TrapMesh</code></td>
+<td>Animator from <code>TrapMesh</code></td>
 </tr>
 </tbody>
 </table>
-<p>Na dźwigni (<code>WallLever</code> lub <code>WallChain</code>): przeciągnij <code>TrapDoorTrap</code> do listy <strong>Targets</strong>.</p>
+<p>On the lever (<code>WallLever</code> or <code>WallChain</code>): drag the <code>TrapDoorTrap</code> component into its <strong>Targets</strong> list.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Umieść dźwignię w tym samym pomieszczeniu co klapa — gracz musi zdecydować czy stać na klapie i ciągnąć, czy najpierw odejść i sprawdzić co dźwignia robi.</p>
+<p>Place the lever in the same room as the hatch — the player has to decide whether to stand on the hatch and pull, or step away first and investigate.</p>
 </div>
 <hr />
 <h2 id="type-4-lever-puzzle-cycling-hatches">Type 4 — Lever Puzzle (Cycling Hatches)<a class="headerlink" href="#type-4-lever-puzzle-cycling-hatches" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Na drodze stoi kilka klap. Jedna dźwignia przełącza ich stan — za każdym przełożeniem inna kombinacja jest otwarta/zamknięta. Gracz musi znaleźć kombinację w której wszystkie klapy na ścieżce są zamknięte i można bezpiecznie przejść.</p>
+<p><strong>What happens:</strong> Several hatches block the path. A single lever toggles their state — each time it's pulled a different combination of hatches is open or closed. The player must find the combination where all hatches on the path are closed and they can cross safely.</p>
 <p><strong>Setup:</strong></p>
-<p>Użyj jednej <code>WallLever</code> (toggle). Podepnij do niej kilka <code>TrapDoorTrap</code> jako <strong>Targets</strong>.</p>
-<p>Każda klapa ma inne ustawienia <strong>Trigger Delay</strong> — to sprawi że nie otwierają się wszystkie jednocześnie, tylko sekwencyjnie, co daje efekt "przesuwania się" kombinacji:</p>
+<p>Use one <code>WallLever</code> (toggle). Connect several <code>TrapDoorTrap</code> components as <strong>Targets</strong>.</p>
+<p>Give each hatch a different <strong>Trigger Delay</strong> so they don't all open at once — they open in sequence, creating a shifting "window" of safe tiles:</p>
 <table>
 <thead>
 <tr>
-<th>Klapa</th>
+<th>Hatch</th>
 <th>Auto Trigger</th>
 <th>Require Party On Cell</th>
 <th>Trigger Delay</th>
@@ -1730,7 +1730,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Klapa A</td>
+<td>Hatch A</td>
 <td>❌</td>
 <td>❌</td>
 <td>0 s</td>
@@ -1738,7 +1738,7 @@
 <td>❌</td>
 </tr>
 <tr>
-<td>Klapa B</td>
+<td>Hatch B</td>
 <td>❌</td>
 <td>❌</td>
 <td>0.3 s</td>
@@ -1746,7 +1746,7 @@
 <td>❌</td>
 </tr>
 <tr>
-<td>Klapa C</td>
+<td>Hatch C</td>
 <td>❌</td>
 <td>❌</td>
 <td>0.6 s</td>
@@ -1755,23 +1755,23 @@
 </tr>
 </tbody>
 </table>
-<p>Dźwignia aktywuje → klapy otwierają się jedna po drugiej. Dźwignia deaktywuje → zamykają się. Gracz przekłada dźwignię wielokrotnie i obserwuje która kombinacja pozwala przejść.</p>
+<p>Lever activates → hatches open one by one. Lever deactivates → they close. The player toggles the lever repeatedly and watches for the safe combination.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Ustaw <strong>Permanent = false</strong> i <strong>Trigger Once = false</strong> na każdej klapie — inaczej po pierwszym wyzwoleniu nie będzie można ich resetować.</p>
+<p>Set <strong>Permanent = false</strong> and <strong>Trigger Once = false</strong> on every hatch — otherwise they lock open after the first trigger and can't reset.</p>
 </div>
 <hr />
 <h2 id="type-5-logic-gate-puzzle-multi-lever-lock">Type 5 — Logic Gate Puzzle (Multi-Lever Lock)<a class="headerlink" href="#type-5-logic-gate-puzzle-multi-lever-lock" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Trzy dźwignie kontrolują jedną lub więcej klap. Klapa otwiera się tylko gdy wszystkie trzy dźwignie są w złej pozycji — gracz musi znaleźć jedyną bezpieczną kombinację (wszystkie w górę, wszystkie w dół, lub mieszaną).</p>
+<p><strong>What happens:</strong> Three levers control one or more hatches. The hatch opens only when all three levers are in the wrong position — the player must find the one safe combination (all up, all down, or mixed).</p>
 <p><strong>Setup:</strong></p>
-<p>Dodaj komponent <code>TriggerLogicGate</code> (typ <strong>AND</strong>) do osobnego GameObject. Podepnij wszystkie trzy <code>WallLever</code> jako inputs. Wyjście <code>TriggerLogicGate</code> podepnij do <code>TrapDoorTrap</code>.</p>
-<p>Klapa otwiera się gdy wszystkie dźwignie są aktywne jednocześnie. Bezpieczna pozycja = nie wszystkie aktywne.</p>
-<p>Możesz odwrócić logikę używając bramki <strong>NOT</strong> lub <strong>NOR</strong> — klapa jest domyślnie otwarta i zamyka się dopiero gdy gracz ustawi właściwą kombinację.</p>
+<p>Add a <code>TriggerLogicGate</code> component (type <strong>AND</strong>) to a separate GameObject. Connect all three <code>WallLever</code> components as inputs. Wire the <code>TriggerLogicGate</code> output to <code>TrapDoorTrap</code>.</p>
+<p>The hatch opens when all levers are active simultaneously. The safe state is any other combination.</p>
+<p>You can invert the logic with a <strong>NOT</strong> or <strong>NOR</strong> gate — the hatch starts open and closes only when the player finds the correct combination.</p>
 <table>
 <thead>
 <tr>
-<th>Pole na TrapDoorTrap</th>
-<th>Wartość</th>
+<th>Field on TrapDoorTrap</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
@@ -1795,28 +1795,14 @@
 </table>
 <hr />
 <h2 id="type-6-pressure-plate-trap">Type 6 — Pressure Plate Trap<a class="headerlink" href="#type-6-pressure-plate-trap" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Gracz stoi na płytce ciśnieniowej — klapa w innym miejscu jest otwarta. Kiedy gracz schodzi z płytki (albo ktoś inny na niej stanie), klapa zamyka się lub otwiera. Klasyczna "trzymaj płytkę żeby przejść" — ale z akcentem: płytka otwiera klapę pod graczem numer dwa.</p>
+<p><strong>What happens:</strong> The player stands on a pressure plate — a hatch somewhere else opens. When the player steps off (or something else takes their place on the plate), the hatch closes or opens. The classic "hold the plate to cross" setup — but with a twist: the plate opens the hatch under a second player.</p>
 <p><strong>Setup:</strong></p>
 <p><code>PressurePlate</code> → <strong>Targets</strong> → <code>TrapDoorTrap</code>.</p>
 <table>
 <thead>
 <tr>
-<th>Pole na PressurePlate</th>
-<th>Wartość</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>(brak dodatkowych pól — płytka aktywuje się gdy ktoś na niej stoi)</em></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Pole na TrapDoorTrap</th>
-<th>Wartość</th>
+<th>Field on TrapDoorTrap</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
@@ -1842,17 +1828,17 @@
 </tr>
 </tbody>
 </table>
-<p>Gracz numer jeden staje na płytce → klapa otwiera się. Gracz "numer dwa" (ta sama drużyna, inny moment) wchodzi na klap → wpada.</p>
+<p>Player steps on plate → hatch opens. Next time they walk over the hatch → they fall.</p>
 <hr />
 <h2 id="type-7-repeating-pit">Type 7 — Repeating Pit<a class="headerlink" href="#type-7-repeating-pit" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Klapa otwiera się pod stopami gracza, spada, ginie. Po kilku sekundach klapa zamyka się i pułapka resetuje — czeka na następnego.</p>
-<p>Przydatne w korytarzach które gracz musi przechodzić wielokrotnie (powroty, respawn punkty).</p>
+<p><strong>What happens:</strong> The hatch opens under the player, they fall and die. A few seconds later the hatch closes and resets — ready for the next victim.</p>
+<p>Useful in corridors the player must travel through multiple times (backtracking, respawn points).</p>
 <p><strong>Setup:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Pole</th>
-<th>Wartość</th>
+<th>Field</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
@@ -1882,55 +1868,56 @@
 </tr>
 <tr>
 <td><strong>Trap Animator</strong></td>
-<td>Animator z <code>TrapMesh</code></td>
+<td>Animator from <code>TrapMesh</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="type-8-crossbow-corridor">Type 8 — Crossbow Corridor<a class="headerlink" href="#type-8-crossbow-corridor" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Gracz wchodzi w korytarz. Wyzwala pressure plate. Z boku wylatuje strzała.</p>
-<p>Klasyczna pułapka ze strzałami — żadnej klapy, tylko <code>ProjectileTrap</code> + <code>PressurePlate</code>.</p>
+<p><strong>What happens:</strong> The player enters a corridor, triggers a pressure plate, and an arrow fires from the side.</p>
+<p>The classic dart/arrow corridor — no hatch involved, just <code>ProjectileTrap</code> + <code>PressurePlate</code>.</p>
 <p><strong>Setup:</strong></p>
 <p><code>PressurePlate</code> → <strong>Targets</strong> → <code>ProjectileTrap</code>.</p>
 <table>
 <thead>
 <tr>
-<th>Pole na ProjectileTrap</th>
-<th>Wartość</th>
+<th>Field on ProjectileTrap</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Projectile Prefab</strong></td>
-<td>prefab strzały / bełtu</td>
+<td>arrow / bolt prefab</td>
 </tr>
 <tr>
 <td><strong>Fire Direction</strong></td>
-<td>kierunek prostopadły do ruchu gracza</td>
+<td>perpendicular to the player's movement</td>
 </tr>
 <tr>
 <td><strong>Damage</strong></td>
-<td>np. 20–30</td>
+<td>20–30</td>
 </tr>
 <tr>
 <td><strong>Aim Target</strong></td>
-<td>Transform z <code>PartyVisuals</code></td>
+<td>Transform from <code>PartyVisuals</code></td>
 </tr>
 </tbody>
 </table>
-<p>Ustaw kilka <code>ProjectileTrap</code> po obu stronach korytarza z różnymi <strong>Fire Direction</strong> — strzały lecą z lewej i prawej jednocześnie.</p>
+<p>Place multiple <code>ProjectileTrap</code> components on both sides of the corridor with opposing <strong>Fire Direction</strong> values — arrows fire from left and right simultaneously.</p>
 <hr />
 <h2 id="type-9-pit-crossbow-combo">Type 9 — Pit + Crossbow Combo<a class="headerlink" href="#type-9-pit-crossbow-combo" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Gracz wchodzi w komórkę z klapą. Klapa otwiera się pod nim. W tej samej chwili z boku wylatuje strzała. Nawet jeśli unika klapy (lever-controlled, nie auto), dostaje strzałą.</p>
-<p>Kombinacja <code>TrapDoorTrap</code> + <code>ProjectileTrap</code> wyzwalanych z tego samego źródła.</p>
-<p><strong>Setup:</strong></p>
-<p>Jedna <code>WallLever</code> → <strong>Targets</strong>: <code>TrapDoorTrap</code> + <code>ProjectileTrap</code> jednocześnie.</p>
-<p>Albo: <code>TrapDoorTrap</code> ma wypełniony <strong>On Fall Triggered</strong> → wywołuje <code>ProjectileTrap.Trigger()</code> przez UnityEvent. Strzała leci dopiero gdy klapa się otworzy.</p>
+<p><strong>What happens:</strong> The player steps onto a hatch cell. The hatch opens beneath them. At the same moment an arrow fires from the side. Even if the hatch is lever-controlled and the player avoids standing on it, they still take the arrow.</p>
+<p><code>TrapDoorTrap</code> and <code>ProjectileTrap</code> triggered from the same source.</p>
+<p><strong>Setup — shared lever:</strong></p>
+<p>One <code>WallLever</code> → <strong>Targets</strong>: both <code>TrapDoorTrap</code> and <code>ProjectileTrap</code> at the same time.</p>
+<p><strong>Setup — arrow fires on fall:</strong></p>
+<p>Leave the lever off. Use <strong>On Fall Triggered</strong> on <code>TrapDoorTrap</code> to call <code>ProjectileTrap.Trigger()</code> via UnityEvent. The arrow fires only after the hatch opens.</p>
 <table>
 <thead>
 <tr>
-<th>Pole na TrapDoorTrap</th>
-<th>Wartość</th>
+<th>Field on TrapDoorTrap</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
@@ -1951,14 +1938,14 @@
 <table>
 <thead>
 <tr>
-<th>Pole na ProjectileTrap</th>
-<th>Wartość</th>
+<th>Field on ProjectileTrap</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Fire Direction</strong></td>
-<td>z boku</td>
+<td>from the side</td>
 </tr>
 <tr>
 <td><strong>Damage</strong></td>
@@ -1968,18 +1955,18 @@
 </table>
 <hr />
 <h2 id="type-10-gauntlet">Type 10 — Gauntlet<a class="headerlink" href="#type-10-gauntlet" title="Permanent link">&para;</a></h2>
-<p><strong>Co się dzieje:</strong> Gracz musi przejść przez korytarz wypełniony klapami i strzałami. Klapy otwierają się kolejno (każda z innym Trigger Delay), strzały lecą w rytmie z pressure plate na początku korytarza. Bezpieczna ścieżka istnieje, ale trzeba ją znaleźć.</p>
-<p>Łączy Type 4 (cycling hatches), Type 7 (repeating) i Type 8 (crossbow corridor).</p>
+<p><strong>What happens:</strong> The player must cross a corridor packed with hatches and arrows. Hatches open in sequence (each with a different Trigger Delay), arrows fire from a pressure plate at the corridor entrance. A safe path exists — the player has to find it.</p>
+<p>Combines Type 4 (cycling hatches), Type 7 (repeating), and Type 8 (crossbow corridor).</p>
 <p><strong>Setup:</strong></p>
 <ol>
-<li>Rozłóż 4–6 komórek <code>TrapDoor</code> wzdłuż korytarza — każda z innym <strong>Trigger Delay</strong> (0 s, 0.5 s, 1 s, 1.5 s…) i <strong>Permanent = false</strong>, <strong>Trigger Once = false</strong>.</li>
-<li>Jedną <code>WallLever</code> podepnij do wszystkich klap — przekładanie dźwigni zmienia która klapa jest otwarta w danym momencie.</li>
-<li>Na wejściu do korytarza postaw <code>PressurePlate</code> → <code>ProjectileTrap</code> po bokach.</li>
-<li>Gracz najpierw sprawdza rytm klap, potem wchodzi i biegnie przez okno bezpieczeństwa.</li>
+<li>Lay out 4–6 <code>TrapDoor</code> cells along the corridor — each with a different <strong>Trigger Delay</strong> (0 s, 0.5 s, 1 s, 1.5 s…), <strong>Permanent = false</strong>, <strong>Trigger Once = false</strong>.</li>
+<li>Connect one <code>WallLever</code> to all hatches — toggling it shifts which hatch is open at any given moment.</li>
+<li>Place a <code>PressurePlate</code> at the corridor entrance wired to <code>ProjectileTrap</code> components on both sides.</li>
+<li>The player reads the hatch rhythm first, then enters and sprints through the safety window.</li>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Dodaj <strong>On Fall Triggered</strong> → <code>TriggerPlaySound</code> na każdej klapie — odgłos spadania gracza słyszany z drugiego końca korytarza buduje napięcie.</p>
+<p>Add <strong>On Fall Triggered</strong> → <code>TriggerPlaySound</code> on each hatch — the sound of the party falling heard from the far end of the corridor builds tension for the next attempt.</p>
 </div>
 <hr />
 <p><em>CrawlerKIT — Mantis3de</em></p>
