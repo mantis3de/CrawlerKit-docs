@@ -117,6 +117,7 @@ nav:
           - Pressure Plate Door: systems/setup-pressure-plate.md
           - Secret / Illusory Wall: systems/setup-secret-wall.md
           - Trap Door: systems/setup-trapdoor.md
+          - Trap Types (10 Examples): systems/trap-types.md
   - Architecture: architecture.md
   - API Reference: api.md
   - FAQ: faq.md
