@@ -12,13 +12,13 @@
         <meta name="author" content="Mantis3de">
       
       
-        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/systems/setup-secret-wall/">
+        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/systems/setup-illusory-wall/">
       
       
-        <link rel="prev" href="../wall-types/">
+        <link rel="prev" href="../door-types/">
       
       
-        <link rel="next" href="../setup-trapdoor/">
+        <link rel="next" href="../wall-types/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Secret / Illusory Wall (legacy) - CrawlerKit Documentation</title>
+        <title>Illusory Wall - CrawlerKit Documentation</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setup-guide-secret-illusory-wall" class="md-skip">
+        <a href="#setup-guide-illusory-wall" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Secret / Illusory Wall (legacy)
+              Illusory Wall
             
           </span>
         </div>
@@ -1157,10 +1157,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../setup-illusory-wall/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Illusory Wall
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1176,6 +1203,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-grid-sees-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the grid sees it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edgeblockermarker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EdgeBlockerMarker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WallCore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerillusorywall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerIllusoryWall
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behaviour-components-used-with-wallcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaviour components (used with WallCore)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wall-animator-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wall Animator setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1213,37 +1365,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Secret / Illusory Wall (legacy)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../setup-secret-wall/" class="md-nav__link">
         
   
   
@@ -1259,170 +1384,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works-in-the-grid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works in the grid
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prefab-hierarchy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prefab hierarchy
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-a-proximity-reveal-wallcore-proximityrevealbehaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1 — Add components to the root
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-set-up-the-wall-animator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Set up the wall Animator
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-b-triggered-reveal-triggerillusorywall-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant B — Triggered reveal (TriggerIllusoryWall + source)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variant B — Triggered reveal (TriggerIllusoryWall + source)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1 — Add components to the root
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-set-up-the-animator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Set up the Animator
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-wire-the-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3 — Wire the source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-c-passable-wall-with-no-visual-fake-solid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant C — Passable wall with no visual (fake solid)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#map-behaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Map behaviour
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary-of-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary of components
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1634,10 +1595,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-it-works-in-the-grid" class="md-nav__link">
+  <a href="#how-the-grid-sees-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works in the grid
+        How the grid sees it
       
     </span>
   </a>
@@ -1645,33 +1606,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prefab-hierarchy" class="md-nav__link">
+  <a href="#core-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prefab hierarchy
+        Core components
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-a-proximity-reveal-wallcore-proximityrevealbehaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)">
+    <nav class="md-nav" aria-label="Core components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root" class="md-nav__link">
+  <a href="#edgeblockermarker" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1 — Add components to the root
+        EdgeBlockerMarker
       
     </span>
   </a>
@@ -1679,10 +1629,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-set-up-the-wall-animator" class="md-nav__link">
+  <a href="#wallcore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2 — Set up the wall Animator
+        WallCore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerillusorywall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerIllusoryWall
       
     </span>
   </a>
@@ -1695,60 +1656,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variant-b-triggered-reveal-triggerillusorywall-source" class="md-nav__link">
+  <a href="#behaviour-components-used-with-wallcore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Variant B — Triggered reveal (TriggerIllusoryWall + source)
+        Behaviour components (used with WallCore)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Variant B — Triggered reveal (TriggerIllusoryWall + source)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1 — Add components to the root
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-set-up-the-animator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Set up the Animator
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-wire-the-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3 — Wire the source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#variant-c-passable-wall-with-no-visual-fake-solid" class="md-nav__link">
+  <a href="#wall-animator-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Variant C — Passable wall with no visual (fake solid)
+        Wall Animator setup
       
     </span>
   </a>
@@ -1767,10 +1689,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-of-components" class="md-nav__link">
+  <a href="#component-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary of components
+        Component summary
       
     </span>
   </a>
@@ -1794,49 +1716,34 @@
 
 
 
-<h1 id="setup-guide-secret-illusory-wall">Setup Guide — Secret / Illusory Wall<a class="headerlink" href="#setup-guide-secret-illusory-wall" title="Permanent link">&para;</a></h1>
-<p>An illusory wall looks exactly like a solid wall but the player can walk through it. The wall can either dissolve visually when approached or remain invisible — showing no animation at all, just silently letting the party pass.</p>
-<p>This guide covers two variants:</p>
-<ul>
-<li><strong>Proximity reveal</strong> — the wall dissolves when the party steps onto its cell (the most common classic dungeon secret).</li>
-<li><strong>Triggered reveal</strong> — a lever, button or other source dissolves the wall on demand.</li>
-</ul>
-<p>A third case — a wall that is simply passable with no visual — needs no trigger setup at all and is described at the end.</p>
+<h1 id="setup-guide-illusory-wall">Setup Guide — Illusory Wall<a class="headerlink" href="#setup-guide-illusory-wall" title="Permanent link">&para;</a></h1>
+<p>An illusory wall looks exactly like a solid wall but the party can walk through it. What makes it passable is a single flag on its <code>EdgeBlockerMarker</code> — <strong>Is Passable</strong>. Everything else (the dissolve animation, the trigger logic, whether it reveals at all) is optional layered on top.</p>
 <hr />
-<h2 id="how-it-works-in-the-grid">How it works in the grid<a class="headerlink" href="#how-it-works-in-the-grid" title="Permanent link">&para;</a></h2>
-<p>Every wall in CrawlerKit is registered as an <code>EdgeBlocker</code> in the grid data. For a wall to be physically passable the <code>EdgeBlockerMarker</code> on the wall GameObject must have <strong>Is Passable</strong> checked. This is separate from whether the wall is <em>visible</em> — visibility is controlled by the animator and mesh activation.</p>
+<h2 id="how-the-grid-sees-it">How the grid sees it<a class="headerlink" href="#how-the-grid-sees-it" title="Permanent link">&para;</a></h2>
+<p>Every wall in CrawlerKit is registered as an <code>EdgeBlocker</code> in the grid. Whether a wall is physically passable is determined entirely by <strong>Is Passable</strong> on <code>EdgeBlockerMarker</code>. Visibility — whether the wall mesh is showing — is controlled separately by <code>WallCore</code> and the behaviours on top of it. A wall can look solid but be passable, or look invisible but block movement.</p>
 <div class="admonition note">
 <p class="admonition-title">Dungeon Generator</p>
-<p>Secret walls are placed from the <strong>Secret Wall Library</strong> panel in the Dungeon Generator. After placing one, run <strong>Generate Unique IDs (all walls)</strong> before exporting, so the wall gets a unique <code>targetId</code> the trigger system can reference.</p>
+<p>Secret walls are placed from the <strong>Secret Wall Library</strong> panel in the Dungeon Generator. After placing, run <strong>Generate Unique IDs (all walls)</strong> so each wall gets a unique ID before JSON export.</p>
 </div>
 <hr />
-<h2 id="prefab-hierarchy">Prefab hierarchy<a class="headerlink" href="#prefab-hierarchy" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SecretWall                ← root
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── WallMesh              ← wall geometry + Animator
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└── (optional) Collider   ← physical collider, disabled when wall is passable
-</span></code></pre></div>
-<p>Both components that control the wall — <code>WallCore</code> and <code>TriggerIllusoryWall</code> — go on the root. Only one should be used at a time; choose based on which variant you need.</p>
-<hr />
-<h2 id="variant-a-proximity-reveal-wallcore-proximityrevealbehaviour">Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)<a class="headerlink" href="#variant-a-proximity-reveal-wallcore-proximityrevealbehaviour" title="Permanent link">&para;</a></h2>
-<p>Use this when the wall should dissolve the moment the party steps onto the cell where the wall sits. No clicking required — they just walk through and the wall fades out behind them.</p>
-<h3 id="step-1-add-components-to-the-root">Step 1 — Add components to the root<a class="headerlink" href="#step-1-add-components-to-the-root" title="Permanent link">&para;</a></h3>
-<p>Add these components to the <code>SecretWall</code> root:</p>
-<p><strong>EdgeBlockerMarker</strong> — registers the wall with the grid.</p>
+<h2 id="core-components">Core components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h2>
+<h3 id="edgeblockermarker">EdgeBlockerMarker<a class="headerlink" href="#edgeblockermarker" title="Permanent link">&para;</a></h3>
+<p>Registers the wall with the grid. Required on every wall.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Value</th>
+<th>Value for illusory walls</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Blocker Id</strong></td>
-<td>Unique ID, e.g. <code>wall_secret_01</code> (or let the Dungeon Generator assign it)</td>
+<td>Unique ID, e.g. <code>wall_secret_01</code></td>
 </tr>
 <tr>
 <td><strong>Is Passable</strong></td>
-<td>✅ Enabled — the party can always walk through, even before the reveal</td>
+<td>✅ — must be enabled for the party to walk through</td>
 </tr>
 <tr>
 <td><strong>Is Open</strong></td>
@@ -1844,153 +1751,177 @@
 </tr>
 </tbody>
 </table>
-<p><strong>WallCore</strong> — the central wall controller. Runs the reveal/restore pipeline and drives the mesh and collider.</p>
+<h3 id="wallcore">WallCore<a class="headerlink" href="#wallcore" title="Permanent link">&para;</a></h3>
+<p>The central controller for walls that change their appearance. Manages the reveal/restore pipeline and drives the mesh and collider. Use this for walls driven by <strong>behaviour components</strong> (proximity, timed, ambush, etc.).</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Wall Mesh</strong></td>
-<td>Drag the <code>WallMesh</code> child</td>
+<td>The wall's mesh child.</td>
 </tr>
 <tr>
 <td><strong>Wall Collider</strong></td>
-<td>Drag the collider on the root (if you have one)</td>
+<td>Physical collider on the root. Leave empty if there is no collider.</td>
 </tr>
 <tr>
 <td><strong>Collides When Hidden</strong></td>
-<td>Leave disabled — illusory walls should never block physical movement</td>
+<td>Keep disabled — illusory walls should not block movement even when visible.</td>
 </tr>
 <tr>
 <td><strong>Reveal Duration</strong></td>
-<td>Match to the length of your dissolve animation, e.g. <code>0.5</code></td>
+<td>Seconds to match the dissolve animation length. Set to 0 for an instant pop.</td>
 </tr>
 <tr>
 <td><strong>Restore Duration</strong></td>
-<td>Match to the restore animation, e.g. <code>0.5</code></td>
+<td>Seconds for the restore animation.</td>
 </tr>
 <tr>
 <td><strong>Starts Revealed</strong></td>
-<td>Leave disabled — wall starts hidden (solid-looking)</td>
+<td>Enable if the wall should start invisible (useful for re-appearing walls).</td>
 </tr>
 </tbody>
 </table>
-<p><strong>ProximityRevealBehaviour</strong> — listens to the grid's <code>OnCellEntered</code> event. When the party steps onto this wall's cell, it calls <code>WallCore.Reveal()</code>.</p>
+<h3 id="triggerillusorywall">TriggerIllusoryWall<a class="headerlink" href="#triggerillusorywall" title="Permanent link">&para;</a></h3>
+<p>The <code>TriggerTarget</code> variant of wall control. Use this when a <code>TriggerSource</code> (lever, button, plate, logic gate) drives the reveal. Receives <code>OnTriggered</code> / <code>OnReleased</code> and plays the reveal/restore animations accordingly.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Permanent</strong></td>
-<td>✅ Enabled for a one-way secret (revealed forever). Disable if you want the wall to restore when the party steps back.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="step-2-set-up-the-wall-animator">Step 2 — Set up the wall Animator<a class="headerlink" href="#step-2-set-up-the-wall-animator" title="Permanent link">&para;</a></h3>
-<p>Select <strong>WallMesh</strong> and open its Animator Controller:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>States
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  Idle_Hidden     ← default (wall looks solid)
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  Revealing       ← dissolve animation playing
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  Idle_Revealed   ← wall invisible / fully dissolved
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  Restoring       ← restore animation playing (only needed if Permanent = false)
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Triggers
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  Reveal
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  Restore
-</span></code></pre></div>
-<p><strong>Transitions:</strong></p>
-<ul>
-<li><code>Idle_Hidden → Revealing</code> — trigger <code>Reveal</code>, no Exit Time, Transition Duration 0.</li>
-<li><code>Revealing → Idle_Revealed</code> — Exit Time on, Transition Duration 0.</li>
-<li><code>Idle_Revealed → Restoring</code> — trigger <code>Restore</code>, no Exit Time, Transition Duration 0. <em>(Only if Permanent = false)</em></li>
-<li><code>Restoring → Idle_Hidden</code> — Exit Time on, Transition Duration 0. <em>(Only if Permanent = false)</em></li>
-</ul>
-<p>If your wall has no dissolve animation, you can leave the Animator empty and <code>WallCore</code> will simply show or hide the mesh after <code>Reveal Duration</code> seconds.</p>
-<div class="admonition tip">
-<p class="admonition-title">No animator needed</p>
-<p>If you just want the wall to pop out of existence without any animation, skip the Animator entirely. Set <strong>Reveal Duration</strong> and <strong>Restore Duration</strong> to <code>0</code> on <code>WallCore</code> — the mesh hides immediately when the party steps through.</p>
-</div>
-<hr />
-<h2 id="variant-b-triggered-reveal-triggerillusorywall-source">Variant B — Triggered reveal (TriggerIllusoryWall + source)<a class="headerlink" href="#variant-b-triggered-reveal-triggerillusorywall-source" title="Permanent link">&para;</a></h2>
-<p>Use this when the wall is revealed by an explicit source — a lever in another room, a pressure plate, or a button. The party walks through only after the source has fired.</p>
-<h3 id="step-1-add-components-to-the-root_1">Step 1 — Add components to the root<a class="headerlink" href="#step-1-add-components-to-the-root_1" title="Permanent link">&para;</a></h3>
-<p><strong>EdgeBlockerMarker</strong> — same as Variant A, with <strong>Is Passable</strong> checked.</p>
-<p><strong>TriggerIllusoryWall</strong> — the target component for source-driven reveals.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Blocker Id</strong></td>
-<td>Unique ID matching the <code>EdgeBlockerMarker</code></td>
+<td>Must match <code>EdgeBlockerMarker.blockerId</code>.</td>
 </tr>
 <tr>
 <td><strong>Wall Mesh</strong></td>
-<td>Drag the <code>WallMesh</code> child</td>
+<td>The wall's mesh child.</td>
 </tr>
 <tr>
 <td><strong>Wall Animator</strong></td>
-<td>Drag the <code>Animator</code> from <code>WallMesh</code></td>
+<td>Animator from the mesh child.</td>
 </tr>
 <tr>
-<td><strong>Reveal Anim Trigger</strong></td>
-<td><code>Reveal</code></td>
-</tr>
-<tr>
-<td><strong>Restore Anim Trigger</strong></td>
-<td><code>Restore</code></td>
+<td><strong>Reveal / Restore Anim Trigger</strong></td>
+<td>Animator trigger names.</td>
 </tr>
 <tr>
 <td><strong>Dissolve Delay</strong></td>
-<td>Seconds after the reveal trigger fires before the mesh is hidden completely. Match to the end of your dissolve animation.</td>
+<td>Seconds after the reveal trigger before the mesh is hidden. Match to animation length.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="step-2-set-up-the-animator">Step 2 — Set up the Animator<a class="headerlink" href="#step-2-set-up-the-animator" title="Permanent link">&para;</a></h3>
-<p>Same states and transitions as Variant A.</p>
-<h3 id="step-3-wire-the-source">Step 3 — Wire the source<a class="headerlink" href="#step-3-wire-the-source" title="Permanent link">&para;</a></h3>
-<p>On your lever, button or pressure plate, drag the <code>TriggerIllusoryWall</code> component from the wall root into the source's <strong>Targets</strong> list. When the source activates, the wall dissolves. When the source deactivates (lever pulled back, party steps off the plate), the wall restores — unless you want it to stay revealed permanently, in which case use a <code>WallButton</code> or <code>PressurePlate</code> with <strong>Latching</strong> enabled, or a lever that only ever fires once.</p>
 <hr />
-<h2 id="variant-c-passable-wall-with-no-visual-fake-solid">Variant C — Passable wall with no visual (fake solid)<a class="headerlink" href="#variant-c-passable-wall-with-no-visual-fake-solid" title="Permanent link">&para;</a></h2>
-<p>The simplest case: the wall appears solid in the viewport but the player can just walk through with no animation, no dissolve, no trigger. Use this for hidden passages the player is simply meant to discover by bumping into walls.</p>
-<p>Add only <strong>EdgeBlockerMarker</strong> to the root and check <strong>Is Passable</strong>. No <code>WallCore</code>, no <code>TriggerIllusoryWall</code>, no Animator. The grid will let the party through; the wall mesh stays visible forever.</p>
-<hr />
-<h2 id="map-behaviour">Map behaviour<a class="headerlink" href="#map-behaviour" title="Permanent link">&para;</a></h2>
-<p>Secret cells — floor tiles marked as Secret in the Dungeon Generator — never appear on the dungeon map until the party physically walks onto them. Illusory walls themselves do not affect the map; what matters is the floor cell type on the other side.</p>
-<p>If the room behind the secret wall uses regular floor tiles, it appears on the map as soon as the party enters. If those floor tiles are marked Secret, the room stays hidden on the map until explored.</p>
-<hr />
-<h2 id="summary-of-components">Summary of components<a class="headerlink" href="#summary-of-components" title="Permanent link">&para;</a></h2>
+<h2 id="behaviour-components-used-with-wallcore">Behaviour components (used with WallCore)<a class="headerlink" href="#behaviour-components-used-with-wallcore" title="Permanent link">&para;</a></h2>
+<p>Add these alongside <code>WallCore</code> to define <em>when</em> the wall reveals itself. Multiple behaviours can coexist on the same wall.</p>
 <table>
 <thead>
 <tr>
-<th>Variant</th>
-<th>Root components</th>
+<th>Behaviour</th>
+<th>Reveals when…</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Proximity reveal</td>
-<td><code>EdgeBlockerMarker</code> (Is Passable ✅), <code>WallCore</code>, <code>ProximityRevealBehaviour</code></td>
+<td><code>ProximityRevealBehaviour</code></td>
+<td>Party steps onto the wall's cell.</td>
 </tr>
 <tr>
-<td>Triggered reveal</td>
-<td><code>EdgeBlockerMarker</code> (Is Passable ✅), <code>TriggerIllusoryWall</code></td>
+<td><code>DelayedProximityBehaviour</code></td>
+<td>Party steps onto the cell, but after a configurable delay.</td>
 </tr>
 <tr>
-<td>Fake solid (no visual)</td>
+<td><code>TimedRevealBehaviour</code></td>
+<td>A fixed time after scene load.</td>
+</tr>
+<tr>
+<td><code>AmbushRevealBehaviour</code></td>
+<td>A connected enemy spawner activates — the enemy bursts through.</td>
+</tr>
+<tr>
+<td><code>CounterRevealBehaviour</code></td>
+<td>The party has passed through or entered the cell a set number of times.</td>
+</tr>
+<tr>
+<td><code>ProjectileRevealBehaviour</code></td>
+<td>A projectile hits the wall.</td>
+</tr>
+<tr>
+<td><code>PhaseWallBehaviour</code></td>
+<td>Party walks through without any visual change — the wall stays solid-looking.</td>
+</tr>
+<tr>
+<td><code>OneWayPassageBehaviour</code></td>
+<td>Passable from one direction only.</td>
+</tr>
+<tr>
+<td><code>BiomeWallModifier</code></td>
+<td>Changes the wall's visual to match a different biome. Not a reveal — purely cosmetic.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="wall-animator-setup">Wall Animator setup<a class="headerlink" href="#wall-animator-setup" title="Permanent link">&para;</a></h2>
+<p>If you want a dissolve animation, the mesh child's Animator Controller needs these states and triggers:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>States
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  Idle_Hidden     ← default (wall looks solid)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  Revealing       ← dissolve playing
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Idle_Revealed   ← wall invisible / gone
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  Restoring       ← restore playing (only if wall can restore)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Triggers
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  Reveal
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  Restore
+</span></code></pre></div>
+<p>Transitions: <code>Idle_Hidden → Revealing</code> on trigger <code>Reveal</code> (no Exit Time). <code>Revealing → Idle_Revealed</code> on Exit Time. Same pattern for Restore.</p>
+<div class="admonition tip">
+<p class="admonition-title">No animator needed</p>
+<p>Skip the Animator entirely if you want the wall to simply disappear. Set <strong>Reveal Duration</strong> to <code>0</code> on <code>WallCore</code> and the mesh hides immediately on reveal.</p>
+</div>
+<hr />
+<h2 id="map-behaviour">Map behaviour<a class="headerlink" href="#map-behaviour" title="Permanent link">&para;</a></h2>
+<p>Secret floor cells (marked as Secret in the Dungeon Generator) never appear on the dungeon map until explored. Illusory walls themselves don't affect the map — only the floor cell type on the other side does. A room behind a secret wall with normal floor tiles appears on the map as soon as the party enters. Mark those floor tiles as Secret to keep the room hidden until explored.</p>
+<hr />
+<h2 id="component-summary">Component summary<a class="headerlink" href="#component-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Components on root</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Walk through, no visual</td>
 <td><code>EdgeBlockerMarker</code> (Is Passable ✅)</td>
+</tr>
+<tr>
+<td>Reveals on approach</td>
+<td><code>EdgeBlockerMarker</code>, <code>WallCore</code>, <code>ProximityRevealBehaviour</code></td>
+</tr>
+<tr>
+<td>Reveals on trigger</td>
+<td><code>EdgeBlockerMarker</code>, <code>TriggerIllusoryWall</code></td>
+</tr>
+<tr>
+<td>Reveals on timer</td>
+<td><code>EdgeBlockerMarker</code>, <code>WallCore</code>, <code>TimedRevealBehaviour</code></td>
+</tr>
+<tr>
+<td>Enemy bursts through</td>
+<td><code>EdgeBlockerMarker</code>, <code>WallCore</code>, <code>AmbushRevealBehaviour</code></td>
+</tr>
+<tr>
+<td>One-way passage</td>
+<td><code>EdgeBlockerMarker</code>, <code>WallCore</code>, <code>OneWayPassageBehaviour</code></td>
 </tr>
 </tbody>
 </table>
@@ -2031,7 +1962,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../wall-types/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Illusory Wall Types (10 Examples)">
+          <a href="../door-types/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Door Types (10 Examples)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2041,20 +1972,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Illusory Wall Types (10 Examples)
+                Door Types (10 Examples)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../setup-trapdoor/" class="md-footer__link md-footer__link--next" aria-label="Next: Trap Door">
+          <a href="../wall-types/" class="md-footer__link md-footer__link--next" aria-label="Next: Illusory Wall Types (10 Examples)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Trap Door
+                Illusory Wall Types (10 Examples)
               </div>
             </div>
             <div class="md-footer__button md-icon">

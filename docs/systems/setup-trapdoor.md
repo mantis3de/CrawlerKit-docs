@@ -1,126 +1,207 @@
 # Setup Guide — Pit & Trapdoor
 
-Every hole in the floor — a plain open pit or an animated trapdoor — uses the same **TrapDoor** cell type and the same pit mesh (dark void, walls on all sides, walls going down). The difference is whether you attach a `TrapDoorTrap` component:
+Każda dziura w podłodze — zwykły otwarty dół albo animowana klapa — używa tego samego typu celi **TrapDoor**. Różnica jest tylko w tym, czy dodajesz komponent `TrapDoorTrap`:
 
-| Setup | Cell type | Component | Behaviour |
+| Wariant | Typ celi | Komponent | Efekt |
 |---|---|---|---|
-| Plain pit | TrapDoor | none | Party walks in, falls instantly |
-| Trap pit | TrapDoor | TrapDoorTrap | Full mechanics: levers, delays, reset, custom damage |
+| Zwykły dół | TrapDoor | brak | Drużyna wchodzi i natychmiast spada |
+| Pułapka z klapą | TrapDoor | `TrapDoorTrap` | Pełna mechanika: opóźnienie, animacja, lever, reset, obrażenia |
 
 ---
 
-## Scene setup requirements
+## Krok 1 — Oznacz celę w Dungeon Generatorze
 
-1. A **floor cell** marked as **TrapDoor** in the Dungeon Generator (`GridFlagExtended.cellType = TrapDoor`).
-2. A **pit mesh prefab** placed at the same world position — the pit mesh looks the same in both cases: a hole with walls on all sides and walls going down.
-3. *(Optional)* A `TrapDoorTrap` component on the prefab root if you want trap mechanics.
+W panelu **Spawn Tools** kliknij pomarańczowy przycisk **Trap Door**. To stawia celę z `cellType = TrapDoor` w origin — przesuń ją na właściwe miejsce. Możesz też wybrać istniejącą celę i zmienić jej **Cell Type** na `TrapDoor` w Inspectorze.
 
----
+Po postawieniu wszystkich celi kliknij **Generate Unique IDs (all traps)**, potem **Build Grid (Export JSON)**.
 
-## Step 1 — Mark the cell in the Dungeon Generator
-
-In the Dungeon Generator's **Spawn Tools** panel, click the orange **Trap Door** button. This places a floor cell with `cellType = TrapDoor` at the origin — move it to the correct position. Alternatively, select an existing floor flag and change its **Cell Type** to `TrapDoor` in the Inspector.
-
-After placing all cells, click **Generate Unique IDs (all traps)** and then **Build Grid (Export JSON)**.
-
-!!! note "No more Pit cell type"
-    The old **Pit** cell type (impassable, decorative) is no longer used. All holes in the floor use **TrapDoor**. A plain pit without a `TrapDoorTrap` component behaves identically to the old Pit — the party can enter the cell and falls — while still allowing you to add trap mechanics later simply by attaching the component.
+!!! note "Nie ma już typu Pit"
+    Stary typ **Pit** (nieprzejezdny, dekoracyjny) jest wycofany. Wszystkie dziury w podłodze używają **TrapDoor**. Zwykły dół bez komponentu `TrapDoorTrap` zachowuje się dokładnie tak samo jak stary Pit — możesz dodać mechanikę pułapki w każdej chwili, po prostu dokładając komponent.
 
 ---
 
-## Step 2 — Set up the prefab
+## Krok 2 — Hierarchia prefabu
 
-### Plain pit (no component)
+### Zwykły dół (bez komponentu)
 
-Place the pit mesh at the cell. No `TrapMarker` or `TrapDoorTrap` needed. The party walks in and falls immediately. Done.
+Postaw mesh dołu na celi. Żadnych komponentów nie trzeba. Drużyna wchodzi i spada. Koniec.
 
-### Trap pit (with component)
+### Klapa z mechaniką (z komponentem)
 
 ```
-TrapDoor                  ← root — TrapMarker, TrapDoorTrap
-└── TrapMesh              ← pit geometry + Animator (optional)
+TrapDoor              ← root — tutaj idą TrapMarker i TrapDoorTrap
+└── TrapMesh          ← geometry klapy + Animator (opcjonalnie)
 ```
 
-Add `TrapMarker` and `TrapDoorTrap` to the root. `TrapMarker` is required for the Save System — it stores the `trapId` and registers the trap in the JSON export.
+Na **roota** dodaj dwa komponenty: `TrapMarker` i `TrapDoorTrap`.
+
+**`TrapMarker`** — wymagany. Przechowuje `trapId` i rejestruje pułapkę w eksporcie JSON (Save System). Bez niego stan klapy nie będzie zapisywany.
+
+**`TrapDoorTrap`** — właściwa logika pułapki (opóźnienie, obrażenia, animacja, eventy).
+
+Na **TrapMesh** (dziecko) — `Animator` z klipami otwarcia i zamknięcia. Jeśli nie chcesz animacji, zostaw bez Animatora.
 
 ---
 
-## Step 3 — Configure TrapDoorTrap
+## Krok 3 — Konfiguracja TrapDoorTrap
 
-### Auto-Trigger on Cell Enter
+### Sekcja: Auto-Trigger on Cell Enter
 
-| Field | Default | Description |
+| Pole | Domyślnie | Co robi |
 |---|---|---|
-| **Auto Trigger On Enter** | ✅ Enabled | Fires automatically when the party steps onto the cell. Disable for lever-controlled traps. |
-| **Require Party On Cell On External Trigger** | ✅ Enabled | For lever-controlled mode. The lever only works if the party is already standing on the cell. |
-| **Trigger Delay** | 0 s | Seconds between entering the cell and applying damage. Use 0.2–0.4 s if you have an opening animation. |
+| **Auto Trigger On Enter** | ✅ | Klapa odpala się sama, gdy drużyna wejdzie na celę. Wyłącz jeśli klapa ma być sterowana leverem. |
+| **Require Party On Cell On External Trigger** | ✅ | Tylko dla trybu levera. Lever działa **tylko gdy drużyna stoi na klapie**. Wyłącz, jeśli lever ma otwierać klapę niezależnie od pozycji drużyny. |
+| **Trigger Delay** | 0 s | Opóźnienie między wejściem na celę a otwarciem klapy (w sekundach). `0` = natychmiast. `0.3–0.5 s` jest wygodne przy animacji otwierania. |
 
-### Behaviour
+### Sekcja: Behaviour
 
-| Field | Default | Description |
+| Pole | Domyślnie | Co robi |
 |---|---|---|
-| **Permanent** | ✅ Enabled | The hole stays open after firing. Disable if the trap should close and reset. |
-| **Close Delay** | 2 s | Seconds before the trap resets. Only used when Permanent is disabled. |
-| **Trigger Once** | ✅ Enabled | Ignore subsequent enters after the first trigger. Disable for a repeating trap. |
+| **Permanent** | ✅ | Klapa zostaje otwarta po odpaleniu. Wyłącz jeśli ma się zamykać po chwili i resetować. |
+| **Close Delay** | 2 s | Ile sekund klapa czeka otwarta zanim się zamknie. Działa tylko gdy **Permanent = false**. |
+| **Trigger Once** | ✅ | Po pierwszym odpaleniu ignoruje kolejne wejścia i triggery. Wyłącz dla pułapki, która resetuje się i poluje znowu. |
 
-### Fall Damage
+### Sekcja: Fall Damage
 
-| Field | Default | Description |
+| Pole | Domyślnie | Co robi |
 |---|---|---|
-| **Damage Preset** | InstantKill | `InstantKill` kills everyone immediately. `Heavy` deals 50. `Light` deals 20. `Custom` uses the value below. |
-| **Fall Damage** | 20 | Damage value when Damage Preset is Custom. |
+| **Damage Preset** | InstantKill | `InstantKill` — wszyscy giną natychmiast. `Heavy` — 50 dmg. `Light` — 20 dmg. `Custom` — wartość z pola poniżej. |
+| **Fall Damage** | 20 | Wartość obrażeń przy presecie `Custom`. |
 
-### Animator (optional)
+### Sekcja: Animator
 
-Only needed for an animated hatch that visually opens. Leave all animator fields empty for a pit that is always open.
+Wypełnij tylko jeśli masz animowaną klapę. Przy zwykłym otwartym dole zostaw puste.
 
-| Field | Value |
+| Pole | Co wpisać |
 |---|---|
-| **Trap Animator** | Animator from `TrapMesh` |
-| **Open Trigger** | `Open` |
-| **Close Trigger** | `Close` |
+| **Trap Animator** | Przeciągnij komponent `Animator` z `TrapMesh` |
+| **Open Trigger** | Nazwa triggera w Animatorze który otwiera klapę. Domyślnie: `Open` |
+| **Close Trigger** | Nazwa triggera który zamyka klapę. Domyślnie: `Close`. Używany tylko gdy **Permanent = false** lub lever zamyka klapę. |
 
-If you assign an animator, set up these states and transitions:
+### Sekcja: Events
+
+| Event | Kiedy się odpala |
+|---|---|
+| **On Fall Triggered** | Tuż przed aplikacją obrażeń — drużyna właśnie wpada w dziurę. Podepnij tu dźwięk, trzęsienie kamery, cutscenę. |
+| **On Trap Closed** | Gdy klapa się zamknie (tylko przy **Permanent = false** lub lever-close). |
+
+---
+
+## Krok 4 — Animator (szczegółowo)
+
+Jeśli klapa ma się wizualnie otwierać i zamykać, potrzebujesz Animatora na `TrapMesh`.
+
+### Stany (States)
+
+Stwórz następujące stany w Animator Controller:
 
 ```
-States
-  Idle_Closed     ← default (hatch looks closed, floor visible)
-  Opening         ← hatch swings open
-  Idle_Open       ← pit is visible
-  Closing         ← hatch swings back (only when Permanent = false)
+Idle_Closed     ← stan startowy (default state) — klapa wygląda jak normalny kafel podłogi
+Opening         ← animacja otwierania klapy
+Idle_Open       ← klapa otwarta, widać dziurę
+Closing         ← animacja zamykania (tylko jeśli Permanent = false lub lever zamyka)
 ```
 
-Transitions: `Idle_Closed → Opening` on trigger `Open` (no Exit Time). `Opening → Idle_Open` on Exit Time. Same pattern for Close.
+Ustaw **Idle_Closed** jako domyślny stan (prawy klik → Set as Layer Default State).
 
-### Events
+### Parametry (Parameters)
 
-| Event | When it fires |
+W zakładce **Parameters** Animatora dodaj dwa triggery:
+
+| Nazwa | Typ |
 |---|---|
-| **On Fall Triggered** | Just before damage is applied. Wire a sound, camera shake, or cutscene. |
-| **On Trap Closed** | When the hatch closes (only when Permanent is disabled). |
+| `Open` | Trigger |
+| `Close` | Trigger |
+
+(Jeśli zmieniłeś nazwy w Inspectorze `TrapDoorTrap`, użyj dokładnie tych samych nazw.)
+
+### Przejścia (Transitions)
+
+**Idle_Closed → Opening**
+
+- Warunek: trigger `Open`
+- **Has Exit Time**: ❌ wyłączone
+- **Transition Duration**: 0
+
+**Opening → Idle_Open**
+
+- **Has Exit Time**: ✅ włączone (przejście po zakończeniu animacji)
+- Brak warunku — przechodzi automatycznie po skończeniu klipu
+
+**Idle_Open → Closing** *(tylko jeśli klapa ma się zamykać)*
+
+- Warunek: trigger `Close`
+- **Has Exit Time**: ❌ wyłączone
+- **Transition Duration**: 0
+
+**Closing → Idle_Closed** *(tylko jeśli klapa ma się zamykać)*
+
+- **Has Exit Time**: ✅ włączone
+- Brak warunku — przechodzi automatycznie po skończeniu klipu
+
+!!! tip "Skrócona wersja (bez zamykania)"
+    Jeśli klapa jest permanentna (nigdy się nie zamyka), potrzebujesz tylko stanów `Idle_Closed`, `Opening`, `Idle_Open` i triggera `Open`. Stany `Closing` i trigger `Close` możesz pominąć.
 
 ---
 
-## Variant: lever-controlled trapdoor
+## Wariant A — Pułapka automatyczna (gracz wchodzi i spada)
 
-Disable **Auto Trigger On Enter**. Place a lever (or any `TriggerSource`) in the scene and drag the `TrapDoorTrap` component into its **Targets** list. The lever opens the floor only when the party is standing on the cell. **Require Party On Cell On External Trigger** controls this — disable it to let the lever open the floor regardless of where the party is.
+To klasyczny ukryty dół: gracz wchodzi, po chwili klapa odpada pod nogami.
 
----
+**Ustawienia TrapDoorTrap:**
 
-## Variant: repeating trap
-
-Set **Permanent = false**, **Trigger Once = false**, and a **Close Delay**. The sequence: party enters → falls → wait Close Delay → trap resets → next victim.
-
----
-
-## Summary
-
-| GameObject | Components |
+| Pole | Wartość |
 |---|---|
-| `TrapDoor` (root) | `TrapMarker` *(required)*, `TrapDoorTrap` *(optional)* |
-| `TrapMesh` (child) | `Animator` *(optional — only for animated hatch)* |
+| Auto Trigger On Enter | ✅ |
+| Trigger Delay | 0.3–0.8 s |
+| Damage Preset | InstantKill |
+| Permanent | ✅ |
+| Trigger Once | ✅ |
+| Trap Animator | Animator z TrapMesh |
+| Open Trigger | `Open` |
 
-The cell on the same grid position must have `cellType = TrapDoor` and be exported to the JSON.
+Levera nie potrzebujesz. Koniec setupu.
+
+---
+
+## Wariant B — Lever steruje klapą (toggle: otwiera i zamyka)
+
+Lever otwiera klapę przy pierwszym pociągnięciu. Drugie pociągnięcie zamyka ją z powrotem.
+
+### Na prefabie klapy (TrapDoorTrap):
+
+| Pole | Wartość |
+|---|---|
+| Auto Trigger On Enter | ❌ |
+| Require Party On Cell On External Trigger | ✅ *(drużyna musi stać na klapie)* lub ❌ *(lever działa z dowolnej pozycji)* |
+| Trigger Delay | 0.2 s |
+| Damage Preset | InstantKill |
+| Permanent | ✅ *(klapa zostaje otwarta po odpaleniu — zamknięcie przez lever)* |
+| Trap Animator | Animator z TrapMesh |
+| Open Trigger | `Open` |
+| Close Trigger | `Close` |
+
+### Na leverze (WallLever):
+
+1. Zaznacz GameObject z `WallLever`.
+2. W Inspectorze znajdź pole **Targets** (lista).
+3. Kliknij **+** i przeciągnij GameObject z komponentem `TrapDoorTrap` do slotu.
+
+Gotowe. Pierwsze pociągnięcie levera → `OnTriggered` → klapa się otwiera (`Open` trigger). Drugie pociągnięcie levera (deaktywacja) → `OnReleased` → klapa się zamyka (`Close` trigger).
+
+!!! warning "Animator musi mieć stan Closing"
+    Przy trybie levera z zamykaniem Animator potrzebuje stanów `Idle_Open → Closing → Idle_Closed` i triggera `Close`. Bez tego zamknięcie zadziała w kodzie, ale nie zobaczysz animacji.
+
+---
+
+## Podsumowanie — co gdzie idzie
+
+| GameObject | Komponenty |
+|---|---|
+| `TrapDoor` (root) | `TrapMarker` *(wymagany)*, `TrapDoorTrap` *(opcjonalny)* |
+| `TrapMesh` (dziecko) | `Animator` *(opcjonalny — tylko animowana klapa)* |
+
+Cela na tej samej pozycji w gridzie musi mieć `cellType = TrapDoor` i być wyeksportowana do JSON.
 
 ---
 

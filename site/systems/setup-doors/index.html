@@ -12,13 +12,13 @@
         <meta name="author" content="Mantis3de">
       
       
-        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/systems/setup-secret-wall/">
+        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/systems/setup-doors/">
       
       
-        <link rel="prev" href="../wall-types/">
+        <link rel="prev" href="../dungeon-map/">
       
       
-        <link rel="next" href="../setup-trapdoor/">
+        <link rel="next" href="../setup-keyhole/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Secret / Illusory Wall (legacy) - CrawlerKit Documentation</title>
+        <title>Doors - CrawlerKit Documentation</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setup-guide-secret-illusory-wall" class="md-skip">
+        <a href="#setup-guide-doors" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Secret / Illusory Wall (legacy)
+              Doors
             
           </span>
         </div>
@@ -1017,10 +1017,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../setup-doors/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Doors
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1036,6 +1063,142 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edgeblockermarker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EdgeBlockerMarker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggeropendoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerOpenDoor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggeropendoortimed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerOpenDoorTimed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerdirectionaldoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerDirectionalDoor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#door-animator-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Door Animator setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trigger-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-setup-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene setup checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dedicated-setup-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dedicated setup guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1213,37 +1376,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Secret / Illusory Wall (legacy)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../setup-secret-wall/" class="md-nav__link">
         
   
   
@@ -1259,170 +1395,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works-in-the-grid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works in the grid
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prefab-hierarchy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prefab hierarchy
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-a-proximity-reveal-wallcore-proximityrevealbehaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1 — Add components to the root
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-set-up-the-wall-animator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Set up the wall Animator
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-b-triggered-reveal-triggerillusorywall-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant B — Triggered reveal (TriggerIllusoryWall + source)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variant B — Triggered reveal (TriggerIllusoryWall + source)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1 — Add components to the root
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-set-up-the-animator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Set up the Animator
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-wire-the-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3 — Wire the source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-c-passable-wall-with-no-visual-fake-solid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant C — Passable wall with no visual (fake solid)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#map-behaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Map behaviour
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary-of-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary of components
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1634,44 +1606,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-it-works-in-the-grid" class="md-nav__link">
+  <a href="#core-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works in the grid
+        Core components
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prefab-hierarchy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prefab hierarchy
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-a-proximity-reveal-wallcore-proximityrevealbehaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)">
+    <nav class="md-nav" aria-label="Core components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root" class="md-nav__link">
+  <a href="#edgeblockermarker" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1 — Add components to the root
+        EdgeBlockerMarker
       
     </span>
   </a>
@@ -1679,10 +1629,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-set-up-the-wall-animator" class="md-nav__link">
+  <a href="#triggeropendoor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2 — Set up the wall Animator
+        TriggerOpenDoor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggeropendoortimed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerOpenDoorTimed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerdirectionaldoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerDirectionalDoor
       
     </span>
   </a>
@@ -1695,60 +1667,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variant-b-triggered-reveal-triggerillusorywall-source" class="md-nav__link">
+  <a href="#door-animator-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Variant B — Triggered reveal (TriggerIllusoryWall + source)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variant B — Triggered reveal (TriggerIllusoryWall + source)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-components-to-the-root_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1 — Add components to the root
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-set-up-the-animator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Set up the Animator
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-wire-the-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3 — Wire the source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variant-c-passable-wall-with-no-visual-fake-solid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variant C — Passable wall with no visual (fake solid)
+        Door Animator setup
       
     </span>
   </a>
@@ -1756,10 +1678,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#map-behaviour" class="md-nav__link">
+  <a href="#trigger-sources" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Map behaviour
+        Trigger sources
       
     </span>
   </a>
@@ -1767,10 +1689,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-of-components" class="md-nav__link">
+  <a href="#save-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary of components
+        Save System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-setup-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene setup checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dedicated-setup-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dedicated setup guides
       
     </span>
   </a>
@@ -1794,206 +1738,180 @@
 
 
 
-<h1 id="setup-guide-secret-illusory-wall">Setup Guide — Secret / Illusory Wall<a class="headerlink" href="#setup-guide-secret-illusory-wall" title="Permanent link">&para;</a></h1>
-<p>An illusory wall looks exactly like a solid wall but the player can walk through it. The wall can either dissolve visually when approached or remain invisible — showing no animation at all, just silently letting the party pass.</p>
-<p>This guide covers two variants:</p>
-<ul>
-<li><strong>Proximity reveal</strong> — the wall dissolves when the party steps onto its cell (the most common classic dungeon secret).</li>
-<li><strong>Triggered reveal</strong> — a lever, button or other source dissolves the wall on demand.</li>
-</ul>
-<p>A third case — a wall that is simply passable with no visual — needs no trigger setup at all and is described at the end.</p>
+<h1 id="setup-guide-doors">Setup Guide — Doors<a class="headerlink" href="#setup-guide-doors" title="Permanent link">&para;</a></h1>
+<p>A door is an edge blocker that sits on the boundary between two grid cells. It blocks movement and line-of-sight when closed, and allows passage when open. Every door in CrawlerKit is built from the same three parts: a <strong>mesh with an Animator</strong>, an <strong>EdgeBlockerMarker</strong> that registers it with the grid, and a <strong>target component</strong> (<code>TriggerOpenDoor</code> or <code>TriggerOpenDoorTimed</code>) that handles open/close logic.</p>
+<p>What opens the door — a button, a lever, a key, a pressure plate, or a logic puzzle — is always a separate <code>TriggerSource</code> wired into the door's target component. The door itself doesn't care what opened it.</p>
 <hr />
-<h2 id="how-it-works-in-the-grid">How it works in the grid<a class="headerlink" href="#how-it-works-in-the-grid" title="Permanent link">&para;</a></h2>
-<p>Every wall in CrawlerKit is registered as an <code>EdgeBlocker</code> in the grid data. For a wall to be physically passable the <code>EdgeBlockerMarker</code> on the wall GameObject must have <strong>Is Passable</strong> checked. This is separate from whether the wall is <em>visible</em> — visibility is controlled by the animator and mesh activation.</p>
-<div class="admonition note">
-<p class="admonition-title">Dungeon Generator</p>
-<p>Secret walls are placed from the <strong>Secret Wall Library</strong> panel in the Dungeon Generator. After placing one, run <strong>Generate Unique IDs (all walls)</strong> before exporting, so the wall gets a unique <code>targetId</code> the trigger system can reference.</p>
-</div>
-<hr />
-<h2 id="prefab-hierarchy">Prefab hierarchy<a class="headerlink" href="#prefab-hierarchy" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SecretWall                ← root
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── WallMesh              ← wall geometry + Animator
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└── (optional) Collider   ← physical collider, disabled when wall is passable
-</span></code></pre></div>
-<p>Both components that control the wall — <code>WallCore</code> and <code>TriggerIllusoryWall</code> — go on the root. Only one should be used at a time; choose based on which variant you need.</p>
-<hr />
-<h2 id="variant-a-proximity-reveal-wallcore-proximityrevealbehaviour">Variant A — Proximity reveal (WallCore + ProximityRevealBehaviour)<a class="headerlink" href="#variant-a-proximity-reveal-wallcore-proximityrevealbehaviour" title="Permanent link">&para;</a></h2>
-<p>Use this when the wall should dissolve the moment the party steps onto the cell where the wall sits. No clicking required — they just walk through and the wall fades out behind them.</p>
-<h3 id="step-1-add-components-to-the-root">Step 1 — Add components to the root<a class="headerlink" href="#step-1-add-components-to-the-root" title="Permanent link">&para;</a></h3>
-<p>Add these components to the <code>SecretWall</code> root:</p>
-<p><strong>EdgeBlockerMarker</strong> — registers the wall with the grid.</p>
+<h2 id="core-components">Core components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h2>
+<h3 id="edgeblockermarker">EdgeBlockerMarker<a class="headerlink" href="#edgeblockermarker" title="Permanent link">&para;</a></h3>
+<p>Registers the door with the grid. The <strong>Blocker Id</strong> field must match the <code>blockerId</code> field on both the door target component and the grid JSON export. Every door needs one.</p>
+<h3 id="triggeropendoor">TriggerOpenDoor<a class="headerlink" href="#triggeropendoor" title="Permanent link">&para;</a></h3>
+<p>The standard door target. Opens on <code>OnTriggered</code>, closes on <code>OnReleased</code> (if <strong>Close On Release</strong> is enabled). Plays animator triggers, updates the grid blocker state, and guards against closing while the doorway is occupied.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Blocker Id</strong></td>
-<td>Unique ID, e.g. <code>wall_secret_01</code> (or let the Dungeon Generator assign it)</td>
+<td>Must match <code>EdgeBlockerMarker.blockerId</code> exactly.</td>
 </tr>
 <tr>
-<td><strong>Is Passable</strong></td>
-<td>✅ Enabled — the party can always walk through, even before the reveal</td>
+<td><strong>Close On Release</strong></td>
+<td>When enabled, the door closes as soon as the source deactivates (lever pulled back, plate emptied, etc.). When disabled, the door stays open until something else closes it.</td>
 </tr>
 <tr>
-<td><strong>Is Open</strong></td>
-<td>Leave disabled</td>
+<td><strong>Skip Close Guard</strong></td>
+<td>Skip the occupancy check on close. Enable only when the trigger source is on the same cell as the door and the guard would wait forever.</td>
+</tr>
+<tr>
+<td><strong>Button Release Delay</strong></td>
+<td>Seconds after the close animation starts before a connected <code>WallButton</code> springs back. Set to roughly the length of your Close animation.</td>
+</tr>
+<tr>
+<td><strong>Open Sound / Close Sound</strong></td>
+<td>Audio clips played at the door's world position (3D spatial).</td>
+</tr>
+<tr>
+<td><strong>Door Sound Volume</strong></td>
+<td>Volume for both sounds (0–1).</td>
+</tr>
+<tr>
+<td><strong>Door Animator</strong></td>
+<td>Animator on the door mesh child.</td>
+</tr>
+<tr>
+<td><strong>Open / Close Anim Trigger</strong></td>
+<td>Animator trigger names.</td>
+</tr>
+<tr>
+<td><strong>Opened / Closed State Name</strong></td>
+<td>Animator state names used by the Save System to restore the door's visual on load.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>WallCore</strong> — the central wall controller. Runs the reveal/restore pipeline and drives the mesh and collider.</p>
+<h3 id="triggeropendoortimed">TriggerOpenDoorTimed<a class="headerlink" href="#triggeropendoortimed" title="Permanent link">&para;</a></h3>
+<p>A door that closes automatically after a fixed delay instead of waiting for a source to deactivate. Useful for portcullises and countdown doors.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Wall Mesh</strong></td>
-<td>Drag the <code>WallMesh</code> child</td>
-</tr>
-<tr>
-<td><strong>Wall Collider</strong></td>
-<td>Drag the collider on the root (if you have one)</td>
-</tr>
-<tr>
-<td><strong>Collides When Hidden</strong></td>
-<td>Leave disabled — illusory walls should never block physical movement</td>
-</tr>
-<tr>
-<td><strong>Reveal Duration</strong></td>
-<td>Match to the length of your dissolve animation, e.g. <code>0.5</code></td>
-</tr>
-<tr>
-<td><strong>Restore Duration</strong></td>
-<td>Match to the restore animation, e.g. <code>0.5</code></td>
-</tr>
-<tr>
-<td><strong>Starts Revealed</strong></td>
-<td>Leave disabled — wall starts hidden (solid-looking)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>ProximityRevealBehaviour</strong> — listens to the grid's <code>OnCellEntered</code> event. When the party steps onto this wall's cell, it calls <code>WallCore.Reveal()</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Permanent</strong></td>
-<td>✅ Enabled for a one-way secret (revealed forever). Disable if you want the wall to restore when the party steps back.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="step-2-set-up-the-wall-animator">Step 2 — Set up the wall Animator<a class="headerlink" href="#step-2-set-up-the-wall-animator" title="Permanent link">&para;</a></h3>
-<p>Select <strong>WallMesh</strong> and open its Animator Controller:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>States
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  Idle_Hidden     ← default (wall looks solid)
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  Revealing       ← dissolve animation playing
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  Idle_Revealed   ← wall invisible / fully dissolved
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  Restoring       ← restore animation playing (only needed if Permanent = false)
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Triggers
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  Reveal
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  Restore
-</span></code></pre></div>
-<p><strong>Transitions:</strong></p>
-<ul>
-<li><code>Idle_Hidden → Revealing</code> — trigger <code>Reveal</code>, no Exit Time, Transition Duration 0.</li>
-<li><code>Revealing → Idle_Revealed</code> — Exit Time on, Transition Duration 0.</li>
-<li><code>Idle_Revealed → Restoring</code> — trigger <code>Restore</code>, no Exit Time, Transition Duration 0. <em>(Only if Permanent = false)</em></li>
-<li><code>Restoring → Idle_Hidden</code> — Exit Time on, Transition Duration 0. <em>(Only if Permanent = false)</em></li>
-</ul>
-<p>If your wall has no dissolve animation, you can leave the Animator empty and <code>WallCore</code> will simply show or hide the mesh after <code>Reveal Duration</code> seconds.</p>
-<div class="admonition tip">
-<p class="admonition-title">No animator needed</p>
-<p>If you just want the wall to pop out of existence without any animation, skip the Animator entirely. Set <strong>Reveal Duration</strong> and <strong>Restore Duration</strong> to <code>0</code> on <code>WallCore</code> — the mesh hides immediately when the party steps through.</p>
-</div>
-<hr />
-<h2 id="variant-b-triggered-reveal-triggerillusorywall-source">Variant B — Triggered reveal (TriggerIllusoryWall + source)<a class="headerlink" href="#variant-b-triggered-reveal-triggerillusorywall-source" title="Permanent link">&para;</a></h2>
-<p>Use this when the wall is revealed by an explicit source — a lever in another room, a pressure plate, or a button. The party walks through only after the source has fired.</p>
-<h3 id="step-1-add-components-to-the-root_1">Step 1 — Add components to the root<a class="headerlink" href="#step-1-add-components-to-the-root_1" title="Permanent link">&para;</a></h3>
-<p><strong>EdgeBlockerMarker</strong> — same as Variant A, with <strong>Is Passable</strong> checked.</p>
-<p><strong>TriggerIllusoryWall</strong> — the target component for source-driven reveals.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Blocker Id</strong></td>
-<td>Unique ID matching the <code>EdgeBlockerMarker</code></td>
+<td>Same as <code>TriggerOpenDoor</code>.</td>
 </tr>
 <tr>
-<td><strong>Wall Mesh</strong></td>
-<td>Drag the <code>WallMesh</code> child</td>
+<td><strong>Close Delay</strong></td>
+<td>Seconds the door stays open before starting to close. Default 3 s.</td>
 </tr>
 <tr>
-<td><strong>Wall Animator</strong></td>
-<td>Drag the <code>Animator</code> from <code>WallMesh</code></td>
+<td><strong>Door Animator</strong></td>
+<td>Animator on the door mesh child.</td>
 </tr>
 <tr>
-<td><strong>Reveal Anim Trigger</strong></td>
-<td><code>Reveal</code></td>
-</tr>
-<tr>
-<td><strong>Restore Anim Trigger</strong></td>
-<td><code>Restore</code></td>
-</tr>
-<tr>
-<td><strong>Dissolve Delay</strong></td>
-<td>Seconds after the reveal trigger fires before the mesh is hidden completely. Match to the end of your dissolve animation.</td>
+<td><strong>Open / Close Anim Trigger</strong></td>
+<td>Trigger names.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="step-2-set-up-the-animator">Step 2 — Set up the Animator<a class="headerlink" href="#step-2-set-up-the-animator" title="Permanent link">&para;</a></h3>
-<p>Same states and transitions as Variant A.</p>
-<h3 id="step-3-wire-the-source">Step 3 — Wire the source<a class="headerlink" href="#step-3-wire-the-source" title="Permanent link">&para;</a></h3>
-<p>On your lever, button or pressure plate, drag the <code>TriggerIllusoryWall</code> component from the wall root into the source's <strong>Targets</strong> list. When the source activates, the wall dissolves. When the source deactivates (lever pulled back, party steps off the plate), the wall restores — unless you want it to stay revealed permanently, in which case use a <code>WallButton</code> or <code>PressurePlate</code> with <strong>Latching</strong> enabled, or a lever that only ever fires once.</p>
+<h3 id="triggerdirectionaldoor">TriggerDirectionalDoor<a class="headerlink" href="#triggerdirectionaldoor" title="Permanent link">&para;</a></h3>
+<p>A door that only opens when approached from one specific direction. Use for one-way passages and anti-backtrack corridors.</p>
 <hr />
-<h2 id="variant-c-passable-wall-with-no-visual-fake-solid">Variant C — Passable wall with no visual (fake solid)<a class="headerlink" href="#variant-c-passable-wall-with-no-visual-fake-solid" title="Permanent link">&para;</a></h2>
-<p>The simplest case: the wall appears solid in the viewport but the player can just walk through with no animation, no dissolve, no trigger. Use this for hidden passages the player is simply meant to discover by bumping into walls.</p>
-<p>Add only <strong>EdgeBlockerMarker</strong> to the root and check <strong>Is Passable</strong>. No <code>WallCore</code>, no <code>TriggerIllusoryWall</code>, no Animator. The grid will let the party through; the wall mesh stays visible forever.</p>
+<h2 id="door-animator-setup">Door Animator setup<a class="headerlink" href="#door-animator-setup" title="Permanent link">&para;</a></h2>
+<p>Every door mesh child needs an Animator Controller with these states and triggers:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>States
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  Idle_Closed     ← default
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  Opening
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Idle_Opened
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  Closing
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Triggers
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  Open
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  Close
+</span></code></pre></div>
+<p>Transitions:</p>
+<ul>
+<li><code>Idle_Closed → Opening</code> — trigger <code>Open</code>, no Exit Time, Transition Duration 0.</li>
+<li><code>Opening → Idle_Opened</code> — Exit Time on, Transition Duration 0.</li>
+<li><code>Idle_Opened → Closing</code> — trigger <code>Close</code>, no Exit Time, Transition Duration 0.</li>
+<li><code>Closing → Idle_Closed</code> — Exit Time on, Transition Duration 0.</li>
+</ul>
 <hr />
-<h2 id="map-behaviour">Map behaviour<a class="headerlink" href="#map-behaviour" title="Permanent link">&para;</a></h2>
-<p>Secret cells — floor tiles marked as Secret in the Dungeon Generator — never appear on the dungeon map until the party physically walks onto them. Illusory walls themselves do not affect the map; what matters is the floor cell type on the other side.</p>
-<p>If the room behind the secret wall uses regular floor tiles, it appears on the map as soon as the party enters. If those floor tiles are marked Secret, the room stays hidden on the map until explored.</p>
-<hr />
-<h2 id="summary-of-components">Summary of components<a class="headerlink" href="#summary-of-components" title="Permanent link">&para;</a></h2>
+<h2 id="trigger-sources">Trigger sources<a class="headerlink" href="#trigger-sources" title="Permanent link">&para;</a></h2>
+<p>Any <code>TriggerSource</code> can open a door — drag the door's target component into its <strong>Targets</strong> list.</p>
 <table>
 <thead>
 <tr>
-<th>Variant</th>
-<th>Root components</th>
+<th>Source</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Proximity reveal</td>
-<td><code>EdgeBlockerMarker</code> (Is Passable ✅), <code>WallCore</code>, <code>ProximityRevealBehaviour</code></td>
+<td><code>WallButton</code></td>
+<td>One-shot press. Pulses activate then deactivate in quick succession. Use with <code>TriggerOpenDoorTimed</code> for a "press and it closes itself" door.</td>
 </tr>
 <tr>
-<td>Triggered reveal</td>
-<td><code>EdgeBlockerMarker</code> (Is Passable ✅), <code>TriggerIllusoryWall</code></td>
+<td><code>WallLever</code> / <code>WallChain</code></td>
+<td>Toggle. First pull opens, second pull closes. Use with <code>TriggerOpenDoor</code> + <strong>Close On Release</strong> for a lever-held-open door.</td>
 </tr>
 <tr>
-<td>Fake solid (no visual)</td>
-<td><code>EdgeBlockerMarker</code> (Is Passable ✅)</td>
+<td><code>WallKeyhole</code></td>
+<td>Consumes a key item from the cursor and opens the door permanently.</td>
+</tr>
+<tr>
+<td><code>PressurePlate</code></td>
+<td>Activates when the party (or an enemy, or an item) is on the cell. With <strong>Close On Release</strong>, the door closes when the plate empties.</td>
+</tr>
+<tr>
+<td><code>WallAlcove</code></td>
+<td>Activates when the correct item is placed in it. Use for item-based puzzles.</td>
+</tr>
+<tr>
+<td><code>WallMultiSwitch</code></td>
+<td>Multi-position switch. Different positions can open different doors.</td>
+</tr>
+<tr>
+<td><code>TriggerLogicGate</code></td>
+<td>AND / OR / NOT / XOR gate across multiple sources. Opens the door only when the logical condition is met.</td>
+</tr>
+<tr>
+<td><code>TriggerSequenceGate</code></td>
+<td>Sources must be activated in the correct order. Wrong order resets the sequence.</td>
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="save-system">Save System<a class="headerlink" href="#save-system" title="Permanent link">&para;</a></h2>
+<p>Every door with a non-empty <strong>Blocker Id</strong> is saved. On load, the grid JSON is the authoritative source for whether the door is physically open or closed — the door's visual snaps to match it. <code>TriggerSource</code> components with a non-empty <strong>Source Id</strong> also save their activation state (lever up/down, keyhole used/unused, etc.).</p>
+<hr />
+<h2 id="scene-setup-checklist">Scene setup checklist<a class="headerlink" href="#scene-setup-checklist" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Place the door prefab on a grid cell edge, oriented correctly.</li>
+<li>Add <code>EdgeBlockerMarker</code> to the root with a unique <strong>Blocker Id</strong>.</li>
+<li>Add <code>TriggerOpenDoor</code> (or <code>TriggerOpenDoorTimed</code>) to the root. Set <strong>Blocker Id</strong> to match.</li>
+<li>Wire the Animator: drag the <code>Animator</code> from the door mesh child into <strong>Door Animator</strong> and fill in trigger/state names.</li>
+<li>Place the trigger source (lever, button, plate, etc.) in the scene.</li>
+<li>Drag the door's target component into the source's <strong>Targets</strong> list.</li>
+<li>Fill in the source's <strong>Source Id</strong> with a unique string.</li>
+<li>In the Dungeon Generator: <strong>Generate Unique IDs (all doors)</strong> → <strong>Build Grid (Export JSON)</strong>.</li>
+</ol>
+<hr />
+<h2 id="dedicated-setup-guides">Dedicated setup guides<a class="headerlink" href="#dedicated-setup-guides" title="Permanent link">&para;</a></h2>
+<p>Each source type has its own step-by-step guide:</p>
+<ul>
+<li><a href="../setup-door-button/">Button Door</a> — <code>WallButton</code> + <code>TriggerOpenDoorTimed</code> or <code>TriggerOpenDoor</code></li>
+<li><a href="../setup-pressure-plate/">Pressure Plate Door</a> — <code>PressurePlate</code> + <code>TriggerOpenDoor</code></li>
+<li><a href="../setup-keyhole/">Keyhole Door</a> — <code>WallKeyhole</code> + <code>TriggerOpenDoor</code> via <code>DoorKeyholeSetup</code></li>
+</ul>
+<p>For multi-source setups (logic gates, sequence puzzles, levers) see <a href="../door-types/">Door Types — 10 Examples</a>.</p>
 <hr />
 <p><em>CrawlerKIT — Mantis3de</em></p>
 
@@ -2031,7 +1949,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../wall-types/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Illusory Wall Types (10 Examples)">
+          <a href="../dungeon-map/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dungeon Map">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2041,20 +1959,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Illusory Wall Types (10 Examples)
+                Dungeon Map
               </div>
             </div>
           </a>
         
         
           
-          <a href="../setup-trapdoor/" class="md-footer__link md-footer__link--next" aria-label="Next: Trap Door">
+          <a href="../setup-keyhole/" class="md-footer__link md-footer__link--next" aria-label="Next: Keyhole Door">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Trap Door
+                Keyhole Door
               </div>
             </div>
             <div class="md-footer__button md-icon">
