@@ -5,6 +5,10 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 ## [Unreleased]
 
 ### Added
+- **ProjectileTrap Aim Target** — `ProjectileTrap` has a new optional **Aim Target** field. Drag a `Transform` from the `PartyVisuals` prefab (e.g. a child at chest height named `AimTarget`) into this slot and projectiles will arc vertically toward that point instead of traveling flat. Leave empty for the original flat, direction-only shot.
+- **Open pit documentation** — documented the open pit setup (visible walkable hole, instant kill) as a distinct variant of `TrapDoorTrap` with `TrapDoor` cell type. Clarified the difference between **Pit** (impassable/decorative, no component needed) and **TrapDoor** (walkable, trap fires on enter).
+
+### Added (previous)
 - This MkDocs Material documentation site, with search and GitHub Pages deployment.
 - Dedicated documentation pages for all five editors, plus Architecture and API reference.
 - **Spell audio** — `SpellEffectDefinition` now has `castSound`, `impactSound`, `castVolume` and `impactVolume` fields. Sounds play at the correct world-space position via `AudioSource.PlayClipAtPoint`. Both slots are exposed directly in the Spell Editor under the new **VFX & Audio** section so no Inspector digging is needed.

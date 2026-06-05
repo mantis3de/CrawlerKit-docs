@@ -154,6 +154,10 @@ Fires a projectile (an arrow, a dart, a magical bolt) at the party when activate
 | **Projectile Prefab** | The projectile to spawn. Must have a `TrapProjectile` component. |
 | **Fire Direction** | Which direction the projectile travels: North, South, East or West. |
 | **Damage** | Damage dealt to the party on hit. |
+| **Aim Target** | Optional `Transform` the projectile will arc toward. Drag the party's aim point here (e.g. a child `Transform` on the `PartyVisuals` prefab at chest height). When assigned the projectile adjusts its vertical trajectory so it visually flies at the party rather than traveling perfectly flat. Leave empty for a flat, purely direction-based shot. |
+
+!!! tip "Setting up Aim Target"
+    Create an empty child GameObject on your `PartyVisuals` prefab at roughly chest height and name it `AimTarget`. Drag that transform into the **Aim Target** slot on every `ProjectileTrap` in the scene. This gives every projectile trap a consistent, visually satisfying arc without any code changes.
 
 ### TrapDoorTrap
 
@@ -182,9 +186,11 @@ Fires a projectile (an arrow, a dart, a magical bolt) at the party when activate
 Setup is identical to the open pit but with an `Animator` assigned to **Trap Animator** that has an `Open` trigger (and optionally a `Close` trigger). Set **Trigger Delay** to 0.2–0.4 s so the hatch animation has time to play before damage lands. Set **Permanent** to false if the hatch should close again afterward.
 
 !!! note "Pit vs TrapDoor cell type"
-    **Pit** (`GridFlagExtended → Cell Type → Pit`) marks an impassable cell — the party and enemies are blocked from entering it, exactly like a wall. Use it for decorative chasms the player looks into but cannot cross.
+    **Pit** (`GridFlagExtended → Cell Type → Pit`) marks an impassable cell — the party and enemies are blocked from entering it, exactly like a wall. Use it for decorative chasms the player looks into but cannot cross. A Pit cell has no associated trap component — it is purely a navigation blocker.
 
     **TrapDoor** is a normal walkable floor cell that the party *can* enter. The `TrapDoorTrap` component reacts when they do. Use TrapDoor for any hole the party should be able to fall into.
+
+    **Open pit (visible, walkable hole)** — a common dungeon feature that sits between the two types above: a visible gap in the floor that the party can walk into and fall. Set the cell type to **TrapDoor**, place a pit mesh (floor tile with a hole or a void), and configure `TrapDoorTrap` with **Auto Trigger On Enter** enabled, **Damage Preset** set to `InstantKill`, **Trigger Delay** 0, **Permanent** enabled, and **Trap Animator** empty. There is no hidden element here — the party can see the hole but stepping into it is instantly fatal.
 
 ### TrapProjectile
 

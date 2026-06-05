@@ -1317,6 +1317,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#added-previous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added (previous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#changed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1418,6 +1429,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#added-previous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added (previous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#changed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1482,6 +1504,11 @@
 <p>All notable changes to CrawlerKit are documented here. The format is based on <a href="https://keepachangelog.com/">Keep a Changelog</a>, and the project aims to follow <a href="https://semver.org/">Semantic Versioning</a>.</p>
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ProjectileTrap Aim Target</strong> — <code>ProjectileTrap</code> has a new optional <strong>Aim Target</strong> field. Drag a <code>Transform</code> from the <code>PartyVisuals</code> prefab (e.g. a child at chest height named <code>AimTarget</code>) into this slot and projectiles will arc vertically toward that point instead of traveling flat. Leave empty for the original flat, direction-only shot.</li>
+<li><strong>Open pit documentation</strong> — documented the open pit setup (visible walkable hole, instant kill) as a distinct variant of <code>TrapDoorTrap</code> with <code>TrapDoor</code> cell type. Clarified the difference between <strong>Pit</strong> (impassable/decorative, no component needed) and <strong>TrapDoor</strong> (walkable, trap fires on enter).</li>
+</ul>
+<h3 id="added-previous">Added (previous)<a class="headerlink" href="#added-previous" title="Permanent link">&para;</a></h3>
 <ul>
 <li>This MkDocs Material documentation site, with search and GitHub Pages deployment.</li>
 <li>Dedicated documentation pages for all five editors, plus Architecture and API reference.</li>

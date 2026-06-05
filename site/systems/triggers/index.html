@@ -2373,8 +2373,16 @@
 <td><strong>Damage</strong></td>
 <td>Damage dealt to the party on hit.</td>
 </tr>
+<tr>
+<td><strong>Aim Target</strong></td>
+<td>Optional <code>Transform</code> the projectile will arc toward. Drag the party's aim point here (e.g. a child <code>Transform</code> on the <code>PartyVisuals</code> prefab at chest height). When assigned the projectile adjusts its vertical trajectory so it visually flies at the party rather than traveling perfectly flat. Leave empty for a flat, purely direction-based shot.</td>
+</tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">Setting up Aim Target</p>
+<p>Create an empty child GameObject on your <code>PartyVisuals</code> prefab at roughly chest height and name it <code>AimTarget</code>. Drag that transform into the <strong>Aim Target</strong> slot on every <code>ProjectileTrap</code> in the scene. This gives every projectile trap a consistent, visually satisfying arc without any code changes.</p>
+</div>
 <h3 id="trapdoortrap">TrapDoorTrap<a class="headerlink" href="#trapdoortrap" title="Permanent link">&para;</a></h3>
 <p><code>TrapDoorTrap</code> covers two distinct scenarios that share the same component: an <strong>open pit</strong> the party can see and walk into, and a <strong>hidden trapdoor</strong> that opens beneath their feet. The difference is entirely in the Dungeon Generator cell type and whether an animator is attached.</p>
 <p><strong>Open pit (visible, instantly deadly)</strong> — the most common case. The party can see a hole in the floor; walking into it kills everyone.</p>
@@ -2427,8 +2435,9 @@
 <p>Setup is identical to the open pit but with an <code>Animator</code> assigned to <strong>Trap Animator</strong> that has an <code>Open</code> trigger (and optionally a <code>Close</code> trigger). Set <strong>Trigger Delay</strong> to 0.2–0.4 s so the hatch animation has time to play before damage lands. Set <strong>Permanent</strong> to false if the hatch should close again afterward.</p>
 <div class="admonition note">
 <p class="admonition-title">Pit vs TrapDoor cell type</p>
-<p><strong>Pit</strong> (<code>GridFlagExtended → Cell Type → Pit</code>) marks an impassable cell — the party and enemies are blocked from entering it, exactly like a wall. Use it for decorative chasms the player looks into but cannot cross.</p>
+<p><strong>Pit</strong> (<code>GridFlagExtended → Cell Type → Pit</code>) marks an impassable cell — the party and enemies are blocked from entering it, exactly like a wall. Use it for decorative chasms the player looks into but cannot cross. A Pit cell has no associated trap component — it is purely a navigation blocker.</p>
 <p><strong>TrapDoor</strong> is a normal walkable floor cell that the party <em>can</em> enter. The <code>TrapDoorTrap</code> component reacts when they do. Use TrapDoor for any hole the party should be able to fall into.</p>
+<p><strong>Open pit (visible, walkable hole)</strong> — a common dungeon feature that sits between the two types above: a visible gap in the floor that the party can walk into and fall. Set the cell type to <strong>TrapDoor</strong>, place a pit mesh (floor tile with a hole or a void), and configure <code>TrapDoorTrap</code> with <strong>Auto Trigger On Enter</strong> enabled, <strong>Damage Preset</strong> set to <code>InstantKill</code>, <strong>Trigger Delay</strong> 0, <strong>Permanent</strong> enabled, and <strong>Trap Animator</strong> empty. There is no hidden element here — the party can see the hole but stepping into it is instantly fatal.</p>
 </div>
 <h3 id="trapprojectile">TrapProjectile<a class="headerlink" href="#trapprojectile" title="Permanent link">&para;</a></h3>
 <p>The companion component to <code>ProjectileTrap</code>. Attach it to the projectile prefab. It handles movement, collision detection and applying damage when the projectile reaches the party's cell.</p>
