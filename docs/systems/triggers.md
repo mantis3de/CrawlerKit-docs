@@ -161,36 +161,43 @@ Fires a projectile (an arrow, a dart, a magical bolt) at the party when activate
 
 ### TrapDoorTrap
 
-`TrapDoorTrap` covers two distinct scenarios that share the same component: an **open pit** the party can see and walk into, and a **hidden trapdoor** that opens beneath their feet. The difference is entirely in the Dungeon Generator cell type and whether an animator is attached.
+`TrapDoorTrap` is the single component for every hole in the floor — from a simple open pit to a lever-controlled trapdoor. The mesh always looks like a pit (dark void, walls on all sides, walls going down). The component is **optional**: without it the cell is still a walkable hole and the party falls in automatically. Add the component when you want levers, delays, resets, custom damage, or events.
 
-**Open pit (visible, instantly deadly)** — the most common case. The party can see a hole in the floor; walking into it kills everyone.
+#### Without TrapDoorTrap — plain pit
 
-1. In the Dungeon Generator, mark the cell as **TrapDoor** (orange). Do not use **Pit** — that type is impassable like a wall and the party can never enter it.
-2. Place your pit mesh at that cell (a floor tile with a hole, a dark void, etc.).
-3. Add a `TrapMarker` and a `TrapDoorTrap` component to the prefab root.
-4. In `TrapDoorTrap`: set **Damage Preset** to `InstantKill`, leave **Trigger Delay** at 0, enable **Auto Trigger On Enter**, enable **Permanent**, leave **Trap Animator** empty.
-5. No `TriggerSource` is needed — the trap fires the moment the party steps onto the cell.
+Place the pit mesh, mark the cell as **TrapDoor** in the Dungeon Generator, and leave it at that. No component needed. The party can walk into the cell — falling is handled by the grid logic directly. This is the simplest possible hole in the floor.
+
+#### With TrapDoorTrap — full trap mechanics
+
+Add `TrapMarker` and `TrapDoorTrap` to the prefab root to unlock all trap options.
 
 | Inspector field | Description |
 |---|---|
-| **Auto Trigger On Enter** | Must be enabled. The trap fires automatically when the party enters the cell. |
-| **Trigger Delay** | Seconds between entering the cell and applying damage. 0 = instant death on step. |
-| **Damage Preset** | `InstantKill` kills every party member immediately (game over). `Heavy` deals 50, `Light` deals 20, `Custom` uses the value in **Fall Damage**. |
-| **Permanent** | Keep enabled for an open pit — the hole stays open. Disable only for a trapdoor that closes again. |
-| **Trigger Once** | Keep enabled. The pit does not need to fire multiple times. |
-| **Trap Animator** | Leave empty for an open pit. Only needed for an animated trapdoor that visually opens. |
-| **On Fall Triggered** | Unity event fired just before damage is applied. Wire a sound or camera shake here. |
+| **Auto Trigger On Enter** | The trap fires automatically when the party steps onto the cell. Disable this when you want a lever or button to control when the party falls. |
+| **Require Party On Cell On External Trigger** | For lever-controlled mode (Auto Trigger disabled). The lever only triggers the fall if the party is already standing on the cell. Disable to let a lever open the floor regardless of where the party is. |
+| **Trigger Delay** | Seconds between entering the cell and applying damage. 0 = instant. For a trapdoor with an opening animation, 0.2–0.4 s gives the animation time to play. |
+| **Damage Preset** | `InstantKill` kills everyone immediately. `Heavy` deals 50, `Light` deals 20, `Custom` uses the value in **Fall Damage**. |
+| **Fall Damage** | Damage value when **Damage Preset** is set to `Custom`. |
+| **Permanent** | The hole stays open after firing. Disable if the trap should reset (close and re-arm). |
+| **Close Delay** | Seconds the hole stays open before closing. Only used when **Permanent** is disabled. |
+| **Trigger Once** | After firing once, ignore all subsequent enters. Disable for a repeating trap. |
+| **Trap Animator** | Animator on the trap mesh for an animated hatch. Needs `Open` (and optionally `Close`) triggers. Leave empty for a pit that is always visually open. |
+| **Open / Close Trigger** | Animator trigger names. |
+| **On Fall Triggered** | Unity event fired just before damage is applied. Wire a sound, camera shake, or any other reaction here. |
+| **On Trap Closed** | Unity event fired when the hatch closes (only when Permanent is disabled). |
 
-**Hidden trapdoor (animated, opens under the party)** — the classic dungeon surprise. The floor looks normal; when the party steps on it a hatch opens and they fall.
+!!! note "TrapDoor cell type"
+    In the Dungeon Generator, mark the cell as **TrapDoor** (orange). This makes the cell walkable — the party and enemies can enter it. The `TrapDoorTrap` component (if present) reacts when they do.
 
-Setup is identical to the open pit but with an `Animator` assigned to **Trap Animator** that has an `Open` trigger (and optionally a `Close` trigger). Set **Trigger Delay** to 0.2–0.4 s so the hatch animation has time to play before damage lands. Set **Permanent** to false if the hatch should close again afterward.
+    The old **Pit** cell type (impassable, decorative) is no longer used. All holes in the floor — open pits and trapdoors alike — use the **TrapDoor** cell type with the pit mesh. The difference between a plain pit and a trapdoor is just whether `TrapDoorTrap` is attached.
 
-!!! note "Pit vs TrapDoor cell type"
-    **Pit** (`GridFlagExtended → Cell Type → Pit`) marks an impassable cell — the party and enemies are blocked from entering it, exactly like a wall. Use it for decorative chasms the player looks into but cannot cross. A Pit cell has no associated trap component — it is purely a navigation blocker.
+#### Variant: lever-controlled trapdoor
 
-    **TrapDoor** is a normal walkable floor cell that the party *can* enter. The `TrapDoorTrap` component reacts when they do. Use TrapDoor for any hole the party should be able to fall into.
+Disable **Auto Trigger On Enter**. Connect a lever, button, or any other `TriggerSource` to the `TrapDoorTrap` component via its **Targets** list. The trap only fires when both conditions are met: the source fires AND the party is standing on the cell (controlled by **Require Party On Cell On External Trigger**).
 
-    **Open pit (visible, walkable hole)** — a common dungeon feature that sits between the two types above: a visible gap in the floor that the party can walk into and fall. Set the cell type to **TrapDoor**, place a pit mesh (floor tile with a hole or a void), and configure `TrapDoorTrap` with **Auto Trigger On Enter** enabled, **Damage Preset** set to `InstantKill`, **Trigger Delay** 0, **Permanent** enabled, and **Trap Animator** empty. There is no hidden element here — the party can see the hole but stepping into it is instantly fatal.
+#### Variant: repeating trap
+
+Set **Permanent = false**, **Trigger Once = false**, and a **Close Delay**. The sequence: party enters → falls → wait Close Delay → trap resets → next victim.
 
 ### TrapProjectile
 
