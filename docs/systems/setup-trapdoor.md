@@ -39,6 +39,13 @@ stateDiagram-v2
 !!! info "The hole only kills if you're standing on it when it opens"
     Damage is applied at the moment the hatch opens (and on every later entry while it stays open) — *only if the party is actually on the cell at that instant*. This is why the cell no longer kills you the moment you enter; the `TrapDoorTrap` component owns the timing, not the grid.
 
+!!! note "Enemies and trap doors"
+    Enemies treat the plate the same way you'd expect:
+
+    - They **walk onto a closed** trap door normally (it looks like floor to them).
+    - They **path around an open** hole and never step into it.
+    - If an enemy is standing on a **closed** plate and it **opens** (party trigger, lever, etc.), the enemy is dropped and dies — "it fell in." No loot drops, since it fell away with the body.
+
 ---
 
 ## Step 1 — Mark the cell in the Dungeon Generator
