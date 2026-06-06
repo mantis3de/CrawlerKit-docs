@@ -5,6 +5,10 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 ## [Unreleased]
 
 ### Added
+- **Party Fall Animation** — new `PartyFallAnimation` component on the party root. When the party falls into a trapdoor or a plain pit, the rig accelerates downward (≈2 s) with a camera tumble and a scream/fall sound, and the game-over screen appears only *after* the drop. Waits for the party to reach the cell center before dropping, drops a `.mp3` straight into a **Fall Sound** field (no AudioSource wiring), and handles bare pits automatically via **Handle Plain Pits**. See [Party Fall Animation](systems/party-fall-animation.md).
+- **Trapdoor open/close sounds** — `TrapDoorTrap` has an **Audio** section with **Open Sound** and **Close Sound** mp3 fields (auto AudioSource) plus a shared **Sound Volume**, and a new **On Trap Opened** event that fires when the hatch opens regardless of who is standing on it.
+- **Trapdoor fall-animation sync** — `TrapDoorTrap` has a new **Damage Delay For Fall Anim** field that holds the (possibly lethal) damage back until the fall animation has played, so the game-over menu no longer freezes the drop on frame one.
+- **Enemy Attack Sound Delay** — `EnemyData` has a new **Attack Sound Delay** field so the attack sound lands on the visual hit (the paw/claw connecting) instead of on frame 0 of the attack animation. Audio counterpart of **Attack Connect Time**.
 - **ProjectileTrap Aim Target** — `ProjectileTrap` has a new optional **Aim Target** field. Drag a `Transform` from the `PartyVisuals` prefab (e.g. a child at chest height named `AimTarget`) into this slot and projectiles will arc vertically toward that point instead of traveling flat. Leave empty for the original flat, direction-only shot.
 - **Unified pit & trapdoor system** — the **Pit** cell type is removed. All holes in the floor now use the **TrapDoor** cell type with a pit mesh (dark void, walls on all sides). Without a `TrapDoorTrap` component the cell is a plain instant-kill pit. Adding `TrapDoorTrap` unlocks full trap mechanics: levers, delays, animated hatches, reset, custom damage, events.
 
@@ -21,6 +25,9 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 - **Footstep and party-hit audio** — `PartyVisuals` now has a `Footstep Sounds` array (randomly chosen on every step) and a `Party Hit Sound` played whenever an enemy's attack lands. Both play through a 2D AudioSource on the PartyVisuals GameObject.
 - **Pickup audio** — `WorldItem.TryPickUp()` plays the item's `Pickup Sound` at the item's world position when the party successfully picks it up.
 - **Trigger audio** — `TriggerSource` base class now has `Interact Sound` and `Interact Volume` fields. All interactive sources (WallButton, WallLever, WallKeyhole and any custom source) play this sound automatically on successful interaction. `TriggerOpenDoor` has separate `Open Sound`, `Close Sound` and `Door Sound Volume` fields that play at the door's world-space position (3D spatial audio).
+
+### Fixed
+- **Trapdoor game-over menu** — `TrapDoorTrap` now applies fall damage through `PartySystem.DamageMember` instead of `member.TakeDamage` directly, so the party-wipe check runs and the game-over menu actually opens after a lethal fall.
 
 ### Changed
 - `EnemyData` — removed `healthBarYOffset`, `healthBarZOffset`, and `vfxAimYOffset`. Position the HP bar and VFX aim point using the new prefab child components instead.

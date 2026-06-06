@@ -123,6 +123,10 @@ On **TrapMesh** (child) — an `Animator` with open/close clips. If you don't wa
 |---|---|---|
 | **Damage Preset** | InstantKill | `InstantKill` kills everyone immediately. `Heavy` deals 50. `Light` deals 20. `Custom` uses the value below. |
 | **Fall Damage** | 20 | Damage value when Damage Preset is set to `Custom`. |
+| **Damage Delay For Fall Anim** | 2 s | Seconds to wait between firing **On Fall Triggered** (which starts your fall animation) and applying the damage. Lethal damage opens the game-over menu, which sets `Time.timeScale = 0` and **freezes the fall** — so the damage waits until the drop has played. Set it to roughly your [Party Fall Animation](party-fall-animation.md) length (Settle + Fall Duration, ≈ 2 s). `0` = damage immediately (menu pops instantly, no time for a fall). |
+
+!!! tip "Want the party to physically drop into the hole?"
+    Add the [**Party Fall Animation**](party-fall-animation.md) component to the party root and wire **On Fall Triggered → `PartyFallAnimation.PlayFall()`**. The party then accelerates down with a camera tumble and a scream before the game-over screen. Keep **Damage Delay For Fall Anim** ≈ the fall length so the menu doesn't appear mid-drop.
 
 ### Section: Animator
 
@@ -134,12 +138,26 @@ Fill these in only if you have an animated hatch. Leave them empty for a pit tha
 | **Open Trigger** | The Animator trigger name that opens the hatch. Default: `Open` |
 | **Close Trigger** | The Animator trigger name that closes the hatch. Default: `Close`. Used only when **Permanent = false** or a lever closes the hatch. |
 
+### Section: Audio
+
+Drag in `.mp3` clips and the hatch plays them automatically — no AudioSource setup; one is created for you. Leave a field empty to handle that sound through the matching event instead.
+
+| Field | What it does |
+|---|---|
+| **Open Sound** | Plays the moment the hatch **opens** (whether or not anyone is on it). |
+| **Close Sound** | Plays the moment the hatch **closes** — both the auto re-close (Permanent = false) and a lever toggling it shut. |
+| **Sound Volume** | Level (0–1) for both the open and close sounds. |
+
+!!! tip "mp3, not AudioSource"
+    A dropped `.mp3` is an **AudioClip**; the trap supplies its own **AudioSource** (the speaker) and plays it. You only drag in the clip. The scream/fall sound is separate — set it on [Party Fall Animation](party-fall-animation.md), not here.
+
 ### Section: Events
 
 | Event | When it fires |
 |---|---|
-| **On Fall Triggered** | Just before damage is applied — the party is falling. Wire in a sound, camera shake, or cutscene here. |
-| **On Trap Closed** | When the hatch closes (only when **Permanent = false** or lever-close). |
+| **On Trap Opened** | The moment the hatch **opens** (plays the open animation), whether or not anyone is standing on it. Use for an opening sound or effect. |
+| **On Fall Triggered** | When the party actually **falls in** (hatch opened **and** the party was on it), just before damage. Wire the scream/fall animation ([`PartyFallAnimation.PlayFall()`](party-fall-animation.md)), camera shake, or a cutscene here. |
+| **On Trap Closed** | When the hatch **closes** (only when **Permanent = false** or lever-close). |
 
 ---
 
@@ -294,6 +312,12 @@ Second pull → lever deactivates → `OnReleased` → hatch closes (`Close` tri
 
 ??? failure "It closes in code but the hatch stays open on screen"
     Animator issue, not logic. You need the `Idle_Open → Closing → Idle_Closed` states and the `Close` trigger (Step 4). The state resets internally regardless; only the visual is missing.
+
+??? failure "The party dies but the fall animation never plays — the menu pops instantly"
+    Lethal damage opens the game-over menu, which freezes time on the same frame. Raise **Damage Delay For Fall Anim** to ≈ your [Party Fall Animation](party-fall-animation.md) length (default 2 s) so the damage waits for the drop. `0` disables the wait.
+
+??? failure "The party falls but no game-over menu appears"
+    Game over only fires when damage runs through `PartySystem.DamageMember` (which holds the party-wipe check). The current `TrapDoorTrap` does this. If you forked the damage code, route it through `DamageMember`, not `member.TakeDamage` directly.
 
 ---
 

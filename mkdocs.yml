@@ -121,6 +121,7 @@ nav:
           - Illusory Wall Types (10 Examples): systems/wall-types.md
           - Secret / Illusory Wall (legacy): systems/setup-secret-wall.md
           - Trap Door: systems/setup-trapdoor.md
+          - Party Fall Animation: systems/party-fall-animation.md
           - Trap Types (10 Examples): systems/trap-types.md
   - Architecture: architecture.md
   - API Reference: api.md

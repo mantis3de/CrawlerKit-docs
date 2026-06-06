@@ -177,6 +177,7 @@ These fields must match the parameter and state names in the enemy's Animator Co
 | Field | Description |
 |---|---|
 | **Attack Sound** | Played when the enemy attacks. |
+| **Attack Sound Delay** | Seconds between the attack animation starting and the attack sound playing. The clip starts on frame 0 but the paw/claw connects partway through — set this to the moment of impact so the sound lands on the hit, not before the swing. `0` = play immediately. Default 0.3. This is the audio counterpart of **Attack Connect Time** (which delays the *damage*); tune both to the same visual hit moment. |
 | **Hurt Sound** | Played when the enemy takes damage. |
 | **Death Sound** | Played when the enemy dies. |
 | **Spatial Audio** | When enabled, sounds fade with distance (3D spatial audio). When disabled, sounds always play at full volume regardless of how far the enemy is. |

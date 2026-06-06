@@ -956,6 +956,8 @@
       
         
       
+        
+      
     
     
     
@@ -1260,6 +1262,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../systems/party-fall-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Fall Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../systems/trap-types/" class="md-nav__link">
         
   
@@ -1478,6 +1508,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#changed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1590,6 +1631,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#changed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1655,6 +1707,10 @@
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
+<li><strong>Party Fall Animation</strong> — new <code>PartyFallAnimation</code> component on the party root. When the party falls into a trapdoor or a plain pit, the rig accelerates downward (≈2 s) with a camera tumble and a scream/fall sound, and the game-over screen appears only <em>after</em> the drop. Waits for the party to reach the cell center before dropping, drops a <code>.mp3</code> straight into a <strong>Fall Sound</strong> field (no AudioSource wiring), and handles bare pits automatically via <strong>Handle Plain Pits</strong>. See <a href="../systems/party-fall-animation/">Party Fall Animation</a>.</li>
+<li><strong>Trapdoor open/close sounds</strong> — <code>TrapDoorTrap</code> has an <strong>Audio</strong> section with <strong>Open Sound</strong> and <strong>Close Sound</strong> mp3 fields (auto AudioSource) plus a shared <strong>Sound Volume</strong>, and a new <strong>On Trap Opened</strong> event that fires when the hatch opens regardless of who is standing on it.</li>
+<li><strong>Trapdoor fall-animation sync</strong> — <code>TrapDoorTrap</code> has a new <strong>Damage Delay For Fall Anim</strong> field that holds the (possibly lethal) damage back until the fall animation has played, so the game-over menu no longer freezes the drop on frame one.</li>
+<li><strong>Enemy Attack Sound Delay</strong> — <code>EnemyData</code> has a new <strong>Attack Sound Delay</strong> field so the attack sound lands on the visual hit (the paw/claw connecting) instead of on frame 0 of the attack animation. Audio counterpart of <strong>Attack Connect Time</strong>.</li>
 <li><strong>ProjectileTrap Aim Target</strong> — <code>ProjectileTrap</code> has a new optional <strong>Aim Target</strong> field. Drag a <code>Transform</code> from the <code>PartyVisuals</code> prefab (e.g. a child at chest height named <code>AimTarget</code>) into this slot and projectiles will arc vertically toward that point instead of traveling flat. Leave empty for the original flat, direction-only shot.</li>
 <li><strong>Unified pit &amp; trapdoor system</strong> — the <strong>Pit</strong> cell type is removed. All holes in the floor now use the <strong>TrapDoor</strong> cell type with a pit mesh (dark void, walls on all sides). Without a <code>TrapDoorTrap</code> component the cell is a plain instant-kill pit. Adding <code>TrapDoorTrap</code> unlocks full trap mechanics: levers, delays, animated hatches, reset, custom damage, events.</li>
 </ul>
@@ -1675,6 +1731,10 @@
 <li><strong>Footstep and party-hit audio</strong> — <code>PartyVisuals</code> now has a <code>Footstep Sounds</code> array (randomly chosen on every step) and a <code>Party Hit Sound</code> played whenever an enemy's attack lands. Both play through a 2D AudioSource on the PartyVisuals GameObject.</li>
 <li><strong>Pickup audio</strong> — <code>WorldItem.TryPickUp()</code> plays the item's <code>Pickup Sound</code> at the item's world position when the party successfully picks it up.</li>
 <li><strong>Trigger audio</strong> — <code>TriggerSource</code> base class now has <code>Interact Sound</code> and <code>Interact Volume</code> fields. All interactive sources (WallButton, WallLever, WallKeyhole and any custom source) play this sound automatically on successful interaction. <code>TriggerOpenDoor</code> has separate <code>Open Sound</code>, <code>Close Sound</code> and <code>Door Sound Volume</code> fields that play at the door's world-space position (3D spatial audio).</li>
+</ul>
+<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Trapdoor game-over menu</strong> — <code>TrapDoorTrap</code> now applies fall damage through <code>PartySystem.DamageMember</code> instead of <code>member.TakeDamage</code> directly, so the party-wipe check runs and the game-over menu actually opens after a lethal fall.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
