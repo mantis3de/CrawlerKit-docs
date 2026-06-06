@@ -2091,12 +2091,34 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Enemies and trap doors</p>
-<p>Enemies treat the plate the same way you'd expect:</p>
-<ul>
-<li>They <strong>walk onto a closed</strong> trap door normally (it looks like floor to them).</li>
-<li>They <strong>path around an open</strong> hole and never step into it.</li>
-<li>If an enemy is standing on a <strong>closed</strong> plate and it <strong>opens</strong> (party trigger, lever, etc.), the enemy is dropped and dies — "it fell in." No loot drops, since it fell away with the body.</li>
-</ul>
+<p>Enemy behaviour depends on the <strong>Enemies Can Fall</strong> toggle on <code>TrapDoorTrap</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Enemies Can Fall ✅</th>
+<th>Enemies Can Fall ❌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enemy walks onto a <strong>closed</strong> plate</td>
+<td>Normal — looks like floor</td>
+<td>Normal — looks like floor</td>
+</tr>
+<tr>
+<td>Enemy approaches an <strong>open</strong> hole</td>
+<td>Walks in and falls, then dies</td>
+<td>Paths around the hole, never enters</td>
+</tr>
+<tr>
+<td>Enemy standing on a <strong>closed</strong> plate when it <strong>opens</strong></td>
+<td>Dropped and dies</td>
+<td>Nudged to an adjacent safe cell (or stays put if none available)</td>
+</tr>
+</tbody>
+</table>
+<p>When an enemy falls, no loot drops — the body falls away with it. With <strong>Enemies Can Fall</strong> off, enemies are never affected by the trap at all; the hole is simply impassable terrain to them.</p>
 </div>
 <hr />
 <h2 id="step-1-mark-the-cell-in-the-dungeon-generator">Step 1 — Mark the cell in the Dungeon Generator<a class="headerlink" href="#step-1-mark-the-cell-in-the-dungeon-generator" title="Permanent link">&para;</a></h2>
@@ -2144,6 +2166,11 @@
 <td><strong>Trigger Delay</strong></td>
 <td>0 s</td>
 <td>Seconds between stepping onto the cell and the hatch opening. <code>0</code> = instant. <code>0.3–0.5 s</code> works well with an opening animation.</td>
+</tr>
+<tr>
+<td><strong>Enemies Can Fall</strong></td>
+<td>✅</td>
+<td>When enabled, enemies that walk onto an open hole fall and die, and enemies standing on the plate when it opens are dropped. When disabled, enemies treat the hole as impassable terrain and path around it.</td>
 </tr>
 </tbody>
 </table>

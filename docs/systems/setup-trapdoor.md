@@ -40,11 +40,15 @@ stateDiagram-v2
     Damage is applied at the moment the hatch opens (and on every later entry while it stays open) — *only if the party is actually on the cell at that instant*. This is why the cell no longer kills you the moment you enter; the `TrapDoorTrap` component owns the timing, not the grid.
 
 !!! note "Enemies and trap doors"
-    Enemies treat the plate the same way you'd expect:
+    Enemy behaviour depends on the **Enemies Can Fall** toggle on `TrapDoorTrap`:
 
-    - They **walk onto a closed** trap door normally (it looks like floor to them).
-    - They **path around an open** hole and never step into it.
-    - If an enemy is standing on a **closed** plate and it **opens** (party trigger, lever, etc.), the enemy is dropped and dies — "it fell in." No loot drops, since it fell away with the body.
+    | Situation | Enemies Can Fall ✅ | Enemies Can Fall ❌ |
+    |---|---|---|
+    | Enemy walks onto a **closed** plate | Normal — looks like floor | Normal — looks like floor |
+    | Enemy approaches an **open** hole | Walks in and falls, then dies | Paths around the hole, never enters |
+    | Enemy standing on a **closed** plate when it **opens** | Dropped and dies | Nudged to an adjacent safe cell (or stays put if none available) |
+
+    When an enemy falls, no loot drops — the body falls away with it. With **Enemies Can Fall** off, enemies are never affected by the trap at all; the hole is simply impassable terrain to them.
 
 ---
 
@@ -91,6 +95,7 @@ On **TrapMesh** (child) — an `Animator` with open/close clips. If you don't wa
 | **Auto Trigger On Enter** | ✅ | The trap fires on its own when the party steps onto the cell. Disable for lever-controlled traps. |
 | **Require Party On Cell On External Trigger** | ✅ | Lever mode only. The lever fires the trap **only if the party is already standing on the cell**. Disable to let the lever open the hatch regardless of where the party is. |
 | **Trigger Delay** | 0 s | Seconds between stepping onto the cell and the hatch opening. `0` = instant. `0.3–0.5 s` works well with an opening animation. |
+| **Enemies Can Fall** | ✅ | When enabled, enemies that walk onto an open hole fall and die, and enemies standing on the plate when it opens are dropped. When disabled, enemies treat the hole as impassable terrain and path around it. |
 
 ### Section: Behaviour
 

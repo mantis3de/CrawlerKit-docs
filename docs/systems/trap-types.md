@@ -145,6 +145,7 @@ Leave the **Conditions** list empty.
 | **Damage Preset** | InstantKill |
 | **Permanent** | ✅ |
 | **Trigger Once** | ✅ |
+| **Enemies Can Fall** | ✅ *(enemies walk into the open hole and die)* or ❌ *(enemies path around it)* |
 | **Trap Animator** | drag the `Animator` component from `TrapMesh` here |
 | **Open Trigger** | `Open` |
 | **Close Trigger** | `Close` |
