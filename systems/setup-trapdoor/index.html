@@ -2521,6 +2521,10 @@ Second pull → lever deactivates → <code>OnReleased</code> → hatch closes (
 <p class="admonition-title">Animator needs the Closing state</p>
 <p>For lever-close to show animation the Animator must have <code>Idle_Open → Closing → Idle_Closed</code> and the <code>Close</code> trigger. Without it the hatch closes in code but you won't see the animation.</p>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">Lever nie reaguje gdy stoisz przed nim — zaznacz Interact From Adjacent Cell</p>
+<p>Na <code>WallLever</code> w Inspectorze zaznacz ✅ <strong>Interact From Adjacent Cell</strong>. Bez tego system interakcji wymaga żebyś stał <strong>na tej samej komórce</strong> co lever. W praktyce drużyna zawsze stoi na sąsiedniej komórce (patrzysz na ścianę, nie wchodzisz w nią) — bez tej opcji lever po prostu nie reaguje na kliknięcie. Lever dalej od klapy może działać przez przypadek jeśli układ komórek to umożliwia, ale to nie jest poprawny setup.</p>
+</div>
 <hr />
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <details class="failure">
