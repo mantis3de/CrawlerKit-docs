@@ -200,6 +200,9 @@ Second pull → lever deactivates → `OnReleased` → `Close` trigger fires →
 !!! tip
     Place the lever in the same room as the hatch — the player has to decide whether to stand on the hatch and pull, or investigate first.
 
+!!! danger "Lever nie reaguje — zaznacz Interact From Adjacent Cell"
+    Na `WallLever` w Inspektorze zaznacz ✅ **Interact From Adjacent Cell**. Drużyna zawsze stoi przed ścianą (na sąsiedniej komórce), a nie na niej — bez tej opcji lever nie odpowie na kliknięcie niezależnie od odległości od klapy.
+
 ---
 
 ## Type 4 — Lever Puzzle (Cycling Hatches)
