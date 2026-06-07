@@ -34,6 +34,8 @@ Each entry shows a status badge, the spell name, mana cost and cooldown. The bad
 
 Two buttons sit above the list. **＋ New** creates a blank spell. **⚡ Generate** auto-generates a complete spell — a name, a random recipe, and a Damage effect with random damage and mana cost. Generate needs at least two runes in the palette; it picks a name from a `SpellNames.txt` pool, tries up to 30 times to find a unique rune combination that doesn't conflict with an existing spell, creates both the Spell and Effect assets and adds the spell to the database. If no unique recipe is found after 30 attempts the spell is still created, but with an empty recipe and a warning. A spell count appears at the bottom of the list.
 
+At the very bottom of the list, **🗑 Clear All** permanently deletes every spell, effect, VFX prefab and rune in the project — the SpellDatabase is emptied and all related asset files are removed from disk. A confirmation dialog appears before anything is deleted. Use this when you want to start the magic system from scratch.
+
 ---
 
 ## Spell Editor (right column — step ③)
