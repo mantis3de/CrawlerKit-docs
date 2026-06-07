@@ -69,7 +69,14 @@ Four `Member_*.asset` files are created in `CrawlerKitParty/Resources/PartyMembe
 
 1. Back in the **Dungeon Generator**, click **Generate Unique IDs** for doors, traps and walls.
 2. Click **Build Grid (Export JSON)** — the level is written to `Resources/GridData_<SceneName>.json`.
-3. Press **Play**.
+3. Find the **MusicManager** in the scene hierarchy and assign your audio clips:
+    - **Menu Music** — music played on the main menu.
+    - **Exploration Music** — music played while exploring the dungeon.
+    - **Combat Music** — music that kicks in during combat.
+4. Press **Play** — but see the note below first.
+
+!!! warning "Run from the MainMenu scene"
+    Level transitions (stairs, teleporters, scene changes) only work correctly when you start play from the **MainMenu** scene. If you press Play from a dungeon scene directly, transitions will not function. Add `MainMenu` as the first scene in **File → Build Settings** and always use it as your entry point.
 
 You now have a first-person party exploring a dungeon room with an enemy and loot — built entirely without code.
 
