@@ -798,6 +798,8 @@
       
         
       
+        
+      
     
     
     
@@ -946,6 +948,216 @@
       
         
       
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Party
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-visuals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Visuals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-bobbing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Bobbing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-look/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Look
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-input-handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Input Handler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-fall-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Fall Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -971,10 +1183,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
             
   
   
@@ -992,8 +1204,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1242,34 +1454,6 @@
     
   
     Trap Door
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../systems/party-fall-animation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Party Fall Animation
   
 
     
@@ -1713,6 +1897,8 @@
 <li><strong>Enemy Attack Sound Delay</strong> — <code>EnemyData</code> has a new <strong>Attack Sound Delay</strong> field so the attack sound lands on the visual hit (the paw/claw connecting) instead of on frame 0 of the attack animation. Audio counterpart of <strong>Attack Connect Time</strong>.</li>
 <li><strong>ProjectileTrap Aim Target</strong> — <code>ProjectileTrap</code> has a new optional <strong>Aim Target</strong> field. Drag a <code>Transform</code> from the <code>PartyVisuals</code> prefab (e.g. a child at chest height named <code>AimTarget</code>) into this slot and projectiles will arc vertically toward that point instead of traveling flat. Leave empty for the original flat, direction-only shot.</li>
 <li><strong>Unified pit &amp; trapdoor system</strong> — the <strong>Pit</strong> cell type is removed. All holes in the floor now use the <strong>TrapDoor</strong> cell type with a pit mesh (dark void, walls on all sides). Without a <code>TrapDoorTrap</code> component the cell is a plain instant-kill pit. Adding <code>TrapDoorTrap</code> unlocks full trap mechanics: levers, delays, animated hatches, reset, custom damage, events.</li>
+<li><strong>Inventory stack count badge</strong> — <code>InventorySlotUI</code> now shows the stack quantity as a small number in the bottom-right corner of a slot whenever the count is greater than 1. The label is optional in the prefab (assign a <code>Text</code> field, or name a child <code>Count</code> / <code>Quantity</code> / <code>Amount</code>); if none exists, one is created automatically at runtime with a drop shadow for readability and <code>raycastTarget</code> off so it never blocks drag/drop or clicks.</li>
+<li><strong>Auto Load Save In Editor toggle</strong> — <code>SaveSystem</code> has a new <strong>Editor</strong> section with an <strong>Auto Load Save In Editor</strong> switch (off by default). When off, pressing <strong>Play</strong> in the editor no longer auto-loads the level save, so scene items, enemies and doors stay in their authored state for level design. Standalone builds and the explicit Load / Continue flow are unaffected. Turn it on to test save loading from the editor.</li>
 </ul>
 <h3 id="added-previous">Added (previous)<a class="headerlink" href="#added-previous" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1735,9 +1921,12 @@
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Trapdoor game-over menu</strong> — <code>TrapDoorTrap</code> now applies fall damage through <code>PartySystem.DamageMember</code> instead of <code>member.TakeDamage</code> directly, so the party-wipe check runs and the game-over menu actually opens after a lethal fall.</li>
+<li><strong>Stackable items now actually stack</strong> — items flagged <code>stackable</code> shipped with <code>maxStack = 1</code>, so each pickup landed in its own slot and the count never rose above 1. <code>ItemData.OnValidate</code> now keeps the two fields consistent (stackable forces <code>maxStack</code> to at least 2; non-stackable forces it back to 1), and the <code>LifebloodPotion</code> asset is set to <code>maxStack = 99</code>. Same-type pickups merge into one slot and show the count badge.</li>
+<li><strong>Duplicated world items disappearing on Play</strong> — duplicating a <code>WorldItem</code> (Ctrl+D or prefab instances) could copy the serialized <code>uniqueId</code>, and the save system hides every item whose id is in the picked-up list — so duplicates of a previously collected item vanished on load. <code>WorldItem</code> now claims and de-collides its <code>uniqueId</code> in <code>Awake</code> (the earliest, system-independent point, before items are hidden), using a registry that resets per scene load so saved ids stay stable.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
+<li><strong>Backpack stacks are picked up one at a time</strong> — left-clicking a stacked backpack slot now takes a single unit onto the cursor and leaves the rest behind (the count decreases by one), instead of lifting the whole stack as one block. Repeat clicks peel items off one by one; clicking a same-type slot while holding one returns it to the stack. Affects <code>CharacterInventoryUI</code>; equipment, chests and world pickups are unchanged.</li>
 <li><code>EnemyData</code> — removed <code>healthBarYOffset</code>, <code>healthBarZOffset</code>, and <code>vfxAimYOffset</code>. Position the HP bar and VFX aim point using the new prefab child components instead.</li>
 <li>Spell Editor section renamed from <strong>4. VFX</strong> to <strong>4. VFX &amp; Audio</strong>.</li>
 <li><code>RunePanelUI</code> error message when no enemy is in range changed from "No enemy in front!" to "No enemy in range!" to reflect the broader corridor scan.</li>

@@ -111,6 +111,12 @@ nav:
       - Trigger System: systems/triggers.md
       - Music System: systems/music.md
       - Dungeon Map: systems/dungeon-map.md
+      - Party:
+          - Party Visuals: systems/party-visuals.md
+          - Party Bobbing: systems/party-bobbing.md
+          - Party Look: systems/party-look.md
+          - Party Input Handler: systems/party-input-handler.md
+          - Party Fall Animation: systems/party-fall-animation.md
       - Setup Guides:
           - Doors: systems/setup-doors.md
           - Keyhole Door: systems/setup-keyhole.md
@@ -121,7 +127,6 @@ nav:
           - Illusory Wall Types (10 Examples): systems/wall-types.md
           - Secret / Illusory Wall (legacy): systems/setup-secret-wall.md
           - Trap Door: systems/setup-trapdoor.md
-          - Party Fall Animation: systems/party-fall-animation.md
           - Trap Types (10 Examples): systems/trap-types.md
   - Architecture: architecture.md
   - API Reference: api.md

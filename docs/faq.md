@@ -74,3 +74,15 @@ Common questions from Asset Store customers. Can't find your answer? Reach out t
 
 ??? question "My level won't load at runtime."
     Make sure you clicked **Build Grid (Export JSON)** in the Dungeon Generator and that the resulting `GridData_<SceneName>.json` is in a `Resources` folder. Also run **Generate Unique IDs** for doors, traps and walls before exporting so triggers wire up correctly.
+
+??? question "Some world items disappear the moment I press Play."
+    That is the save system doing its job: items you picked up in a previous session are stored in the level save and hidden on load. While designing a level this is usually unwanted. Select the **SaveSystem** in your scene and leave **Auto Load Save In Editor** (under the *Editor* section) **off** — pressing Play then keeps the scene in its authored state, so every item shows. Builds and the in-game Load / Continue flow still load saves normally. (If you instead want a clean slate everywhere, delete the `save_<SceneName>.json` file from the project's persistent data path.)
+
+??? question "I duplicated an item but its copies vanish at runtime."
+    Older duplicates could share the same `uniqueId` (Ctrl+D and prefab instances copy the serialized value), and the save system hides every item whose id was previously collected — so the copies disappeared. `WorldItem` now guarantees a unique id per object at startup, so this no longer happens. If you still see it, you are most likely looking at the save-load behavior above — turn off **Auto Load Save In Editor**.
+
+??? question "My stackable item won't stack / the quantity number never shows."
+    Check the item's **Max Stack** in the [Inventory Editor](editors/inventory-editor.md). A `stackable` item with `Max Stack = 1` can never merge, so each pickup takes its own slot and the count stays at 1. Set Max Stack to the limit you want (e.g. 99). New builds keep the two fields consistent automatically — ticking **Stackable** raises Max Stack to at least 2. The count badge appears in the slot's bottom-right corner once a slot holds more than one.
+
+??? question "How do I split a stack — take just one item off it?"
+    Left-click a stacked backpack slot. A single unit is lifted onto the cursor and the rest stay in the slot with the count reduced by one. Click again to peel another. Place the held item on an empty slot to drop it, or click a same-type stack to return it.

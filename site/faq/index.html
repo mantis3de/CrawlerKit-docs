@@ -800,6 +800,8 @@
       
         
       
+        
+      
     
     
     
@@ -948,6 +950,216 @@
       
         
       
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Party
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-visuals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Visuals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-bobbing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Bobbing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-look/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Look
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-input-handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Input Handler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systems/party-fall-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Fall Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -973,10 +1185,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
             
   
   
@@ -994,8 +1206,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1244,34 +1456,6 @@
     
   
     Trap Door
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../systems/party-fall-animation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Party Fall Animation
   
 
     
@@ -1726,6 +1910,22 @@
 <details class="question">
 <summary>My level won't load at runtime.</summary>
 <p>Make sure you clicked <strong>Build Grid (Export JSON)</strong> in the Dungeon Generator and that the resulting <code>GridData_&lt;SceneName&gt;.json</code> is in a <code>Resources</code> folder. Also run <strong>Generate Unique IDs</strong> for doors, traps and walls before exporting so triggers wire up correctly.</p>
+</details>
+<details class="question">
+<summary>Some world items disappear the moment I press Play.</summary>
+<p>That is the save system doing its job: items you picked up in a previous session are stored in the level save and hidden on load. While designing a level this is usually unwanted. Select the <strong>SaveSystem</strong> in your scene and leave <strong>Auto Load Save In Editor</strong> (under the <em>Editor</em> section) <strong>off</strong> — pressing Play then keeps the scene in its authored state, so every item shows. Builds and the in-game Load / Continue flow still load saves normally. (If you instead want a clean slate everywhere, delete the <code>save_&lt;SceneName&gt;.json</code> file from the project's persistent data path.)</p>
+</details>
+<details class="question">
+<summary>I duplicated an item but its copies vanish at runtime.</summary>
+<p>Older duplicates could share the same <code>uniqueId</code> (Ctrl+D and prefab instances copy the serialized value), and the save system hides every item whose id was previously collected — so the copies disappeared. <code>WorldItem</code> now guarantees a unique id per object at startup, so this no longer happens. If you still see it, you are most likely looking at the save-load behavior above — turn off <strong>Auto Load Save In Editor</strong>.</p>
+</details>
+<details class="question">
+<summary>My stackable item won't stack / the quantity number never shows.</summary>
+<p>Check the item's <strong>Max Stack</strong> in the <a href="../editors/inventory-editor/">Inventory Editor</a>. A <code>stackable</code> item with <code>Max Stack = 1</code> can never merge, so each pickup takes its own slot and the count stays at 1. Set Max Stack to the limit you want (e.g. 99). New builds keep the two fields consistent automatically — ticking <strong>Stackable</strong> raises Max Stack to at least 2. The count badge appears in the slot's bottom-right corner once a slot holds more than one.</p>
+</details>
+<details class="question">
+<summary>How do I split a stack — take just one item off it?</summary>
+<p>Left-click a stacked backpack slot. A single unit is lifted onto the cursor and the rest stay in the slot with the count reduced by one. Click again to peel another. Place the held item on an empty slot to drop it, or click a same-type stack to return it.</p>
 </details>
 
 

@@ -11,6 +11,8 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 - **Enemy Attack Sound Delay** — `EnemyData` has a new **Attack Sound Delay** field so the attack sound lands on the visual hit (the paw/claw connecting) instead of on frame 0 of the attack animation. Audio counterpart of **Attack Connect Time**.
 - **ProjectileTrap Aim Target** — `ProjectileTrap` has a new optional **Aim Target** field. Drag a `Transform` from the `PartyVisuals` prefab (e.g. a child at chest height named `AimTarget`) into this slot and projectiles will arc vertically toward that point instead of traveling flat. Leave empty for the original flat, direction-only shot.
 - **Unified pit & trapdoor system** — the **Pit** cell type is removed. All holes in the floor now use the **TrapDoor** cell type with a pit mesh (dark void, walls on all sides). Without a `TrapDoorTrap` component the cell is a plain instant-kill pit. Adding `TrapDoorTrap` unlocks full trap mechanics: levers, delays, animated hatches, reset, custom damage, events.
+- **Inventory stack count badge** — `InventorySlotUI` now shows the stack quantity as a small number in the bottom-right corner of a slot whenever the count is greater than 1. The label is optional in the prefab (assign a `Text` field, or name a child `Count` / `Quantity` / `Amount`); if none exists, one is created automatically at runtime with a drop shadow for readability and `raycastTarget` off so it never blocks drag/drop or clicks.
+- **Auto Load Save In Editor toggle** — `SaveSystem` has a new **Editor** section with an **Auto Load Save In Editor** switch (off by default). When off, pressing **Play** in the editor no longer auto-loads the level save, so scene items, enemies and doors stay in their authored state for level design. Standalone builds and the explicit Load / Continue flow are unaffected. Turn it on to test save loading from the editor.
 
 ### Added (previous)
 - This MkDocs Material documentation site, with search and GitHub Pages deployment.
@@ -28,8 +30,11 @@ All notable changes to CrawlerKit are documented here. The format is based on [K
 
 ### Fixed
 - **Trapdoor game-over menu** — `TrapDoorTrap` now applies fall damage through `PartySystem.DamageMember` instead of `member.TakeDamage` directly, so the party-wipe check runs and the game-over menu actually opens after a lethal fall.
+- **Stackable items now actually stack** — items flagged `stackable` shipped with `maxStack = 1`, so each pickup landed in its own slot and the count never rose above 1. `ItemData.OnValidate` now keeps the two fields consistent (stackable forces `maxStack` to at least 2; non-stackable forces it back to 1), and the `LifebloodPotion` asset is set to `maxStack = 99`. Same-type pickups merge into one slot and show the count badge.
+- **Duplicated world items disappearing on Play** — duplicating a `WorldItem` (Ctrl+D or prefab instances) could copy the serialized `uniqueId`, and the save system hides every item whose id is in the picked-up list — so duplicates of a previously collected item vanished on load. `WorldItem` now claims and de-collides its `uniqueId` in `Awake` (the earliest, system-independent point, before items are hidden), using a registry that resets per scene load so saved ids stay stable.
 
 ### Changed
+- **Backpack stacks are picked up one at a time** — left-clicking a stacked backpack slot now takes a single unit onto the cursor and leaves the rest behind (the count decreases by one), instead of lifting the whole stack as one block. Repeat clicks peel items off one by one; clicking a same-type slot while holding one returns it to the stack. Affects `CharacterInventoryUI`; equipment, chests and world pickups are unchanged.
 - `EnemyData` — removed `healthBarYOffset`, `healthBarZOffset`, and `vfxAimYOffset`. Position the HP bar and VFX aim point using the new prefab child components instead.
 - Spell Editor section renamed from **4. VFX** to **4. VFX & Audio**.
 - `RunePanelUI` error message when no enemy is in range changed from "No enemy in front!" to "No enemy in range!" to reflect the broader corridor scan.
