@@ -6,6 +6,9 @@ This guide takes you from a fresh import to a playable, first-person dungeon roo
 
 !!! tip "Before you begin"
     Make sure the **CrawlerKit** menu is visible in Unity's top bar. If it isn't, see [Installation](installation.md).
+
+!!! info "Placeholders"
+    All included items, dungeon walls, floors, and props are placeholder assets. Every piece of art can be replaced with your own graphics — swap the prefabs and sprites wherever you see fit. Items are displayed as 2D sprites by default, but can be replaced with 3D models — just swap the 2D sprite for a 3D mesh in the prefab.
 Youtube tutorials: 
 
 **Playlist Create Demo Level**:<br>
