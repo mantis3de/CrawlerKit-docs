@@ -1,4 +1,4 @@
-# CrawlerKIT — Inventory Editor
+# Dungeon Crawler Framework — Inventory Editor
 
 ## Overview
 
@@ -155,4 +155,4 @@ The Inventory Editor takes you from a blank item asset to a fully configured loo
 
 ---
 
-*CrawlerKIT — Mantis3de*
+*Dungeon Crawler Framework — Mantis3de*

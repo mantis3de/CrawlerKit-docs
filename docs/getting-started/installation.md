@@ -1,6 +1,6 @@
 # Installation
 
-This page walks you through installing CrawlerKit into a Unity project and verifying the setup.
+This page walks you through installing Dungeon Crawler Framework into a Unity project and verifying the setup.
 
 ## Requirements
 
@@ -18,20 +18,20 @@ This page walks you through installing CrawlerKit into a Unity project and verif
     CrawlerKit ships with assembly definitions (`Mantis3de.CrawlerKit.*`). If your own scripts need to call CrawlerKit at runtime, add a reference to the relevant assembly in your `.asmdef`.
 
 !!! note "Package Manager dependencies"
-    CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.
+    Dungeon Crawler Framework relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.
 
 ## Create a URP project
 
-CrawlerKit is built for the **Universal Render Pipeline**. Before importing the asset, make sure your Unity project uses URP:
+Dungeon Crawler Framework is built for the **Universal Render Pipeline**. Before importing the asset, make sure your Unity project uses URP:
 
 - When creating a new project in Unity Hub, choose the **3D (URP)** template.
 - If your project already exists but uses the Built-in pipeline, you will need to convert it — see Unity's official [URP migration guide](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html) before continuing.
 
-Once the project is open, create an empty scene (`File → New Scene → Basic (URP)`) and save it as your starting point. This ensures the camera and lighting are configured correctly for URP before you wire up CrawlerKit.
+Once the project is open, create an empty scene (`File → New Scene → Basic (URP)`) and save it as your starting point. This ensures the camera and lighting are configured correctly for URP before you wire up Dungeon Crawler Framework.
 
 ## Install the Input System package
 
-CrawlerKit requires Unity's **New Input System** package. If it is not already installed:
+Dungeon Crawler Framework requires Unity's **New Input System** package. If it is not already installed:
 
 1. Open **Window → Package Manager**.
 2. Switch the source dropdown to **Unity Registry**.
@@ -41,13 +41,13 @@ CrawlerKit requires Unity's **New Input System** package. If it is not already i
 After the restart, open **Edit → Project Settings → Player → Other Settings** and find **Active Input Handling**. Set it to **Both** so that legacy `UnityEngine.Input` calls (used by some Unity UI components) continue to work alongside the new Input System.
 
 !!! warning "Active Input Handling"
-    If you leave this set to **Input System Package (New)** only, certain Unity UI drag-and-drop interactions may stop working. **Both** is the recommended setting for CrawlerKit projects.
+    If you leave this set to **Input System Package (New)** only, certain Unity UI drag-and-drop interactions may stop working. **Both** is the recommended setting for Dungeon Crawler Framework projects.
 
 ## Install from the Unity Asset Store
 
 1. Open the **Package Manager** (`Window → Package Manager`).
 2. Switch the source dropdown to **My Assets**.
-3. Find **CrawlerKit**, click **Download**, then **Import**.
+3. Find **Dungeon Crawler Framework**, click **Download**, then **Import**.
 4. Leave all files checked and confirm the import.
 
 ## Install from a `.unitypackage`
@@ -58,7 +58,7 @@ After the restart, open **Edit → Project Settings → Player → Other Setting
 
 ## What gets imported
 
-CrawlerKit installs under `Assets/CrawlerKitFramework/`, organised into modules:
+Dungeon Crawler Framework installs under `Assets/CrawlerKitFramework/`, organised into modules:
 
 | Module | Purpose |
 | --- | --- |
@@ -85,7 +85,7 @@ If the menu appears, the framework compiled successfully and you are ready to go
 
 ## Add scenes to Build Settings
 
-Level transitions between scenes only work if Unity knows about all the scenes. After importing CrawlerKit:
+Level transitions between scenes only work if Unity knows about all the scenes. After importing Dungeon Crawler Framework:
 
 1. Open **File → Build Settings**.
 2. Click **Add Open Scenes** or drag the following scenes from the Project window into the **Scenes In Build** list, in this order:

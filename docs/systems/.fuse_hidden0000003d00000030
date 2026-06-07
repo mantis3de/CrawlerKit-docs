@@ -1,0 +1,200 @@
+# Illusory Wall Types — 10 Examples
+
+Ten classic illusory wall configurations built from the components in [Setup Guide — Illusory Wall](setup-illusory-wall.md). Each type describes what the player experiences and how to wire it up.
+
+---
+
+## Type 1 — Fake Solid (No Visual Change)
+
+**What happens:** The wall looks completely solid. The player walks into it and passes through — no animation, no sound, no indication it was ever there. The oldest dungeon secret.
+
+The simplest possible setup. No `WallCore`, no behaviours, no Animator. Just a passable edge.
+
+**Setup:**
+
+Add only `EdgeBlockerMarker` to the root and enable **Is Passable**. Done.
+
+The wall mesh stays visible forever. Discovery is entirely up to the player bumping into every wall they see.
+
+!!! tip
+    Use this for the classic CRPG "search every wall" experience. Pair with secret floor cells on the other side so the hidden room doesn't appear on the map until explored.
+
+---
+
+## Type 2 — Proximity Reveal (Walks Through, Wall Dissolves)
+
+**What happens:** The player approaches and steps onto the wall's cell. The wall dissolves. They walk through. The secret is revealed — permanently.
+
+The most common illusory wall type in dungeon crawlers. The dissolve confirms to the player they found something.
+
+**Setup:**
+
+Components on root: `EdgeBlockerMarker` (Is Passable ✅), `WallCore`, `ProximityRevealBehaviour`.
+
+| Field on WallCore | Value |
+|---|---|
+| **Reveal Duration** | 0.5 s *(match to dissolve animation)* |
+| **Starts Revealed** | ❌ |
+
+| Field on ProximityRevealBehaviour | Value |
+|---|---|
+| **Permanent** | ✅ — wall stays dissolved after first reveal |
+
+---
+
+## Type 3 — Delayed Proximity Reveal
+
+**What happens:** The party steps onto the wall's cell. Nothing happens for a moment — then the wall slowly dissolves around them. The delay creates a beat of tension before the reveal.
+
+**Setup:**
+
+Same as Type 2, but replace `ProximityRevealBehaviour` with `DelayedProximityBehaviour`.
+
+| Field on DelayedProximityBehaviour | Value |
+|---|---|
+| **Reveal Delay** | 1.0–2.0 s |
+| **Permanent** | ✅ |
+
+!!! tip
+    A 1–2 second delay gives the player time to notice they walked through something before the wall visually confirms it. Useful for dramatic reveals — the party is already on the other side when the wall dissolves behind them.
+
+---
+
+## Type 4 — Lever-Triggered Reveal
+
+**What happens:** The party finds a lever in the dungeon. Pulling it dissolves a wall somewhere else, opening a new passage.
+
+The source and wall can be in completely different rooms — the connection is a direct reference, not proximity.
+
+**Setup:**
+
+`WallLever` → **Targets** → `TriggerIllusoryWall`
+
+| Field on TriggerIllusoryWall | Value |
+|---|---|
+| **Blocker Id** | matches `EdgeBlockerMarker` on the wall |
+| **Dissolve Delay** | 0.5 s |
+
+| Field on WallLever | Value |
+|---|---|
+| **Targets** | `TriggerIllusoryWall` on the wall |
+
+Pulling the lever reveals the wall. Pulling it back restores it — unless you use a `WallButton` (one-shot) to make the reveal permanent.
+
+---
+
+## Type 5 — Pressure Plate Reveal
+
+**What happens:** A floor plate in one part of the room controls a secret passage in another. Stand on the plate — wall dissolves. Step off — wall restores.
+
+Good for puzzles where the player must hold the plate (drop an item on it) to keep the passage open while they walk through.
+
+**Setup:**
+
+`PressurePlate` → **Targets** → `TriggerIllusoryWall`
+
+The wall restores when the party steps off the plate because `TriggerIllusoryWall` responds to both `OnTriggered` (reveal) and `OnReleased` (restore).
+
+To make the reveal permanent: enable **Latching** on `PressurePlate` — once stepped on, the plate stays active even after the party leaves.
+
+---
+
+## Type 6 — Counter Reveal (Find It Three Times)
+
+**What happens:** The wall is passable from the start but looks solid. The first two times the party enters the cell, nothing changes. On the third pass, the wall dissolves. A reward for players who methodically walk every passage.
+
+**Setup:**
+
+Components on root: `EdgeBlockerMarker` (Is Passable ✅), `WallCore`, `CounterRevealBehaviour`.
+
+| Field on CounterRevealBehaviour | Value |
+|---|---|
+| **Required Count** | 3 *(or any number)* |
+| **Permanent** | ✅ |
+
+!!! tip
+    Use a count of 1 to replicate Type 2 (dissolves on first pass). Higher counts reward persistent exploration — the player might walk through the same corridor several times before the secret activates.
+
+---
+
+## Type 7 — Timed Reveal (Wall Appears and Disappears)
+
+**What happens:** The wall is invisible when the scene starts, becomes solid-looking after a set time, then dissolves again. Or it starts solid and disappears after a delay. Use this for walls that are part of an environmental puzzle — the player must time their movement around the wall's state.
+
+**Setup:**
+
+Components on root: `EdgeBlockerMarker` (Is Passable ✅), `WallCore`, `TimedRevealBehaviour`.
+
+| Field on TimedRevealBehaviour | Value |
+|---|---|
+| **Reveal After** | Seconds from scene load before the wall reveals (dissolves). |
+
+| Field on WallCore | Value |
+|---|---|
+| **Starts Revealed** | ✅ if the wall starts invisible and becomes solid; ❌ if it starts solid and dissolves. |
+
+!!! note
+    **Is Passable** on `EdgeBlockerMarker` is always on — the wall never physically blocks movement regardless of its visual state. The timed reveal only affects appearance.
+
+---
+
+## Type 8 — Ambush Wall (Enemy Bursts Through)
+
+**What happens:** A wall looks solid. When an enemy spawner elsewhere in the room activates, the wall explodes open and the enemy charges through. The reveal is driven by the enemy spawn event, not by the player.
+
+**Setup:**
+
+Components on root: `EdgeBlockerMarker` (Is Passable ✅), `WallCore`, `AmbushRevealBehaviour`.
+
+| Field on AmbushRevealBehaviour | Value |
+|---|---|
+| **Enemy Spawner** | Drag the `EnemySpawner` component that should trigger the reveal |
+
+When the spawner activates (on room enter, on trigger, on timer), `AmbushRevealBehaviour` calls `WallCore.Reveal()` and the wall dissolves. The enemy spawns and immediately has a passable wall to charge through.
+
+!!! tip
+    Place the enemy spawner on the same cell as the wall, slightly behind it. The enemy appears to burst through the wall rather than materialise in front of it.
+
+---
+
+## Type 9 — One-Way Passage
+
+**What happens:** The party can walk through the wall from one side only. From the front it looks like a solid wall. From behind, they walk back through — but it blocks them. A one-way secret exit.
+
+**Setup:**
+
+Components on root: `EdgeBlockerMarker` (Is Passable ✅), `WallCore`, `OneWayPassageBehaviour`.
+
+| Field on OneWayPassageBehaviour | Value |
+|---|---|
+| **Passable Direction** | The direction the party can walk *through* (e.g. North — party moving north passes through) |
+
+The wall is always visually solid. The `OneWayPassageBehaviour` overrides the passability check — movement in the allowed direction succeeds, movement in the opposite direction is blocked as if it were a normal wall.
+
+!!! tip
+    Combine with Type 1 (no visual change) for a completely invisible one-way passage. The player discovers they can walk north through what looks like a wall — but can't walk back south. Disorienting and memorable.
+
+---
+
+## Type 10 — Projectile Reveal (Shoot the Wall)
+
+**What happens:** The wall looks solid. The player fires a spell at it. The wall dissolves. A secret for players who think to attack their environment.
+
+**Setup:**
+
+Components on root: `EdgeBlockerMarker` (Is Passable ✅), `WallCore`, `ProjectileRevealBehaviour`.
+
+No additional fields needed on `ProjectileRevealBehaviour` — it listens for any projectile (`TrapProjectile` or spell projectile) hitting the wall's cell and calls `WallCore.Reveal()`.
+
+| Field on WallCore | Value |
+|---|---|
+| **Reveal Duration** | 0.5 s |
+
+The wall has no `TriggerIllusoryWall` — it cannot be revealed by levers or plates, only by projectiles. Combine with `ProximityRevealBehaviour` if you also want the party to walk through after shooting it.
+
+!!! tip
+    Place a visual hint nearby — a cracked texture on the wall mesh, a scorch mark on the floor in front of it — to reward observant players without spelling the secret out entirely.
+
+---
+
+*CrawlerKIT — Mantis3de*

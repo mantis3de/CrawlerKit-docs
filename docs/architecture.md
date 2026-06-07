@@ -1,6 +1,6 @@
 # Architecture
 
-CrawlerKit is built as a set of independent modules that communicate through a lightweight **service locator** (`CrawlerServices`) and shared interfaces, rather than hard references. This keeps each module replaceable and lets you import only the parts you need.
+Dungeon Crawler Framework is built as a set of independent modules that communicate through a lightweight **service locator** (`CrawlerServices`) and shared interfaces, rather than hard references. This keeps each module replaceable and lets you import only the parts you need.
 
 ## Module overview
 
@@ -92,7 +92,7 @@ This is why, for example, the `EnemySpawner` can spawn into the grid and respect
 
 ## Editor-to-runtime data flow
 
-CrawlerKit draws a clean line between **authoring time** (the editors) and **play time** (the runtime):
+Dungeon Crawler Framework draws a clean line between **authoring time** (the editors) and **play time** (the runtime):
 
 1. **Editors write data.** The Character, Inventory, Spell and Enemy editors produce **ScriptableObject** assets. The Dungeon Generator bakes the entire level into a single **`GridData_<SceneName>.json`** file in a `Resources` folder.
 2. **Runtime reads data.** On level start, the Grid system loads the JSON via `Resources.Load`, the PartyUI loads the party member assets, and the other systems resolve their ScriptableObjects. No procedural generation happens at runtime, so there is no generation cost in the shipped game.

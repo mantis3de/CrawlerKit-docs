@@ -1,11 +1,11 @@
-site_name: CrawlerKit Documentation
+site_name: Dungeon Crawler Framework Documentation
 site_description: A modular Unity framework for building grid-based dungeon crawlers — visual editors for parties, dungeons, items, spells and enemies.
 site_author: Mantis3de
-site_url: https://mantis3de.github.io/CrawlerKit/
+site_url: https://mantis3de.github.io/Dungeon Crawler Framework/
 
 edit_uri: ""
 
-copyright: Copyright &copy; Mantis3de — CrawlerKit
+copyright: Copyright &copy; Mantis3de — Dungeon Crawler Framework
 
 theme:
   name: material
@@ -90,7 +90,7 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Mantis3de/CrawlerKit-docs
-      name: CrawlerKit on GitHub
+      name: Dungeon Crawler Framework on GitHub
     - icon: material/web
       link: https://mantis3de.carrd.co
       name: Mantis3de

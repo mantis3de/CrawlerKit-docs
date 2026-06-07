@@ -4,17 +4,17 @@ Common questions from Asset Store customers. Can't find your answer? Reach out t
 
 ## Licensing & purchase
 
-??? question "What license does CrawlerKit use?"
-    CrawlerKit is covered by the standard **Unity Asset Store End User License Agreement (EULA)**. A single seat lets you use it in your own commercial and non-commercial games. You may not redistribute the source as a standalone asset.
+??? question "What license does Dungeon Crawler Framework use?"
+    Dungeon Crawler Framework is covered by the standard **Unity Asset Store End User License Agreement (EULA)**. A single seat lets you use it in your own commercial and non-commercial games. You may not redistribute the source as a standalone asset.
 
 ??? question "Can I use it in a commercial game?"
-    Yes. You can ship commercial titles built with CrawlerKit. No royalties and no attribution are required (though attribution is always appreciated).
+    Yes. You can ship commercial titles built with Dungeon Crawler Framework. No royalties and no attribution are required (though attribution is always appreciated).
 
 ??? question "Do I get future updates for free?"
     Yes. Updates are delivered through the Asset Store. Re-download the latest version from **Package Manager → My Assets**. See the [Changelog](changelog.md) for what's new.
 
 ??? question "Is there a refund policy?"
-    Refunds are handled by Unity under the Asset Store refund policy, not by the publisher. Try the included sample scene and this documentation first to make sure CrawlerKit fits your project.
+    Refunds are handled by Unity under the Asset Store refund policy, not by the publisher. Try the included sample scene and this documentation first to make sure Dungeon Crawler Framework fits your project.
 
 ## Technical requirements
 
@@ -22,13 +22,13 @@ Common questions from Asset Store customers. Can't find your answer? Reach out t
     Unity **2021.3 LTS or newer** (2022 LTS verified). See [Installation](getting-started/installation.md) for the full requirements table.
 
 ??? question "Does it work with URP / HDRP / Built-in?"
-    Yes. CrawlerKit ships logic and editor tooling, not pipeline-specific shaders, so it works across Built-in, URP and HDRP. You supply your own prefabs and materials for the visuals.
+    Yes. Dungeon Crawler Framework ships logic and editor tooling, not pipeline-specific shaders, so it works across Built-in, URP and HDRP. You supply your own prefabs and materials for the visuals.
 
 ??? question "Does it support mobile / console / WebGL?"
     The framework uses standard Unity APIs with no platform-specific code, so it builds for any target Unity supports. Performance depends on your own art and scene complexity. Desktop is the verified target.
 
 ??? question "Is the C# source code included?"
-    Yes. CrawlerKit ships with full, readable C# source organised into modules and assembly definitions. Nothing is locked in a DLL.
+    Yes. Dungeon Crawler Framework ships with full, readable C# source organised into modules and assembly definitions. Nothing is locked in a DLL.
 
 ## Using the framework
 
@@ -39,7 +39,7 @@ Common questions from Asset Store customers. Can't find your answer? Reach out t
     Follow the [Getting Started in 5 Minutes](getting-started/quick-start.md) guide. It walks you from import to a playable room with a party, an enemy and loot.
 
 ??? question "Can I use my own 3D models, sprites and art?"
-    Absolutely — that's the intended workflow. You drag your own wall, floor, stair, item, portrait and enemy prefabs/sprites into the editors. CrawlerKit handles the logic and placement.
+    Absolutely — that's the intended workflow. You drag your own wall, floor, stair, item, portrait and enemy prefabs/sprites into the editors. Dungeon Crawler Framework handles the logic and placement.
 
 ??? question "Can I change the number of party members?"
     The Character Generator is built around a classic four-member party (Front Left, Front Right, Back Left, Back Right). The party data is ScriptableObject-based, so the layout is consistent across the framework; changing the count requires source modifications.

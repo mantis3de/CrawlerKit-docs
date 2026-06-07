@@ -1,0 +1,169 @@
+# Setup Guide — Button Door
+
+This guide covers two variants of a button-operated door:
+
+- **Timed close** — the door opens on button press and closes automatically after a set delay (`TriggerOpenDoorTimed`).
+- **Immediate close** — the door opens on button press and closes the moment the button releases, which in practice means it closes almost instantly after a brief pulse (`TriggerOpenDoor` with **Close On Release**).
+
+Both variants use the same `WallButton` source. The only difference is which target component you put on the door.
+
+---
+
+## What you need before you start
+
+- A door prefab with a mesh and an `Animator`.
+- A button prefab with a mesh and an `Animator`.
+- Both placed in the scene and positioned correctly relative to the grid.
+
+---
+
+## Prefab hierarchy
+
+```
+Door_Button               ← door root
+├── DoorMesh              ← door geometry + Animator
+
+Button                    ← button root (separate object, usually on the wall next to the door)
+└── ButtonMesh            ← button geometry + Animator
+```
+
+The door and button are separate GameObjects. The button holds a reference to the door target in its **Targets** list — the door does not know about the button at all.
+
+---
+
+## Step 1 — Set up the door Animator
+
+Select **DoorMesh** and open its Animator Controller. The required states and triggers are the same for both door variants:
+
+```
+States
+  Idle_Closed     ← default
+  Opening
+  Idle_Opened
+  Closing
+
+Triggers
+  Open
+  Close
+```
+
+**Transitions:**
+
+- `Idle_Closed → Opening` — trigger `Open`, no Exit Time, Transition Duration 0.
+- `Opening → Idle_Opened` — Exit Time on, Transition Duration 0.
+- `Idle_Opened → Closing` — trigger `Close`, no Exit Time, Transition Duration 0.
+- `Closing → Idle_Closed` — Exit Time on, Transition Duration 0.
+
+---
+
+## Step 2 — Set up the button Animator
+
+Select **ButtonMesh** and open its Animator Controller:
+
+```
+States
+  Idle            ← default (button up)
+  Pressed_Idle    ← button held down while door is open
+
+Triggers
+  Press           ← button goes down
+  Release         ← button springs back up
+```
+
+**Transitions:**
+
+- `Idle → Pressed_Idle` — trigger `Press`, no Exit Time, Transition Duration 0.
+- `Pressed_Idle → Idle` — trigger `Release`, no Exit Time, Transition Duration 0.
+
+The button stays in `Pressed_Idle` for as long as the door is open. It springs back to `Idle` only when the door finishes closing and `NotifyDoorClosed()` is called on it automatically.
+
+---
+
+## Step 3a — Variant: Timed close
+
+Use this when the door should close on its own after a few seconds.
+
+Add **TriggerOpenDoorTimed** to the `Door_Button` root:
+
+| Field | Value |
+|---|---|
+| **Blocker Id** | Unique ID matching the `EdgeBlockerMarker` on this door, e.g. `door_corridor_01` |
+| **Close Delay** | Seconds before the door starts closing, e.g. `3` |
+| **Door Animator** | Drag the `Animator` from `DoorMesh` |
+| **Open Anim Trigger** | `Open` |
+| **Close Anim Trigger** | `Close` |
+
+Also add **EdgeBlockerMarker** to the root with the same **Blocker Id**.
+
+!!! tip
+    The door waits for the player and any enemy to leave the doorway before closing, even after the timer expires. If the player is still standing in it, the door holds open until they move.
+
+---
+
+## Step 3b — Variant: Immediate close
+
+Use this when the button should act as a momentary pulse — press it, the door opens, and a fraction of a second later it closes again (since the button releases right after its pulse).
+
+Add **TriggerOpenDoor** to the `Door_Button` root:
+
+| Field | Value |
+|---|---|
+| **Blocker Id** | Unique ID matching the `EdgeBlockerMarker`, e.g. `door_corridor_01` |
+| **Close On Release** | ✅ Enabled |
+| **Skip Close Guard** | Leave disabled |
+| **Button Release Delay** | Seconds to wait after the close animation starts before the button springs back, e.g. `0.6` — set this to roughly the length of your Close animation |
+| **Door Animator** | Drag the `Animator` from `DoorMesh` |
+| **Open Anim Trigger** | `Open` |
+| **Close Anim Trigger** | `Close` |
+| **Opened State Name** | `Idle_Opened` |
+| **Closed State Name** | `Idle_Closed` |
+
+Also add **EdgeBlockerMarker** to the root with the same **Blocker Id**.
+
+!!! note "Why does it close so fast?"
+    `WallButton` activates its targets, waits **Pulse Time** (default 0.3 s), then deactivates. Because **Close On Release** is on, the deactivation triggers the close flow immediately. If you want the door to stay open longer, increase **Pulse Time** on the button — but for "hold open" behaviour the timed variant (`TriggerOpenDoorTimed`) is the better tool.
+
+---
+
+## Step 4 — Add components to the button
+
+Select the `Button` root and add **WallButton**:
+
+| Field | Value |
+|---|---|
+| **Source Id** | Unique string, e.g. `button_corridor_01` |
+| **Interact From Adjacent Cell** | ✅ Enabled — buttons are typically on the wall of the adjacent cell, so the player interacts from their own cell across the edge |
+| **Targets** | Drag the `TriggerOpenDoor` (or `TriggerOpenDoorTimed`) component from the door root |
+| **Pulse Time** | 0.3 s default. Increase only if you want a longer open window with the immediate-close variant |
+| **Button Animator** | Drag the `Animator` from `ButtonMesh` |
+| **Press Anim Trigger** | `Press` |
+| **Release Anim Trigger** | `Release` |
+
+---
+
+## Step 5 — Export
+
+In the Dungeon Generator, click **Generate Unique IDs (all doors)** (if you haven't set IDs manually) then **Build Grid (Export JSON)**. The blocker ID written in the door root's `EdgeBlockerMarker` is what the JSON uses to register the door edge in the grid.
+
+---
+
+## Testing
+
+Press Play. Walk to the button cell (or the cell in front of it, since **Interact From Adjacent Cell** is on). Click the button. The button animates down, the door opens. For the timed variant, count to your close delay — the door closes once the timer expires and the doorway is clear. For the immediate variant, the door opens and closes in rapid succession (you'll see it open briefly).
+
+If the door opens but the button doesn't spring back, check that **Button Release Delay** on `TriggerOpenDoor` matches the length of your Close animation — the button won't release until after that delay.
+
+---
+
+## Summary of components
+
+| GameObject | Components |
+|---|---|
+| `Door_Button` (root) | `EdgeBlockerMarker`, `TriggerOpenDoor` or `TriggerOpenDoorTimed` |
+| `DoorMesh` (child) | `Animator` (Open/Close triggers, four states) |
+| `Button` (root) | `WallButton` |
+| `ButtonMesh` (child) | `Animator` (Press/Release triggers, two states) |
+
+---
+
+*CrawlerKIT — Mantis3de*

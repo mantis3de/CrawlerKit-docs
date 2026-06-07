@@ -1,127 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/api/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/api/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/architecture/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/architecture/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/changelog/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/changelog/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/faq/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/faq/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/editors/character-generator/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/editors/character-generator/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/editors/dungeon-generator/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/editors/dungeon-generator/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/editors/enemy-spawner/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/editors/enemy-spawner/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/editors/inventory-editor/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/editors/inventory-editor/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/editors/spell-editor/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/editors/spell-editor/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/getting-started/installation/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/getting-started/installation/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/getting-started/quick-start/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/getting-started/quick-start/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/door-types/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/door-types/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/dungeon-map/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/dungeon-map/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/music/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/music/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/party-bobbing/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/party-bobbing/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/party-fall-animation/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/party-fall-animation/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/party-input-handler/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/party-input-handler/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/party-look/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/party-look/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/party-visuals/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/party-visuals/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/save-system/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/save-system/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/setup-door-button/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/setup-door-button/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/setup-doors/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/setup-doors/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/setup-illusory-wall/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/setup-illusory-wall/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/setup-keyhole/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/setup-keyhole/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/setup-pressure-plate/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/setup-pressure-plate/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/setup-secret-wall/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/setup-secret-wall/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/setup-trapdoor/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/setup-trapdoor/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/trap-types/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/trap-types/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/triggers/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/triggers/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
     <url>
-         <loc>https://mantis3de.github.io/CrawlerKit/systems/wall-types/</loc>
+         <loc>https://mantis3de.github.io/Dungeon Crawler Framework/systems/wall-types/</loc>
          <lastmod>2026-06-07</lastmod>
     </url>
 </urlset>

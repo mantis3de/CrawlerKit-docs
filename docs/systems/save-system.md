@@ -6,10 +6,10 @@ The `SaveSystem` component writes the party, inventory, enemy and trigger state 
 
 ## Where saves are stored
 
-Save files live inside Unity's per-user persistent data folder, in a dedicated CrawlerKit sub-folder:
+Save files live inside Unity's per-user persistent data folder, in a dedicated Dungeon Crawler Framework sub-folder:
 
 ```
-<Application.persistentDataPath>/CrawlerKit/
+<Application.persistentDataPath>/Dungeon Crawler Framework/
     save_global.json          # which scene was last active
     save_<SceneName>.json      # one per visited scene
 ```
@@ -18,12 +18,12 @@ Save files live inside Unity's per-user persistent data folder, in a dedicated C
 
 | Platform | Location |
 |---|---|
-| **macOS** | `~/Library/Application Support/<Company>/<Product>/CrawlerKit/` |
+| **macOS** | `~/Library/Application Support/<Company>/<Product>/Dungeon Crawler Framework/` |
 | **Windows** | `C:\Users\<user>\AppData\LocalLow\<Company>\<Product>\CrawlerKit\` |
-| **Linux** | `~/.config/unity3d/<Company>/<Product>/CrawlerKit/` |
+| **Linux** | `~/.config/unity3d/<Company>/<Product>/Dungeon Crawler Framework/` |
 
 !!! note "Why a sub-folder?"
-    The `CrawlerKit/` sub-folder keeps the framework's saves grouped in one place instead of mixing them with whatever else your project writes to `persistentDataPath`. It also means the save location is the same on every machine that imports the asset, regardless of the host project's Company / Product names.
+    The `Dungeon Crawler Framework/` sub-folder keeps the framework's saves grouped in one place instead of mixing them with whatever else your project writes to `persistentDataPath`. It also means the save location is the same on every machine that imports the asset, regardless of the host project's Company / Product names.
 
 ---
 
@@ -33,7 +33,7 @@ The sub-folder name is a single constant in `SaveSystem`:
 
 ```csharp
 // CrawlerKitSaveSystem/Runtime/SaveSystem.cs
-public const string SaveFolderName = "CrawlerKit";
+public const string SaveFolderName = "Dungeon Crawler Framework";
 ```
 
 Rename it to brand the save location for your own game, or set it to an empty string (`""`) to save directly in `persistentDataPath` with no sub-folder. Every read, write and delete path goes through the shared `SaveSystem.SaveDirectory` property, so changing this one value moves the entire save system consistently — there is no second place to update.

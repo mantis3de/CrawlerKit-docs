@@ -1,4 +1,4 @@
-# CrawlerKIT — Enemy Spawner
+# Dungeon Crawler Framework — Enemy Spawner
 
 ## Overview
 
@@ -101,7 +101,7 @@ Each enemy's behavior is set in its EnemyData asset. The behavior pill in the En
 
 ## EnemyData asset reference
 
-EnemyData is a ScriptableObject that defines a creature type. Create one via `Assets → Create → CrawlerKit → Enemy Data`. Every EnemySpawner in the scene references one.
+EnemyData is a ScriptableObject that defines a creature type. Create one via `Assets → Create → Dungeon Crawler Framework → Enemy Data`. Every EnemySpawner in the scene references one.
 
 ### Identity
 
@@ -230,4 +230,4 @@ The Enemy Spawner takes you from an empty scene to a populated, loot-bearing dun
 
 ---
 
-*CrawlerKIT — Mantis3de*
+*Dungeon Crawler Framework — Mantis3de*

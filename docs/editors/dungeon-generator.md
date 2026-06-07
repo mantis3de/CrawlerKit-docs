@@ -1,8 +1,8 @@
-# CrawlerKIT — Dungeon Generator
+# Dungeon Crawler Framework — Dungeon Generator
 
 ## Overview
 
-The Dungeon Generator is one of the core tools in CrawlerKIT. You open it from Unity's top menu under **Window → CrawlerKit → Dungeon Generator**. It runs entirely inside the editor and has zero impact on game performance — all it does is generate a scene and bake everything into a single JSON file, which the runtime loads when the level starts.
+The Dungeon Generator is one of the core tools in Dungeon Crawler Framework. You open it from Unity's top menu under **Window → CrawlerKit → Dungeon Generator**. It runs entirely inside the editor and has zero impact on game performance — all it does is generate a scene and bake everything into a single JSON file, which the runtime loads when the level starts.
 
 In one sentence: it generates a dungeon procedurally, lets you edit it by hand, and then exports it to a JSON file your game uses at runtime.
 
@@ -95,7 +95,7 @@ The **Step 2: Build** panel has two helper toggles and the main Rebuild button. 
 
 Four panels manage your reusable content, all working the same way.
 
-The **Doors & Blockers** panel uses a **Door Library** ScriptableObject. You create it via `Create → CrawlerKit → Door Library` or the button in the panel. The library is a list of entries, each with a **Name** (for example "Iron Gate"), a **Prefab** and a **Description**. A green **+ ADD to scene** button next to each entry places the prefab under `[Generated] DungeonRoot → Doors`, where you move it into position beside a wall.
+The **Doors & Blockers** panel uses a **Door Library** ScriptableObject. You create it via `Create → Dungeon Crawler Framework → Door Library` or the button in the panel. The library is a list of entries, each with a **Name** (for example "Iron Gate"), a **Prefab** and a **Description**. A green **+ ADD to scene** button next to each entry places the prefab under `[Generated] DungeonRoot → Doors`, where you move it into position beside a wall.
 
 The **Trap Library** panel works identically for traps, placing them under `[Generated] DungeonRoot → Traps`. Each trap needs a **TrapMarker** component for the JSON export to register it and pass it to the runtime trigger system.
 
@@ -137,4 +137,4 @@ One tool takes you from an empty scene to a finished level, step by step, withou
 
 ---
 
-*CrawlerKIT — Mantis3de*
+*Dungeon Crawler Framework — Mantis3de*

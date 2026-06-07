@@ -1,4 +1,4 @@
-# CrawlerKIT — Character Generator
+# Dungeon Crawler Framework — Character Generator
 
 ## Overview
 
@@ -156,4 +156,4 @@ The Character Generator takes you from an empty project to a fully configured, p
 
 ---
 
-*CrawlerKIT — Mantis3de*
+*Dungeon Crawler Framework — Mantis3de*

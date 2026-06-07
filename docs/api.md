@@ -1,6 +1,6 @@
 # API Reference
 
-CrawlerKit is designed to be used through its visual editors, but every system also exposes a clean runtime API so you can extend or integrate it from your own code. This page covers the most useful public entry points.
+Dungeon Crawler Framework is designed to be used through its visual editors, but every system also exposes a clean runtime API so you can extend or integrate it from your own code. This page covers the most useful public entry points.
 
 !!! info "Namespaces"
     Core types live in `Mantis3de.CrawlerKit.Core`; module types live in `Mantis3de.CrawlerKit` and module-specific namespaces. Add an assembly reference to the relevant `Mantis3de.CrawlerKit.*` assembly from your own `.asmdef`.

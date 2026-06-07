@@ -1,0 +1,88 @@
+# FAQ
+
+Common questions from Asset Store customers. Can't find your answer? Reach out through your store account or the [GitHub repository](https://github.com/Mantis3de/Dungeon Crawler Framework).
+
+## Licensing & purchase
+
+??? question "What license does Dungeon Crawler Framework use?"
+    Dungeon Crawler Framework is covered by the standard **Unity Asset Store End User License Agreement (EULA)**. A single seat lets you use it in your own commercial and non-commercial games. You may not redistribute the source as a standalone asset.
+
+??? question "Can I use it in a commercial game?"
+    Yes. You can ship commercial titles built with Dungeon Crawler Framework. No royalties and no attribution are required (though attribution is always appreciated).
+
+??? question "Do I get future updates for free?"
+    Yes. Updates are delivered through the Asset Store. Re-download the latest version from **Package Manager → My Assets**. See the [Changelog](changelog.md) for what's new.
+
+??? question "Is there a refund policy?"
+    Refunds are handled by Unity under the Asset Store refund policy, not by the publisher. Try the included sample scene and this documentation first to make sure Dungeon Crawler Framework fits your project.
+
+## Technical requirements
+
+??? question "Which Unity versions are supported?"
+    Unity **2021.3 LTS or newer** (2022 LTS verified). See [Installation](getting-started/installation.md) for the full requirements table.
+
+??? question "Does it work with URP / HDRP / Built-in?"
+    Yes. Dungeon Crawler Framework ships logic and editor tooling, not pipeline-specific shaders, so it works across Built-in, URP and HDRP. You supply your own prefabs and materials for the visuals.
+
+??? question "Does it support mobile / console / WebGL?"
+    The framework uses standard Unity APIs with no platform-specific code, so it builds for any target Unity supports. Performance depends on your own art and scene complexity. Desktop is the verified target.
+
+??? question "Is the C# source code included?"
+    Yes. Dungeon Crawler Framework ships with full, readable C# source organised into modules and assembly definitions. Nothing is locked in a DLL.
+
+## Using the framework
+
+??? question "Do I need to know how to code?"
+    No. The five visual editors — Character Generator, Dungeon Generator, Inventory Editor, Spell Editor and Enemy Spawner — let you build complete content without scripting. Coding is only needed if you want to extend the systems, and the [API Reference](api.md) covers that.
+
+??? question "How do I make my first dungeon?"
+    Follow the [Getting Started in 5 Minutes](getting-started/quick-start.md) guide. It walks you from import to a playable room with a party, an enemy and loot.
+
+??? question "Can I use my own 3D models, sprites and art?"
+    Absolutely — that's the intended workflow. You drag your own wall, floor, stair, item, portrait and enemy prefabs/sprites into the editors. Dungeon Crawler Framework handles the logic and placement.
+
+??? question "Can I change the number of party members?"
+    The Character Generator is built around a classic four-member party (Front Left, Front Right, Back Left, Back Right). The party data is ScriptableObject-based, so the layout is consistent across the framework; changing the count requires source modifications.
+
+??? question "How is dungeon data stored? Is generation done at runtime?"
+    Dungeons are generated and edited entirely in the editor, then baked to a single `GridData_<SceneName>.json` file in a `Resources` folder. At runtime the level is simply loaded from that JSON, so there is **no procedural generation cost** in the shipped game. See [Architecture](architecture.md).
+
+??? question "How do the editors talk to the runtime?"
+    Editors produce ScriptableObjects (and one JSON per level). At runtime, systems load that data and find each other through the `CrawlerServices` service locator. There are no hard cross-module references, so modules stay independent.
+
+??? question "Can I use only part of the framework — say, just the Dungeon Generator?"
+    The modules (Party, Grid, Inventory, Magic, Enemies, Triggers, Save System) are separate assemblies built on a shared Core. They are designed to work together, but you can lean on the parts you need. Core is always required.
+
+## Saving, loot and enemies
+
+??? question "Is there a save/load system?"
+    Yes. The Save System persists party, enemy and grid state. Any component can participate by implementing `ISaveable` and registering with `ISaveSystem` — see the [API Reference](api.md).
+
+??? question "How does loot work?"
+    You author **loot tables** in the [Inventory Editor](editors/inventory-editor.md) with weighted entries and three roll modes (Pick One, Pick N, Roll All), then assign them to enemies via drag-and-drop in the [Enemy Spawner](editors/enemy-spawner.md). A built-in simulator lets you test drops without entering Play mode.
+
+??? question "Can enemies respawn or patrol?"
+    Yes. The `EnemySpawner` component supports a respawn delay, an initial spawn delay, and patrol routes with **Loop** or **PingPong** modes. See the [Enemy Spawner](editors/enemy-spawner.md) page.
+
+## Troubleshooting
+
+??? question "The @@@ menu doesn't appear."
+    The framework probably hasn't compiled. Check the Console for errors, confirm your Unity version meets the [requirements](getting-started/installation.md), and let Unity finish importing. Reimporting the package usually resolves it.
+
+??? question "The Dungeon Generator warns there's no GridCoreBridge / Cell Size."
+    Cell size is read from the **GridCoreBridge** component in your scene — that's the single source of truth. Add it to your scene (the sample scene shows the setup) and the warning clears.
+
+??? question "My level won't load at runtime."
+    Make sure you clicked **Build Grid (Export JSON)** in the Dungeon Generator and that the resulting `GridData_<SceneName>.json` is in a `Resources` folder. Also run **Generate Unique IDs** for doors, traps and walls before exporting so triggers wire up correctly.
+
+??? question "Some world items disappear the moment I press Play."
+    That is the save system doing its job: items you picked up in a previous session are stored in the level save and hidden on load. While designing a level this is usually unwanted. Select the **SaveSystem** in your scene and leave **Auto Load Save In Editor** (under the *Editor* section) **off** — pressing Play then keeps the scene in its authored state, so every item shows. Builds and the in-game Load / Continue flow still load saves normally. (If you instead want a clean slate everywhere, delete the `save_<SceneName>.json` file from the project's persistent data path.)
+
+??? question "I duplicated an item but its copies vanish at runtime."
+    Older duplicates could share the same `uniqueId` (Ctrl+D and prefab instances copy the serialized value), and the save system hides every item whose id was previously collected — so the copies disappeared. `WorldItem` now guarantees a unique id per object at startup, so this no longer happens. If you still see it, you are most likely looking at the save-load behavior above — turn off **Auto Load Save In Editor**.
+
+??? question "My stackable item won't stack / the quantity number never shows."
+    Check the item's **Max Stack** in the [Inventory Editor](editors/inventory-editor.md). A `stackable` item with `Max Stack = 1` can never merge, so each pickup takes its own slot and the count stays at 1. Set Max Stack to the limit you want (e.g. 99). New builds keep the two fields consistent automatically — ticking **Stackable** raises Max Stack to at least 2. The count badge appears in the slot's bottom-right corner once a slot holds more than one.
+
+??? question "How do I split a stack — take just one item off it?"
+    Left-click a stacked backpack slot. A single unit is lifted onto the cursor and the rest stay in the slot with the count reduced by one. Click again to peel another. Place the held item on an empty slot to drop it, or click a same-type stack to return it.

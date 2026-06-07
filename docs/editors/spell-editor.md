@@ -1,4 +1,4 @@
-# CrawlerKIT — Spell Editor
+# Dungeon Crawler Framework — Spell Editor
 
 ## Overview
 
@@ -117,4 +117,4 @@ The Spell Editor takes you from zero to a fully functional magic system — rune
 
 ---
 
-*CrawlerKIT — Mantis3de*
+*Dungeon Crawler Framework — Mantis3de*

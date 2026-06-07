@@ -12,7 +12,7 @@
         <meta name="author" content="Mantis3de">
       
       
-        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/getting-started/installation/">
+        <link rel="canonical" href="https://mantis3de.github.io/Dungeon Crawler Framework/getting-started/installation/">
       
       
         <link rel="prev" href="../..">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Installation - CrawlerKit Documentation</title>
+        <title>Installation - Dungeon Crawler Framework Documentation</title>
       
     
     
@@ -98,7 +98,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="CrawlerKit Documentation" class="md-header__button md-logo" aria-label="CrawlerKit Documentation" data-md-component="logo">
+    <a href="../.." title="Dungeon Crawler Framework Documentation" class="md-header__button md-logo" aria-label="Dungeon Crawler Framework Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +112,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            CrawlerKit Documentation
+            Dungeon Crawler Framework Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -413,13 +413,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="CrawlerKit Documentation" class="md-nav__button md-logo" aria-label="CrawlerKit Documentation" data-md-component="logo">
+    <a href="../.." title="Dungeon Crawler Framework Documentation" class="md-nav__button md-logo" aria-label="Dungeon Crawler Framework Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    CrawlerKit Documentation
+    Dungeon Crawler Framework Documentation
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1988,7 +1988,7 @@
 
 
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
-<p>This page walks you through installing CrawlerKit into a Unity project and verifying the setup.</p>
+<p>This page walks you through installing Dungeon Crawler Framework into a Unity project and verifying the setup.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2034,17 +2034,17 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Package Manager dependencies</p>
-<p>CrawlerKit relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.</p>
+<p>Dungeon Crawler Framework relies on Unity Package Manager packages (URP, UGUI, TextMeshPro, Input System). These are automatically resolved by Unity during import and are not included in the asset.</p>
 </div>
 <h2 id="create-a-urp-project">Create a URP project<a class="headerlink" href="#create-a-urp-project" title="Permanent link">&para;</a></h2>
-<p>CrawlerKit is built for the <strong>Universal Render Pipeline</strong>. Before importing the asset, make sure your Unity project uses URP:</p>
+<p>Dungeon Crawler Framework is built for the <strong>Universal Render Pipeline</strong>. Before importing the asset, make sure your Unity project uses URP:</p>
 <ul>
 <li>When creating a new project in Unity Hub, choose the <strong>3D (URP)</strong> template.</li>
 <li>If your project already exists but uses the Built-in pipeline, you will need to convert it — see Unity's official <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html">URP migration guide</a> before continuing.</li>
 </ul>
-<p>Once the project is open, create an empty scene (<code>File → New Scene → Basic (URP)</code>) and save it as your starting point. This ensures the camera and lighting are configured correctly for URP before you wire up CrawlerKit.</p>
+<p>Once the project is open, create an empty scene (<code>File → New Scene → Basic (URP)</code>) and save it as your starting point. This ensures the camera and lighting are configured correctly for URP before you wire up Dungeon Crawler Framework.</p>
 <h2 id="install-the-input-system-package">Install the Input System package<a class="headerlink" href="#install-the-input-system-package" title="Permanent link">&para;</a></h2>
-<p>CrawlerKit requires Unity's <strong>New Input System</strong> package. If it is not already installed:</p>
+<p>Dungeon Crawler Framework requires Unity's <strong>New Input System</strong> package. If it is not already installed:</p>
 <ol>
 <li>Open <strong>Window → Package Manager</strong>.</li>
 <li>Switch the source dropdown to <strong>Unity Registry</strong>.</li>
@@ -2054,13 +2054,13 @@
 <p>After the restart, open <strong>Edit → Project Settings → Player → Other Settings</strong> and find <strong>Active Input Handling</strong>. Set it to <strong>Both</strong> so that legacy <code>UnityEngine.Input</code> calls (used by some Unity UI components) continue to work alongside the new Input System.</p>
 <div class="admonition warning">
 <p class="admonition-title">Active Input Handling</p>
-<p>If you leave this set to <strong>Input System Package (New)</strong> only, certain Unity UI drag-and-drop interactions may stop working. <strong>Both</strong> is the recommended setting for CrawlerKit projects.</p>
+<p>If you leave this set to <strong>Input System Package (New)</strong> only, certain Unity UI drag-and-drop interactions may stop working. <strong>Both</strong> is the recommended setting for Dungeon Crawler Framework projects.</p>
 </div>
 <h2 id="install-from-the-unity-asset-store">Install from the Unity Asset Store<a class="headerlink" href="#install-from-the-unity-asset-store" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open the <strong>Package Manager</strong> (<code>Window → Package Manager</code>).</li>
 <li>Switch the source dropdown to <strong>My Assets</strong>.</li>
-<li>Find <strong>CrawlerKit</strong>, click <strong>Download</strong>, then <strong>Import</strong>.</li>
+<li>Find <strong>Dungeon Crawler Framework</strong>, click <strong>Download</strong>, then <strong>Import</strong>.</li>
 <li>Leave all files checked and confirm the import.</li>
 </ol>
 <h2 id="install-from-a-unitypackage">Install from a <code>.unitypackage</code><a class="headerlink" href="#install-from-a-unitypackage" title="Permanent link">&para;</a></h2>
@@ -2070,7 +2070,7 @@
 <li>Leave everything checked and click <strong>Import</strong>.</li>
 </ol>
 <h2 id="what-gets-imported">What gets imported<a class="headerlink" href="#what-gets-imported" title="Permanent link">&para;</a></h2>
-<p>CrawlerKit installs under <code>Assets/CrawlerKitFramework/</code>, organised into modules:</p>
+<p>Dungeon Crawler Framework installs under <code>Assets/CrawlerKitFramework/</code>, organised into modules:</p>
 <table>
 <thead>
 <tr>
@@ -2124,7 +2124,7 @@
 </ul>
 <p>If the menu appears, the framework compiled successfully and you are ready to go.</p>
 <h2 id="add-scenes-to-build-settings">Add scenes to Build Settings<a class="headerlink" href="#add-scenes-to-build-settings" title="Permanent link">&para;</a></h2>
-<p>Level transitions between scenes only work if Unity knows about all the scenes. After importing CrawlerKit:</p>
+<p>Level transitions between scenes only work if Unity knows about all the scenes. After importing Dungeon Crawler Framework:</p>
 <ol>
 <li>Open <strong>File → Build Settings</strong>.</li>
 <li>Click <strong>Add Open Scenes</strong> or drag the following scenes from the Project window into the <strong>Scenes In Build</strong> list, in this order:<ul>
@@ -2225,7 +2225,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; Mantis3de — CrawlerKit
+      Copyright &copy; Mantis3de — Dungeon Crawler Framework
     </div>
   
   
@@ -2238,7 +2238,7 @@
     
     
     
-    <a href="https://github.com/Mantis3de/CrawlerKit-docs" target="_blank" rel="noopener" title="CrawlerKit on GitHub" class="md-social__link">
+    <a href="https://github.com/Mantis3de/CrawlerKit-docs" target="_blank" rel="noopener" title="Dungeon Crawler Framework on GitHub" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
