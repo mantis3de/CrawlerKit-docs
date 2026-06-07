@@ -658,10 +658,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#add-scenes-to-build-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add scenes to Build Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#open-the-sample-scene" class="md-nav__link">
     <span class="md-ellipsis">
       
         Open the sample scene
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expected-console-warnings-after-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected console warnings after import
       
     </span>
   </a>
@@ -1875,10 +1897,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#add-scenes-to-build-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add scenes to Build Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#open-the-sample-scene" class="md-nav__link">
     <span class="md-ellipsis">
       
         Open the sample scene
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expected-console-warnings-after-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected console warnings after import
       
     </span>
   </a>
@@ -2049,8 +2093,31 @@
 <li>CrawlerKit → Enemy Spawner</li>
 </ul>
 <p>If the menu appears, the framework compiled successfully and you are ready to go.</p>
+<h2 id="add-scenes-to-build-settings">Add scenes to Build Settings<a class="headerlink" href="#add-scenes-to-build-settings" title="Permanent link">&para;</a></h2>
+<p>Level transitions between scenes only work if Unity knows about all the scenes. After importing CrawlerKit:</p>
+<ol>
+<li>Open <strong>File → Build Settings</strong>.</li>
+<li>Click <strong>Add Open Scenes</strong> or drag the following scenes from the Project window into the <strong>Scenes In Build</strong> list, in this order:<ul>
+<li><code>Assets/CrawlerKitFramework/Scenes/MainMenu</code></li>
+<li><code>Assets/CrawlerKitFramework/Scenes/Level_01</code></li>
+<li><code>Assets/CrawlerKitFramework/Scenes/Level_02</code></li>
+</ul>
+</li>
+<li>Close Build Settings.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">MainMenu must be index 0</p>
+<p>Unity loads scenes by their build index. Make sure <strong>MainMenu</strong> is at the top of the list (index 0) — this is the required entry point. Starting play from any other scene may result in missing references or broken transitions.</p>
+</div>
 <h2 id="open-the-sample-scene">Open the sample scene<a class="headerlink" href="#open-the-sample-scene" title="Permanent link">&para;</a></h2>
-<p>A sample scene is included to show a working setup with a grid, party and UI wired together. To run it, open <code>Assets/CrawlerKitFramework/Scenes/MainMenu</code> and press <strong>Play</strong> — this is the correct entry point for the project. Starting from any other scene may result in missing references or an incomplete setup.</p>
+<p>To try the demo, open <code>Assets/CrawlerKitFramework/Scenes/MainMenu</code> and press <strong>Play</strong>. All three scenes must be in Build Settings (see above) for level transitions to work correctly.</p>
+<h2 id="expected-console-warnings-after-import">Expected console warnings after import<a class="headerlink" href="#expected-console-warnings-after-import" title="Permanent link">&para;</a></h2>
+<p>When you first press Play, the Console will show warnings from <code>MusicManager</code> like:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[MusicManager] State &#39;Menu&#39; has no valid AudioClip assigned in MusicStateData.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>[MusicManager] State &#39;Exploration&#39; has no valid AudioClip assigned in MusicStateData.
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[MusicManager] State &#39;Combat&#39; has no valid AudioClip assigned in MusicStateData.
+</span></code></pre></div>
+<p>This is normal — no music clips are assigned yet. The warning fires when a <code>MusicStateData</code> slot is assigned but contains no <code>AudioClip</code>. To silence the warnings, assign your own audio clips to <strong>Menu Music</strong>, <strong>Exploration Music</strong>, and <strong>Combat Music</strong> on the <code>MusicManager</code> in the MainMenu scene (see <a href="../quick-start/#minute-5-export-and-play">Quick Start — Minute 5</a>). Setting a slot to <strong>None</strong> entirely will also stop the warning for that state — the system will simply play nothing.</p>
 <h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
 <p>Continue to the <a href="../quick-start/">5-minute Quick Start</a> to build your first playable room.</p>
 

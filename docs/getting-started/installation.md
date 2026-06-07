@@ -83,9 +83,35 @@ After import, open the Unity top menu. You should see a **CrawlerKit** menu with
 
 If the menu appears, the framework compiled successfully and you are ready to go.
 
+## Add scenes to Build Settings
+
+Level transitions between scenes only work if Unity knows about all the scenes. After importing CrawlerKit:
+
+1. Open **File → Build Settings**.
+2. Click **Add Open Scenes** or drag the following scenes from the Project window into the **Scenes In Build** list, in this order:
+    - `Assets/CrawlerKitFramework/Scenes/MainMenu`
+    - `Assets/CrawlerKitFramework/Scenes/Level_01`
+    - `Assets/CrawlerKitFramework/Scenes/Level_02`
+3. Close Build Settings.
+
+!!! warning "MainMenu must be index 0"
+    Unity loads scenes by their build index. Make sure **MainMenu** is at the top of the list (index 0) — this is the required entry point. Starting play from any other scene may result in missing references or broken transitions.
+
 ## Open the sample scene
 
-A sample scene is included to show a working setup with a grid, party and UI wired together. To run it, open `Assets/CrawlerKitFramework/Scenes/MainMenu` and press **Play** — this is the correct entry point for the project. Starting from any other scene may result in missing references or an incomplete setup.
+To try the demo, open `Assets/CrawlerKitFramework/Scenes/MainMenu` and press **Play**. All three scenes must be in Build Settings (see above) for level transitions to work correctly.
+
+## Expected console warnings after import
+
+When you first press Play, the Console will show warnings from `MusicManager` like:
+
+```
+[MusicManager] State 'Menu' has no valid AudioClip assigned in MusicStateData.
+[MusicManager] State 'Exploration' has no valid AudioClip assigned in MusicStateData.
+[MusicManager] State 'Combat' has no valid AudioClip assigned in MusicStateData.
+```
+
+This is normal — no music clips are assigned yet. The warning fires when a `MusicStateData` slot is assigned but contains no `AudioClip`. To silence the warnings, assign your own audio clips to **Menu Music**, **Exploration Music**, and **Combat Music** on the `MusicManager` in the MainMenu scene (see [Quick Start — Minute 5](quick-start.md#minute-5-export-and-play)). Setting a slot to **None** entirely will also stop the warning for that state — the system will simply play nothing.
 
 ## Next step
 
