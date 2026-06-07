@@ -2541,7 +2541,8 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Sound-before-activate ordering</p>
-<p>All built-in sources (WallButton, WallLever, WallChain, WallKeyhole, WallAlcove, WallMultiSwitch, PressurePlate) play the interact sound first, then wait for the clip to finish before notifying targets. This prevents the door's open sound from immediately drowning out the trigger sound. If <strong>Interact Sound</strong> is empty the activation fires on the same frame as usual.</p>
+<p>All built-in sources (WallButton, WallLever, WallChain, WallKeyhole, WallMultiSwitch, PressurePlate) play the interact sound first, then wait for the clip to finish before notifying targets. This prevents the door's open sound from immediately drowning out the trigger sound. If <strong>Interact Sound</strong> is empty the activation fires on the same frame as usual.</p>
+<p><code>WallAlcove</code> follows the same "sound before activate" idea but with its own <strong>Item Placed Sound</strong> / <strong>Item Removed Sound</strong> clips instead of the generic <strong>Interact Sound</strong> — see <a href="#wall-alcove-wallalcove">Wall Alcove</a> below.</p>
 </div>
 <h3 id="triggertarget">TriggerTarget<a class="headerlink" href="#triggertarget" title="Permanent link">&para;</a></h3>
 <p><code>TriggerTarget</code> is the base class for every reactive object. It receives <code>OnTriggered</code> / <code>OnReleased</code> calls from its source and acts accordingly. Targets never know which source fired them — they simply respond to activate and deactivate events.</p>
@@ -2613,6 +2614,34 @@
 <p>Functionally identical to <code>WallLever</code> (a toggle) but styled as a pull-chain. Use whichever fits the visual theme of the dungeon.</p>
 <h3 id="wall-alcove-wallalcove">Wall Alcove — <code>WallAlcove</code><a class="headerlink" href="#wall-alcove-wallalcove" title="Permanent link">&para;</a></h3>
 <p>A wall recess that holds an item. The player interacts with it by having an item on the cursor (to place) or by clicking when the alcove already holds an item (to retrieve). When an item is placed into an alcove that is connected to targets, those targets are activated; when the item is removed they are deactivated. Use this for item-based puzzles — place the correct amulet in the alcove to open a door.</p>
+<div class="admonition note">
+<p class="admonition-title">Alcove sounds are separate from the generic Interact Sound</p>
+<p>Unlike the other sources on this page, <code>WallAlcove</code> does <strong>not</strong> play the base <code>TriggerSource</code> <strong>Interact Sound</strong> when an item is placed or taken. Instead it exposes its own dedicated audio fields so placing and removing can sound different from each other:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Item Placed Sound</strong></td>
+<td>Audio clip played when an item is placed into the alcove. Leave empty for no sound.</td>
+</tr>
+<tr>
+<td><strong>Item Removed Sound</strong></td>
+<td>Audio clip played when an item is taken out of the alcove. Leave empty for no sound.</td>
+</tr>
+<tr>
+<td><strong>Item Sound Volume</strong></td>
+<td>Volume (0–1) shared by both of the sounds above.</td>
+</tr>
+</tbody>
+</table>
+<p>Both clips play as 3D positional audio at the alcove's world position (<code>AudioSource.PlayClipAtPoint</code>), and — mirroring the sound-before-activate ordering used elsewhere — the alcove waits for the clip to finish before activating/deactivating its connected targets.</p>
+<p><strong>Generate Alcove Prefab</strong> wires these up automatically: set <strong>Alcove Placed Sound</strong> / <strong>Alcove Removed Sound</strong> (and <strong>Item Sound Volume</strong>) in the item's Audio section in the Inventory editor, and they're copied onto the generated <code>WallAlcove</code> component's Item Placed/Removed Sound fields.</p>
+</div>
 <h3 id="wall-keyhole-wallkeyhole">Wall Keyhole — <code>WallKeyhole</code><a class="headerlink" href="#wall-keyhole-wallkeyhole" title="Permanent link">&para;</a></h3>
 <p>A keyhole that accepts a specific item from the cursor as a key. When the correct key is inserted the targets activate. The key is consumed in the process. Unlike other sources, the keyhole always requires the player to be on the <strong>same cell</strong> — the <strong>Interact From Adjacent Cell</strong> setting has no effect on keyholes.</p>
 <p>Configure which item acts as the key via <strong>DoorKeyholeSetup</strong>, a companion component that links the keyhole to a specific <code>ItemData</code> asset.</p>

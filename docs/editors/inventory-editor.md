@@ -55,16 +55,21 @@ Add Grimrock-style modifiers that apply while the item is equipped. Click **+ Ad
 
 ### Audio
 
-Four optional AudioClip slots control when sounds are played for this item, plus a single **Item Sound Volume** slider (0–1) that applies to all of them.
+A set of optional AudioClip slots control when sounds are played for this item, plus a single **Item Sound Volume** slider (0–1) that applies to all of them.
 
 | Field | When it plays |
 |---|---|
 | **Attack Sound** | When the player attacks with this weapon. If left empty, the hand slot's fallback swing sound is used instead. |
-| **Equip Sound** | When the item is dragged from the cursor into a hand slot. |
-| **Pickup Sound** | When the item is picked up from the dungeon floor. |
-| **Drop Sound** | When the item is unequipped from a hand slot back onto the cursor. |
+| **Equip Sound** | When the item is placed into any slot — hand slot or equipment slot (helmet, armor, etc.). |
+| **Unequip Sound** | When the item is removed from any slot back onto the cursor. |
+| **Floor Pickup Sound** | When the item is picked up from the dungeon floor. |
+| **Floor Drop Sound** | When the item is dropped from the cursor onto the dungeon floor. |
+| **Alcove Placed Sound** | When the item is placed into a Wall Alcove. |
+| **Alcove Removed Sound** | When the item is taken back out of a Wall Alcove. |
 
-All sounds play at the camera position (2D, no distance falloff) — they are player-action sounds, not world-space effects.
+The first five (Attack/Equip/Unequip/Floor Pickup/Floor Drop) play at the camera position (2D, no distance falloff) — they are player-action sounds, not world-space effects.
+
+The two **Alcove** sounds are different: they aren't played directly by the item — instead, **Generate Alcove Prefab** copies them (together with **Item Sound Volume**) onto the generated `WallAlcove` component's **Item Placed Sound** / **Item Removed Sound** / **Item Sound Volume** fields, where they play as 3D positional audio at the alcove's world position. See [Wall Alcove](../systems/triggers.md#wall-alcove-wallalcove) for details. Leave either clip empty for no sound.
 
 ### Class Restrictions
 

@@ -24,7 +24,9 @@ Sources and targets are connected by direct `TriggerTarget` references set in th
 | **Interact Sound 2D** | When enabled, the sound plays as a flat 2D clip with no spatial falloff — equally audible regardless of distance or position. Useful for UI-like triggers (wall buttons, chains) where 3D positioning would make the sound feel too quiet when standing close to a wall. When disabled (default), the sound plays at the trigger's world position as a 3D positional clip. |
 
 !!! note "Sound-before-activate ordering"
-    All built-in sources (WallButton, WallLever, WallChain, WallKeyhole, WallAlcove, WallMultiSwitch, PressurePlate) play the interact sound first, then wait for the clip to finish before notifying targets. This prevents the door's open sound from immediately drowning out the trigger sound. If **Interact Sound** is empty the activation fires on the same frame as usual.
+    All built-in sources (WallButton, WallLever, WallChain, WallKeyhole, WallMultiSwitch, PressurePlate) play the interact sound first, then wait for the clip to finish before notifying targets. This prevents the door's open sound from immediately drowning out the trigger sound. If **Interact Sound** is empty the activation fires on the same frame as usual.
+
+    `WallAlcove` follows the same "sound before activate" idea but with its own **Item Placed Sound** / **Item Removed Sound** clips instead of the generic **Interact Sound** — see [Wall Alcove](#wall-alcove-wallalcove) below.
 
 ### TriggerTarget
 
@@ -78,6 +80,19 @@ Functionally identical to `WallLever` (a toggle) but styled as a pull-chain. Use
 ### Wall Alcove — `WallAlcove`
 
 A wall recess that holds an item. The player interacts with it by having an item on the cursor (to place) or by clicking when the alcove already holds an item (to retrieve). When an item is placed into an alcove that is connected to targets, those targets are activated; when the item is removed they are deactivated. Use this for item-based puzzles — place the correct amulet in the alcove to open a door.
+
+!!! note "Alcove sounds are separate from the generic Interact Sound"
+    Unlike the other sources on this page, `WallAlcove` does **not** play the base `TriggerSource` **Interact Sound** when an item is placed or taken. Instead it exposes its own dedicated audio fields so placing and removing can sound different from each other:
+
+    | Field | Description |
+    |---|---|
+    | **Item Placed Sound** | Audio clip played when an item is placed into the alcove. Leave empty for no sound. |
+    | **Item Removed Sound** | Audio clip played when an item is taken out of the alcove. Leave empty for no sound. |
+    | **Item Sound Volume** | Volume (0–1) shared by both of the sounds above. |
+
+    Both clips play as 3D positional audio at the alcove's world position (`AudioSource.PlayClipAtPoint`), and — mirroring the sound-before-activate ordering used elsewhere — the alcove waits for the clip to finish before activating/deactivating its connected targets.
+
+    **Generate Alcove Prefab** wires these up automatically: set **Alcove Placed Sound** / **Alcove Removed Sound** (and **Item Sound Volume**) in the item's Audio section in the Inventory editor, and they're copied onto the generated `WallAlcove` component's Item Placed/Removed Sound fields.
 
 ### Wall Keyhole — `WallKeyhole`
 
