@@ -26,7 +26,7 @@ Youtube tutorials:
 6. Click **💾 Generate Party Assets**.
 
 !!! tip "Starting fresh or updating an existing party"
-    If you already have a party from a previous session, you have two options: click **Clear All** to wipe everything and start from scratch, or simply click **Generate Party Assets** again to overwrite the existing assets in place. The existing characters you see come from the demo scene and can be safely deleted.
+    If you already have a party from a previous session, you have two options: click **Clear All** to wipe everything and start from scratch, or simply click **Generate Party Assets** again to overwrite the existing assets in place. The default party characters come from the demo scene — feel free to delete them.
 
 Four `Member_*.asset` files are created in `CrawlerKitParty/Resources/PartyMembers`. The PartyUI loads them automatically at runtime.
 
