@@ -1938,8 +1938,18 @@
 <ol>
 <li>Back in the <strong>Dungeon Generator</strong>, click <strong>Generate Unique IDs</strong> for doors, traps and walls.</li>
 <li>Click <strong>Build Grid (Export JSON)</strong> — the level is written to <code>Resources/GridData_&lt;SceneName&gt;.json</code>.</li>
-<li>Press <strong>Play</strong>.</li>
+<li>Find the <strong>MusicManager</strong> in the scene hierarchy and assign your audio clips:<ul>
+<li><strong>Menu Music</strong> — music played on the main menu.</li>
+<li><strong>Exploration Music</strong> — music played while exploring the dungeon.</li>
+<li><strong>Combat Music</strong> — music that kicks in during combat.</li>
+</ul>
+</li>
+<li>Press <strong>Play</strong> — but see the note below first.</li>
 </ol>
+<div class="admonition warning">
+<p class="admonition-title">Run from the MainMenu scene</p>
+<p>Level transitions (stairs, teleporters, scene changes) only work correctly when you start play from the <strong>MainMenu</strong> scene. If you press Play from a dungeon scene directly, transitions will not function. Add <code>MainMenu</code> as the first scene in <strong>File → Build Settings</strong> and always use it as your entry point.</p>
+</div>
 <p>You now have a first-person party exploring a dungeon room with an enemy and loot — built entirely without code.</p>
 <hr />
 <h2 id="where-to-go-next">Where to go next<a class="headerlink" href="#where-to-go-next" title="Permanent link">&para;</a></h2>
