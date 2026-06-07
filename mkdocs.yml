@@ -111,6 +111,7 @@ nav:
       - Trigger System: systems/triggers.md
       - Music System: systems/music.md
       - Dungeon Map: systems/dungeon-map.md
+      - Save System: systems/save-system.md
       - Party:
           - Party Visuals: systems/party-visuals.md
           - Party Bobbing: systems/party-bobbing.md

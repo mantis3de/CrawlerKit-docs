@@ -800,6 +800,8 @@
       
         
       
+        
+      
     
     
     
@@ -935,6 +937,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../systems/save-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Save System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -961,10 +991,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
             
   
   
@@ -982,8 +1012,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1183,10 +1213,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
             
   
   
@@ -1204,8 +1234,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1891,6 +1921,8 @@
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
+<li><strong>Dedicated save folder</strong> — <code>SaveSystem</code> now writes all <code>save_*.json</code> files into a <code>CrawlerKit/</code> sub-folder of <code>Application.persistentDataPath</code> instead of the bare persistent data directory. The folder name is a single constant, <code>SaveSystem.SaveFolderName</code> (set to <code>""</code> to disable the sub-folder), and every read / write / delete path resolves through the shared <code>SaveSystem.SaveDirectory</code>, so the location stays consistent across the asset. See <a href="../systems/save-system/">Save System</a>.</li>
+<li><strong>Loading screen image</strong> — the load/continue overlay (<code>LoadingFadeOverlay</code>) now shows a <code>loading.png</code> sprite (loaded from any <code>Resources</code> folder) centered and aspect-preserved over the black background, fading out as one unit via a <code>CanvasGroup</code> once the scene is ready. Previously the boot overlay was a plain black screen, so the loading image only appeared on stairs transitions, not at game start. Falls back to plain black if the sprite is missing.</li>
 <li><strong>Party Fall Animation</strong> — new <code>PartyFallAnimation</code> component on the party root. When the party falls into a trapdoor or a plain pit, the rig accelerates downward (≈2 s) with a camera tumble and a scream/fall sound, and the game-over screen appears only <em>after</em> the drop. Waits for the party to reach the cell center before dropping, drops a <code>.mp3</code> straight into a <strong>Fall Sound</strong> field (no AudioSource wiring), and handles bare pits automatically via <strong>Handle Plain Pits</strong>. See <a href="../systems/party-fall-animation/">Party Fall Animation</a>.</li>
 <li><strong>Trapdoor open/close sounds</strong> — <code>TrapDoorTrap</code> has an <strong>Audio</strong> section with <strong>Open Sound</strong> and <strong>Close Sound</strong> mp3 fields (auto AudioSource) plus a shared <strong>Sound Volume</strong>, and a new <strong>On Trap Opened</strong> event that fires when the hatch opens regardless of who is standing on it.</li>
 <li><strong>Trapdoor fall-animation sync</strong> — <code>TrapDoorTrap</code> has a new <strong>Damage Delay For Fall Anim</strong> field that holds the (possibly lethal) damage back until the fall animation has played, so the game-over menu no longer freezes the drop on frame one.</li>

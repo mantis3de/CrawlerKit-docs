@@ -12,13 +12,13 @@
         <meta name="author" content="Mantis3de">
       
       
-        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/systems/party-bobbing/">
+        <link rel="canonical" href="https://mantis3de.github.io/CrawlerKit/systems/save-system/">
       
       
-        <link rel="prev" href="../party-visuals/">
+        <link rel="prev" href="../dungeon-map/">
       
       
-        <link rel="next" href="../party-look/">
+        <link rel="next" href="../party-visuals/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Party Bobbing - CrawlerKit Documentation</title>
+        <title>Save System - CrawlerKit Documentation</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#party-bobbing" class="md-skip">
+        <a href="#save-system" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Party Bobbing
+              Save System
             
           </span>
         </div>
@@ -942,10 +942,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../save-system/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Save System
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -961,6 +988,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#where-saves-are-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where saves are stored
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-the-folder-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing the folder name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editor-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editor behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -970,8 +1061,6 @@
                 
   
   
-    
-  
   
   
     
@@ -999,11 +1088,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
         
           
           <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
@@ -1024,7 +1113,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1067,37 +1156,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Party Bobbing
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../party-bobbing/" class="md-nav__link">
         
   
   
@@ -1113,109 +1175,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#inspector-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Inspector reference
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Inspector reference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bobbing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bobbing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#camera" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Camera
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#behaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Behaviour
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#relationship-to-partyvisuals-step-bob" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Relationship to PartyVisuals step-bob
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Troubleshooting
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1820,10 +1779,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#where-saves-are-stored" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        Where saves are stored
       
     </span>
   </a>
@@ -1831,49 +1790,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#inspector-reference" class="md-nav__link">
+  <a href="#changing-the-folder-name" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Inspector reference
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Inspector reference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bobbing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bobbing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#camera" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Camera
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#behaviour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Behaviour
+        Changing the folder name
       
     </span>
   </a>
@@ -1881,10 +1801,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#relationship-to-partyvisuals-step-bob" class="md-nav__link">
+  <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Relationship to PartyVisuals step-bob
+        API reference
       
     </span>
   </a>
@@ -1892,10 +1812,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#editor-behaviour" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting
+        Editor behaviour
       
     </span>
   </a>
@@ -1919,93 +1839,88 @@
 
 
 
-<h1 id="party-bobbing">Party Bobbing<a class="headerlink" href="#party-bobbing" title="Permanent link">&para;</a></h1>
-<p><code>PartyBobbing</code> adds a <strong>continuous sinusoidal camera bob</strong> while the party is walking. Unlike the one-shot step-bob built into <code>PartyVisuals</code>, this effect runs every frame the party is animating — giving the camera a smooth, rhythmic up-and-down sway that sells the feeling of walking through a dungeon.</p>
-<p>When the party stops, the camera smoothly returns to its rest position.</p>
-<p>Requires <code>PartyVisuals</code> on the same GameObject.</p>
+<h1 id="save-system">Save System<a class="headerlink" href="#save-system" title="Permanent link">&para;</a></h1>
+<p>The <code>SaveSystem</code> component writes the party, inventory, enemy and trigger state to JSON files on disk. It saves a <strong>global</strong> file (which scene was active) plus one <strong>per-level</strong> file for every scene the party has visited, so returning to an earlier floor restores exactly how you left it.</p>
 <hr />
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Select the <strong>party root</strong> (the GameObject with <code>PartyVisuals</code>).</li>
-<li><strong>Add Component → Party Bobbing.</strong></li>
-<li>Optionally drag your camera <code>Transform</code> into <strong>Camera</strong> — the component auto-detects it from children if left empty.</li>
-<li>Tune <strong>Bob Height</strong> and <strong>Steps Per Second</strong> to taste.</li>
-</ol>
-<hr />
-<h2 id="inspector-reference">Inspector reference<a class="headerlink" href="#inspector-reference" title="Permanent link">&para;</a></h2>
-<h3 id="bobbing">Bobbing<a class="headerlink" href="#bobbing" title="Permanent link">&para;</a></h3>
+<h2 id="where-saves-are-stored">Where saves are stored<a class="headerlink" href="#where-saves-are-stored" title="Permanent link">&para;</a></h2>
+<p>Save files live inside Unity's per-user persistent data folder, in a dedicated CrawlerKit sub-folder:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;Application.persistentDataPath&gt;/CrawlerKit/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    save_global.json          # which scene was last active
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    save_&lt;SceneName&gt;.json      # one per visited scene
+</span></code></pre></div>
+<p><code>Application.persistentDataPath</code> is decided by Unity from your <strong>Project Settings → Player → Company Name / Product Name</strong>. On each platform it resolves to roughly:</p>
 <table>
 <thead>
 <tr>
-<th>Field</th>
-<th>Default</th>
-<th>Range</th>
-<th>What it does</th>
+<th>Platform</th>
+<th>Location</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Bob Height</strong></td>
-<td>0.05 m</td>
-<td>0.01 – 0.15</td>
-<td>Peak vertical offset in meters on each sine cycle. Higher = more dramatic bob.</td>
+<td><strong>macOS</strong></td>
+<td><code>~/Library/Application Support/&lt;Company&gt;/&lt;Product&gt;/CrawlerKit/</code></td>
 </tr>
 <tr>
-<td><strong>Steps Per Second</strong></td>
-<td>2</td>
-<td>1 – 4</td>
-<td>How many full up-down cycles happen per second. <code>2</code> gives a natural left-right-left gait; <code>1</code> is a slow lurch; <code>4</code> is a sprint.</td>
+<td><strong>Windows</strong></td>
+<td><code>C:\Users\&lt;user&gt;\AppData\LocalLow\&lt;Company&gt;\&lt;Product&gt;\CrawlerKit\</code></td>
+</tr>
+<tr>
+<td><strong>Linux</strong></td>
+<td><code>~/.config/unity3d/&lt;Company&gt;/&lt;Product&gt;/CrawlerKit/</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="camera">Camera<a class="headerlink" href="#camera" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Why a sub-folder?</p>
+<p>The <code>CrawlerKit/</code> sub-folder keeps the framework's saves grouped in one place instead of mixing them with whatever else your project writes to <code>persistentDataPath</code>. It also means the save location is the same on every machine that imports the asset, regardless of the host project's Company / Product names.</p>
+</div>
+<hr />
+<h2 id="changing-the-folder-name">Changing the folder name<a class="headerlink" href="#changing-the-folder-name" title="Permanent link">&para;</a></h2>
+<p>The sub-folder name is a single constant in <code>SaveSystem</code>:</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// CrawlerKitSaveSystem/Runtime/SaveSystem.cs</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">public</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">SaveFolderName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CrawlerKit&quot;</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Rename it to brand the save location for your own game, or set it to an empty string (<code>""</code>) to save directly in <code>persistentDataPath</code> with no sub-folder. Every read, write and delete path goes through the shared <code>SaveSystem.SaveDirectory</code> property, so changing this one value moves the entire save system consistently — there is no second place to update.</p>
+<div class="admonition warning">
+<p class="admonition-title">Existing saves don't move</p>
+<p>Changing <code>SaveFolderName</code> (or the project's Company / Product names) changes the path, so the game will no longer find saves written under the old name. During development this is harmless. If you need to keep existing saves, copy the <code>save_*.json</code> files into the new folder manually.</p>
+</div>
+<hr />
+<h2 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Field</th>
-<th>What it does</th>
+<th>Member</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Camera</strong></td>
-<td>The <code>Transform</code> to apply the bob to. Auto-detected from children (<code>GetComponentInChildren&lt;Camera&gt;</code>) if left empty. If no camera is found, the component disables itself.</td>
+<td><code>SaveSystem.SaveFolderName</code></td>
+<td><code>const string</code> — the sub-folder name. The single place to rebrand the save location.</td>
+</tr>
+<tr>
+<td><code>SaveSystem.SaveDirectory</code></td>
+<td><code>static string</code> — the full save directory. Created on demand (no-op if it already exists). Used by every save/load/delete path.</td>
+</tr>
+<tr>
+<td><code>SaveSystem.LoadGlobalState()</code></td>
+<td><code>static</code> — reads <code>save_global.json</code> and returns the last active scene.</td>
+</tr>
+<tr>
+<td><code>SaveSystem.HasLevelSave(scene)</code></td>
+<td>Returns <code>true</code> if a save file exists for the given scene.</td>
+</tr>
+<tr>
+<td><code>SaveSystem.DeleteSave()</code></td>
+<td>Deletes all <code>save_*.json</code> files in the save directory.</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="behaviour">Behaviour<a class="headerlink" href="#behaviour" title="Permanent link">&para;</a></h2>
-<p>Each <code>LateUpdate</code>:</p>
-<ul>
-<li>If <code>PartyVisuals.IsAnimating</code> is <code>true</code> — the bob phase advances and the camera is offset by <code>sin(phase) * bobHeight</code> on the Y axis.</li>
-<li>If the party is <strong>not</strong> animating — the phase resets to <code>0</code> and the camera lerps back to its rest position (<code>initialLocalOffset</code>) at 10× speed, so it snaps back quickly without a jarring cut.</li>
-</ul>
-<p>The component stores the camera's <code>localPosition</code> at <code>Awake</code> as the rest offset, so the bob is additive — it works regardless of where the camera sits relative to the party root.</p>
-<hr />
-<h2 id="relationship-to-partyvisuals-step-bob">Relationship to PartyVisuals step-bob<a class="headerlink" href="#relationship-to-partyvisuals-step-bob" title="Permanent link">&para;</a></h2>
-<p><code>PartyVisuals</code> has its own <strong>Move Curve + Bob Height</strong> that fires once per step, integrated into the slide animation coroutine. That bob is keyed to the step timing and always plays exactly once per move.</p>
-<p><code>PartyBobbing</code> is a separate, continuous oscillation driven by <code>sin</code>. You can use:</p>
-<ul>
-<li><strong>Both</strong> — the <code>PartyVisuals</code> bob shapes the step, and <code>PartyBobbing</code> adds an overlaid sway.</li>
-<li><strong><code>PartyVisuals</code> only</strong> — set <code>PartyBobbing</code> disabled or remove it; you still get the per-step bob.</li>
-<li><strong><code>PartyBobbing</code> only</strong> — set <code>PartyVisuals.bobHeight</code> to <code>0</code>; the continuous sway replaces the step bob.</li>
-</ul>
-<hr />
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<details class="failure">
-<summary>Component disables itself on play</summary>
-<p>No <code>Camera</code> component was found in the party root's children. Either assign the camera <code>Transform</code> manually in the <strong>Camera</strong> field, or make sure the Camera GameObject is a child of the party root.</p>
-</details>
-<details class="failure">
-<summary>Camera bobs but never returns to rest</summary>
-<p>The camera's <code>localPosition</code> is being overwritten by another component (e.g. <code>PartyLook</code> or <code>PartyFallAnimation</code>) every frame. <code>PartyBobbing</code> uses <code>LateUpdate</code> but so does <code>PartyLook</code>; execution order matters. Check <strong>Project Settings → Script Execution Order</strong> if the rest position drifts.</p>
-</details>
-<details class="failure">
-<summary>Bob is too strong / too weak</summary>
-<p><strong>Bob Height</strong> and <strong>Steps Per Second</strong> are both exposed in the Inspector and can be changed at runtime. Try lowering <code>bobHeight</code> to <code>0.02</code>–<code>0.03</code> for a subtle effect, or <code>0.08</code>–<code>0.12</code> for an exaggerated cinematic bob.</p>
-</details>
-<hr />
-<p><em>CrawlerKIT — Mantis3de</em></p>
+<h2 id="editor-behaviour">Editor behaviour<a class="headerlink" href="#editor-behaviour" title="Permanent link">&para;</a></h2>
+<p><code>SaveSystem</code> has an <strong>Editor</strong> section with an <strong>Auto Load Save In Editor</strong> toggle (off by default). When off, pressing <strong>Play</strong> in the editor does <em>not</em> auto-load the level save, so scene items, enemies and doors stay in their authored state for level design. Standalone builds and the explicit Load / Continue flow are unaffected. Turn it on to test save loading from the editor.</p>
 
 
 
@@ -2041,7 +1956,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../party-visuals/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Party Visuals">
+          <a href="../dungeon-map/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dungeon Map">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2051,20 +1966,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Party Visuals
+                Dungeon Map
               </div>
             </div>
           </a>
         
         
           
-          <a href="../party-look/" class="md-footer__link md-footer__link--next" aria-label="Next: Party Look">
+          <a href="../party-visuals/" class="md-footer__link md-footer__link--next" aria-label="Next: Party Visuals">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Party Look
+                Party Visuals
               </div>
             </div>
             <div class="md-footer__button md-icon">
