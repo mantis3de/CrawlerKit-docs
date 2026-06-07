@@ -2290,7 +2290,7 @@
 <h3 id="stat-bonuses">Stat Bonuses<a class="headerlink" href="#stat-bonuses" title="Permanent link">&para;</a></h3>
 <p>Add Grimrock-style modifiers that apply while the item is equipped. Click <strong>+ Add stat bonus</strong>, pick a stat from the dropdown of StatDefinition assets, and set the amount — shown as a coloured label (green positive, red negative). Stats already used appear as <code>(used)</code> so you don't assign the same one twice, and the red ✕ removes a row. If no StatDefinitions exist yet the section shows a warning and a path to create them, and a small <strong>↻ Refresh stats</strong> button picks up newly created stats without restarting the editor.</p>
 <h3 id="audio">Audio<a class="headerlink" href="#audio" title="Permanent link">&para;</a></h3>
-<p>Four optional AudioClip slots control when sounds are played for this item, plus a single <strong>Item Sound Volume</strong> slider (0–1) that applies to all of them.</p>
+<p>A set of optional AudioClip slots control when sounds are played for this item, plus a single <strong>Item Sound Volume</strong> slider (0–1) that applies to all of them.</p>
 <table>
 <thead>
 <tr>
@@ -2305,19 +2305,32 @@
 </tr>
 <tr>
 <td><strong>Equip Sound</strong></td>
-<td>When the item is dragged from the cursor into a hand slot.</td>
+<td>When the item is placed into any slot — hand slot or equipment slot (helmet, armor, etc.).</td>
 </tr>
 <tr>
-<td><strong>Pickup Sound</strong></td>
+<td><strong>Unequip Sound</strong></td>
+<td>When the item is removed from any slot back onto the cursor.</td>
+</tr>
+<tr>
+<td><strong>Floor Pickup Sound</strong></td>
 <td>When the item is picked up from the dungeon floor.</td>
 </tr>
 <tr>
-<td><strong>Drop Sound</strong></td>
-<td>When the item is unequipped from a hand slot back onto the cursor.</td>
+<td><strong>Floor Drop Sound</strong></td>
+<td>When the item is dropped from the cursor onto the dungeon floor.</td>
+</tr>
+<tr>
+<td><strong>Alcove Placed Sound</strong></td>
+<td>When the item is placed into a Wall Alcove.</td>
+</tr>
+<tr>
+<td><strong>Alcove Removed Sound</strong></td>
+<td>When the item is taken back out of a Wall Alcove.</td>
 </tr>
 </tbody>
 </table>
-<p>All sounds play at the camera position (2D, no distance falloff) — they are player-action sounds, not world-space effects.</p>
+<p>The first five (Attack/Equip/Unequip/Floor Pickup/Floor Drop) play at the camera position (2D, no distance falloff) — they are player-action sounds, not world-space effects.</p>
+<p>The two <strong>Alcove</strong> sounds are different: they aren't played directly by the item — instead, <strong>Generate Alcove Prefab</strong> copies them (together with <strong>Item Sound Volume</strong>) onto the generated <code>WallAlcove</code> component's <strong>Item Placed Sound</strong> / <strong>Item Removed Sound</strong> / <strong>Item Sound Volume</strong> fields, where they play as 3D positional audio at the alcove's world position. See <a href="../../systems/triggers/#wall-alcove-wallalcove">Wall Alcove</a> for details. Leave either clip empty for no sound.</p>
 <h3 id="class-restrictions">Class Restrictions<a class="headerlink" href="#class-restrictions" title="Permanent link">&para;</a></h3>
 <p>Controls which classes can equip the item. Currently allowed classes appear as blue pill labels, each with an ✕ to remove. Click <strong>+ Add Class ▾</strong> to add one from the dropdown of ClassData assets; classes already in the list are disabled so you can't duplicate them. An empty list means anyone can equip the item — that is the default.</p>
 <h3 id="common-fields">Common Fields<a class="headerlink" href="#common-fields" title="Permanent link">&para;</a></h3>
