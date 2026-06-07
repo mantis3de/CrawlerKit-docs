@@ -25,6 +25,9 @@ Youtube tutorials:
 5. On the **Characters** tab, drag a portrait PNG into the gallery, then click **🎲 Randomize ALL Characters** to fill all four slots instantly.
 6. Click **💾 Generate Party Assets**.
 
+!!! tip "Starting fresh or updating an existing party"
+    If you already have a party from a previous session, you have two options: click **Clear All** to wipe everything and start from scratch, or simply click **Generate Party Assets** again to overwrite the existing assets in place. Note that the default party assets that ship with CrawlerKit cannot be deleted — they are required by the demo scene.
+
 Four `Member_*.asset` files are created in `CrawlerKitParty/Resources/PartyMembers`. The PartyUI loads them automatically at runtime.
 
 → Full details: [Character Generator](../editors/character-generator.md)
