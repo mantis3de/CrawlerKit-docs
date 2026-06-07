@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Inventory Editor is the tool you use to create every item in your game, bundle items into starter kits for your party, and design what drops as loot. You open it from Unity's top menu under **CrawlerKit → Inventory Editor**.
+The Inventory Editor is the tool you use to create every item in your game, bundle items into starter kits for your party, and design what drops as loot. You open it from Unity's top menu under **Window → CrawlerKit → Inventory Editor**.
 
 The window is split into three tabs: **Items**, **Equipment Sets** and **Loot Tables**. Each tab handles a different layer of the inventory system — authoring individual items, dressing your party, and defining drops for enemies and chests.
 

@@ -73,13 +73,13 @@ CrawlerKit installs under `Assets/CrawlerKitFramework/`, organised into modules:
 
 ## Verify the installation
 
-After import, open the Unity top menu. You should see a **CrawlerKit** menu with the editor windows:
+After import, open **Window** in Unity's top menu. You should see a **CrawlerKit** submenu with the editor windows:
 
-- CrawlerKit → Dungeon Generator
-- CrawlerKit → Character Generator
-- CrawlerKit → Inventory Editor
-- CrawlerKit → Spell Editor
-- CrawlerKit → Enemy Spawner
+- Window → CrawlerKit → Dungeon Generator
+- Window → CrawlerKit → Character Generator
+- Window → CrawlerKit → Inventory Editor
+- Window → CrawlerKit → Spell Editor
+- Window → CrawlerKit → Enemy Spawner
 
 If the menu appears, the framework compiled successfully and you are ready to go.
 

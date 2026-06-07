@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Spell Editor is the tool you use to build the entire magic system for your dungeon crawler — runes, spell recipes, effects, VFX and the runtime wiring that connects them all to your scene. You open it from Unity's top menu under **CrawlerKit → Spell Editor**.
+The Spell Editor is the tool you use to build the entire magic system for your dungeon crawler — runes, spell recipes, effects, VFX and the runtime wiring that connects them all to your scene. You open it from Unity's top menu under **Window → CrawlerKit → Spell Editor**.
 
 The window is laid out in three columns: a **Rune Palette** on the left, a **Spell List** in the centre, and the full **Spell Editor** on the right. In one sentence: you define runes, compose them into recipes, attach an effect, and the editor wires everything to your scene automatically.
 
@@ -102,7 +102,7 @@ Friendly spells (Heal, HoT, Buff) always target the caster or the whole party an
 
 ## Workflow Summary
 
-1. Open **CrawlerKit → Spell Editor** and create a SpellDatabase if you don't have one.
+1. Open **Window → CrawlerKit → Spell Editor** and create a SpellDatabase if you don't have one.
 2. In the Rune Palette, create runes — assign ON and OFF sprites, pick a type, click Create. Repeat up to nine times, one per cell in the 3×3 grid.
 3. In the Spell List, click **＋ New** for a blank spell or **⚡ Generate** to auto-generate one.
 4. In Spell Info, fill in name, level, energy cost and cooldown.

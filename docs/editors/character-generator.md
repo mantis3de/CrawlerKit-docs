@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Character Generator is the visual tool you use to build your entire party from scratch — no scripting required. You open it from Unity's top menu under **CrawlerKit → Character Generator**.
+The Character Generator is the visual tool you use to build your entire party from scratch — no scripting required. You open it from Unity's top menu under **Window → CrawlerKit → Character Generator**.
 
 The window is organised into four numbered tabs that follow the exact order you build a party in: **1. Stats → 2. Races → 3. Classes → 4. Characters**. You define the stats your game uses, build races and classes on top of them, and then configure four party members that are saved as ScriptableObject assets. The PartyUI loads those assets automatically when the game starts, so there is no scene setup to do afterwards.
 

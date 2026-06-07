@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Enemy Spawner is the tool you use to drop enemies into your dungeon and assign their loot — without touching the Inspector. You open it from Unity's top menu under **CrawlerKit → Enemy Spawner**.
+The Enemy Spawner is the tool you use to drop enemies into your dungeon and assign their loot — without touching the Inspector. You open it from Unity's top menu under **Window → CrawlerKit → Enemy Spawner**.
 
 The window has three columns: a **Presets** list on the left, a **Loot Tables** browser in the centre, and the **Enemies** working area on the right. The short version: you build a working list of enemy prefabs, drag loot tables onto them, place them into the scene with one click, and save your favourite groups as reusable presets.
 
@@ -218,7 +218,7 @@ Per-weapon sounds are set on the `ItemData` asset — see the Inventory Editor d
 
 ## Workflow Summary
 
-1. Open **CrawlerKit → Enemy Spawner**.
+1. Open **Window → CrawlerKit → Enemy Spawner**.
 2. In the Enemies column, click **+** and assign an enemy prefab; repeat for each enemy you want available.
 3. Review each enemy's stats in the row's stats panel.
 4. Drag a loot table from the centre browser onto an enemy's drop zone to assign its drops.

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Dungeon Generator is one of the core tools in CrawlerKIT. You open it from Unity's top menu under **CrawlerKit → Dungeon Generator**. It runs entirely inside the editor and has zero impact on game performance — all it does is generate a scene and bake everything into a single JSON file, which the runtime loads when the level starts.
+The Dungeon Generator is one of the core tools in CrawlerKIT. You open it from Unity's top menu under **Window → CrawlerKit → Dungeon Generator**. It runs entirely inside the editor and has zero impact on game performance — all it does is generate a scene and bake everything into a single JSON file, which the runtime loads when the level starts.
 
 In one sentence: it generates a dungeon procedurally, lets you edit it by hand, and then exports it to a JSON file your game uses at runtime.
 

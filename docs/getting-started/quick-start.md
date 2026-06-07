@@ -5,7 +5,7 @@
 This guide takes you from a fresh import to a playable, first-person dungeon room with a party — using only the visual editors. Each step is roughly a minute.
 
 !!! tip "Before you begin"
-    Make sure the **CrawlerKit** menu is visible in Unity's top bar. If it isn't, see [Installation](installation.md).
+    Make sure **Window → CrawlerKit** is visible in Unity's top bar. If it isn't, see [Installation](installation.md).
 
 !!! info "Placeholders"
     All included items, dungeon walls, floors, and props are placeholder assets. Every piece of art can be replaced with your own graphics — swap the prefabs and sprites wherever you see fit. Items are displayed as 2D sprites by default, but can be replaced with 3D models — just swap the 2D sprite for a 3D mesh in the prefab.
@@ -21,7 +21,7 @@ Youtube tutorials:
 
 ### Minute 1 — Create your party
 
-1. Open **CrawlerKit → Character Generator**.
+1. Open **Window → CrawlerKit → Character Generator**.
 2. On the **Stats** tab, create a few stats (Strength, Dexterity, Vitality, Willpower).
 3. On the **Races** tab, create at least one race (e.g. Human).
 4. On the **Classes** tab, create at least one class (e.g. Fighter), and set its Primary and Secondary stats.
@@ -39,7 +39,7 @@ Four `Member_*.asset` files are created in `CrawlerKitParty/Resources/PartyMembe
 
 ### Minute 2 — Generate a dungeon
 
-1. Open **CrawlerKit → Dungeon Generator**.
+1. Open **Window → CrawlerKit → Dungeon Generator**.
 2. Pick the **TinyArena** preset (a single 10×10 room — perfect for a first test).
 3. Assign your **Wall**, **Floor** and **Stairs** prefabs in the **Prefabs** panel. (No prefabs yet? Leave Wall empty to just see the grid.)
 4. Click **Generate Flags**, then **Rebuild Dungeon**.
@@ -51,7 +51,7 @@ Four `Member_*.asset` files are created in `CrawlerKitParty/Resources/PartyMembe
 
 ### Minute 3 — Author one item and a loot table
 
-1. Open **CrawlerKit → Inventory Editor**.
+1. Open **Window → CrawlerKit → Inventory Editor**.
 2. On the **Items** tab, click **+ Create new item**, hit the **Strong** generator button, drag in an icon, and **Save item**.
 3. On the **Loot Tables** tab, click **+ Create New Table**, open **Auto-Generate Table**, choose **Enemy**, and click **⚙ Generate Table**.
 4. Use **▶ Simulate Roll** to confirm it drops loot, then save.
@@ -62,7 +62,7 @@ Four `Member_*.asset` files are created in `CrawlerKitParty/Resources/PartyMembe
 
 ### Minute 4 — Place an enemy
 
-1. Open **CrawlerKit → Enemy Spawner**.
+1. Open **Window → CrawlerKit → Enemy Spawner**.
 2. Click **+** in the Enemies column and assign an enemy prefab.
 3. Drag your loot table from the centre column onto the enemy's drop zone.
 4. Click **+ ADD** to drop the enemy into the scene, then move it onto a tile.
